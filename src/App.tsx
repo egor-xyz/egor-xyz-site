@@ -36,7 +36,7 @@ export const App = () => {
       <Menu />
       <div
         ref={scope}
-        className='absolute cursor-pointer opacity-0'
+        className='fixed cursor-pointer opacity-0'
       >
         <Logo />
       </div>
