@@ -1,6 +1,8 @@
 import { Variants, useAnimate } from 'framer-motion';
 import { useEffect } from 'react';
 import Logo from './assets/logo.svg?react';
+import { BubbleText } from './components/BubbleText';
+import { Menu } from './components/Menu';
 
 const variants: Variants = {
   start: {
@@ -31,6 +33,7 @@ export const App = () => {
 
   return (
     <div className='text-100px relative flex min-h-[100svh] items-center justify-center bg-black bg-gradient-to-t from-blue-600 to-red-500 text-white'>
+      <Menu />
       <div
         ref={scope}
         className='absolute cursor-pointer opacity-0'
