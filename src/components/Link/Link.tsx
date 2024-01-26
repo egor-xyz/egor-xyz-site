@@ -1,9 +1,9 @@
-import { useMotionValue, motion, useSpring, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { FiArrowRight } from 'react-icons/fi';
 
 export const Link = ({ heading, imgSrc, subheading, href }) => {
-  const ref = useRef(null);
+  const ref = useRef<any>(null);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -25,6 +25,8 @@ export const Link = ({ heading, imgSrc, subheading, href }) => {
 
     const xPct = mouseX / width - 0.5;
     const yPct = mouseY / height - 0.5;
+
+    console.log(xPct, yPct);
 
     x.set(xPct);
     y.set(yPct);
@@ -82,10 +84,9 @@ export const Link = ({ heading, imgSrc, subheading, href }) => {
           initial: { scale: 0, rotate: '-12.5deg' },
           whileHover: { scale: 1, rotate: '12.5deg' }
         }}
-        transition={{ type: 'spring' }}
+        transition={{ duration: 0.5, type: 'spring' }}
         src={imgSrc}
         className='absolute z-0 h-24 w-32 rounded-lg object-cover md:h-48 md:w-64'
-        alt={`Image representing a link for ${heading}`}
       />
 
       <motion.div
