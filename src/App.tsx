@@ -5,7 +5,7 @@ import Logo from './assets/logo.svg?react';
 const variants: Variants = {
   start: {
     scale: [0, 1],
-    rotate: [0, 360, 0],
+    rotate: [180, 0],
     opacity: [0, 1]
   },
   top: {
