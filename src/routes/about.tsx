@@ -1,18 +1,30 @@
 import { Link, createFileRoute } from '@tanstack/react-router';
+import { motion } from 'framer-motion';
+import { EnterAnimation } from '../components/EnterAnimation/EnterAnimation';
 
 export const Route = createFileRoute('/about')({
-  component: Index
+  component: About
 });
 
-function Index() {
+function About() {
   return (
-    <div className='p-2'>
-      <Link to='/'>
-        <img
-          className='w-full'
-          src='https://placedog.net/640/480?random&2'
-        />
-      </Link>
-    </div>
+    <EnterAnimation>
+      <motion.div
+        className='p-2'
+        animate={{
+          opacity: [0, 1],
+          transition: {
+            duration: 1
+          }
+        }}
+      >
+        <Link
+          to='/me'
+          className='text-xl'
+        >
+          To me
+        </Link>
+      </motion.div>
+    </EnterAnimation>
   );
 }
