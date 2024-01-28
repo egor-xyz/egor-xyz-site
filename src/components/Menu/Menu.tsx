@@ -52,7 +52,7 @@ const menuVariants: Variants = {
 export const Menu = () => {
   return (
     <motion.section
-      className='relative mx-auto  mt-[120px] w-[100%] max-w-5xl overflow-hidden p-4 pl-[240px] lg:pl-4'
+      className='relative mx-auto  mt-[120px] w-[100%] max-w-5xl overflow-hidden p-24 pl-[240px] lg:pl-4'
       initial='initial'
       animate='enter'
       variants={menuVariants}
