@@ -1,6 +1,9 @@
+import { Link } from '@tanstack/react-router';
 import { Variants, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { FC, useRef } from 'react';
 import { FiArrowRight } from 'react-icons/fi';
+
+const MLink = motion(Link);
 
 type Props = {
   heading: string;
@@ -19,7 +22,7 @@ const fadeInVariants: Variants = {
     opacity: [0, 0.3, 1],
     y: [500, 500, 0],
     transition: {
-      delay: 2 + i * 0.3,
+      delay: 1.3 + i * 0.3,
       duration: 1
     }
   })
@@ -42,7 +45,7 @@ const lineVariants: Variants = {
   }
 };
 
-export const Link: FC<Props> = ({ heading, imgSrc, subheading, href, index }) => {
+export const LinkItem: FC<Props> = ({ heading, imgSrc, subheading, href, index }) => {
   const ref = useRef<any>(null);
 
   const x = useMotionValue(0);
@@ -71,9 +74,9 @@ export const Link: FC<Props> = ({ heading, imgSrc, subheading, href, index }) =>
   };
 
   return (
-    <motion.a
+    <MLink
+      to={href}
       custom={index}
-      href={href}
       ref={ref}
       onMouseMove={handleMouseMove}
       initial='initial'
@@ -152,6 +155,6 @@ export const Link: FC<Props> = ({ heading, imgSrc, subheading, href, index }) =>
       >
         <FiArrowRight className='text-5xl text-neutral-50' />
       </motion.div>
-    </motion.a>
+    </MLink>
   );
 };
