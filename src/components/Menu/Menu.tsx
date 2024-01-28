@@ -1,12 +1,12 @@
 import { Variants, motion } from 'framer-motion';
-import { Link } from '../Link';
+import { LinkItem } from '../LinkItem';
 
 const menuItems = [
   {
     heading: 'About',
     subheading: 'Links and contacts',
     imgSrc: 'https://placedog.net/640/480?random&1',
-    href: '/'
+    href: '/about'
   },
   {
     heading: 'Digest',
@@ -58,7 +58,7 @@ export const Menu = () => {
       variants={menuVariants}
     >
       {menuItems.map(({ heading, href, imgSrc, subheading }, key) => (
-        <Link
+        <LinkItem
           index={key}
           key={key}
           heading={heading}
