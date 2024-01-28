@@ -42,8 +42,7 @@ const menuVariants: Variants = {
     pointerEvents: 'initial',
     opacity: [0, 1],
     transition: {
-      delay: 2,
-      when: 'beforeChildren',
+      // delay: 2,
       duration: 3
     }
   }
@@ -52,7 +51,7 @@ const menuVariants: Variants = {
 export const Menu = () => {
   return (
     <motion.section
-      className='mx-auto mt-[120px]  w-[100%] max-w-5xl p-4 pl-[240px] lg:pl-4'
+      className='relative mx-auto  mt-[120px] w-[100%] max-w-5xl p-4 pl-[240px] lg:pl-4'
       initial='initial'
       animate='enter'
       variants={menuVariants}
