@@ -43,7 +43,6 @@ const menuVariants: Variants = {
     pointerEvents: 'initial',
     opacity: [0, 1],
     transition: {
-      // delay: 2,
       duration: 3
     }
   }
