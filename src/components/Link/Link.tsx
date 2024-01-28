@@ -13,13 +13,14 @@ type Props = {
 const fadeInVariants: Variants = {
   initial: {
     opacity: 0,
-    y: 100
+    y: 500
   },
   enter: (i) => ({
-    opacity: 1,
-    y: 0,
+    opacity: [0, 0.3, 1],
+    y: [500, 500, 0],
     transition: {
-      delay: 2 + i * 0.4
+      delay: 2 + i * 0.3,
+      duration: 1
     }
   })
 };
