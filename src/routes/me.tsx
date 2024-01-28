@@ -13,8 +13,9 @@ function About() {
         className='p-2'
         animate={{
           opacity: [0, 1],
+          y: [100, 0],
           transition: {
-            duration: 1
+            duration: 2
           }
         }}
       >

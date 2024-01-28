@@ -19,7 +19,7 @@ const slide: Variants = {
   enter: {
     top: '100vh',
     transition: {
-      duration: 0.5
+      duration: 4
     }
   },
   exit: {

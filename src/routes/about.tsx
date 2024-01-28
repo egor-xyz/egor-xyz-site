@@ -10,17 +10,18 @@ function About() {
   return (
     <EnterAnimation>
       <motion.div
-        className='p-2'
+        className='relative p-2'
         animate={{
           opacity: [0, 1],
+          y: [100, 0],
           transition: {
-            duration: 1
+            duration: 2
           }
         }}
       >
         <Link
           to='/me'
-          className='text-xl'
+          className='text-xl '
         >
           To me
         </Link>
