@@ -45,8 +45,9 @@ const lineVariants: Variants = {
   }
 };
 
-export const LinkItem: FC<Props> = ({ heading, imgSrc, subheading, href, index }) => {
+export const MenuItem: FC<Props> = ({ heading, imgSrc, subheading, href, index }) => {
   const ref = useRef<any>(null);
+  // is referer same domain
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -80,6 +81,7 @@ export const LinkItem: FC<Props> = ({ heading, imgSrc, subheading, href, index }
       ref={ref}
       onMouseMove={handleMouseMove}
       initial='initial'
+      exit='initial'
       whileHover='whileHover'
       className='group relative flex items-center justify-between py-4 transition-colors duration-500  md:py-8'
       variants={fadeInVariants}
