@@ -2,7 +2,7 @@ import { Link, createFileRoute } from '@tanstack/react-router';
 import { motion } from 'framer-motion';
 import { EnterAnimation } from '../components/EnterAnimation/EnterAnimation';
 
-export const Route = createFileRoute('/about')({
+export const Route = createFileRoute('/me')({
   component: About
 });
 
@@ -19,10 +19,10 @@ function About() {
         }}
       >
         <Link
-          to='/me'
+          to='/about'
           className='text-xl'
         >
-          To me
+          To about
         </Link>
       </motion.div>
     </EnterAnimation>

@@ -1,6 +1,6 @@
-import { Link, Outlet } from '@tanstack/react-router';
+import { Link, Outlet, useRouter } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/router-devtools';
-import { Variants, useAnimate } from 'framer-motion';
+import { AnimatePresence, Variants, useAnimate } from 'framer-motion';
 import { useEffect } from 'react';
 import Logo from './assets/logo.svg?react';
 
@@ -10,31 +10,39 @@ const variants: Variants = {
     rotate: [180, 0],
     opacity: [0, 1]
   },
-  top: {
+  header: {
     opacity: 1,
     left: 15,
     top: 15,
     scale: 0.4,
-    transformOrigin: 'top left'
+    originX: 0,
+    originY: 0
   }
 };
 
 export const App = () => {
   const [scope, animate] = useAnimate();
+  const { state } = useRouter();
 
-  const animateLogo = async () => {
+  const animateLogo = async (full: boolean) => {
+    if (!full) {
+      await animate(scope.current, variants.header, { duration: 0 });
+      return;
+    }
     await animate(scope.current, variants.start, { duration: 1.3 });
-    await animate(scope.current, variants.top, { duration: 0.7 });
+    await animate(scope.current, variants.header, { duration: 0.7 });
   };
 
   useEffect(() => {
-    animateLogo();
+    animateLogo(state.location.href === '/');
   }, []);
 
   return (
     <>
       <div className='text-100px relative flex min-h-[100svh] items-center justify-center bg-black bg-gradient-to-t from-blue-600 to-red-500 text-white'>
-        <Outlet />
+        <AnimatePresence mode='wait'>
+          <Outlet />
+        </AnimatePresence>
 
         <div
           ref={scope}
