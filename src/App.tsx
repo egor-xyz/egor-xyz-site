@@ -1,8 +1,8 @@
+import { Link, Outlet } from '@tanstack/react-router';
+import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 import { Variants, useAnimate } from 'framer-motion';
 import { useEffect } from 'react';
 import Logo from './assets/logo.svg?react';
-import { Link, Outlet } from '@tanstack/react-router';
-import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 
 const variants: Variants = {
   start: {
@@ -30,8 +30,6 @@ export const App = () => {
   useEffect(() => {
     animateLogo();
   }, []);
-
-  console.log('rerender');
 
   return (
     <>

@@ -8,7 +8,10 @@ function Index() {
   return (
     <div className='p-2'>
       <Link to='/'>
-        <h3>Welcome Home!</h3>
+        <img
+          className='w-full'
+          src='https://placedog.net/640/480?random&2'
+        />
       </Link>
     </div>
   );
