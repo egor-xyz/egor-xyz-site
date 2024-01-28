@@ -1,8 +1,30 @@
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { HTMLMotionProps, Variants, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { FC, useRef } from 'react';
 import { FiArrowRight } from 'react-icons/fi';
 
-export const Link = ({ heading, imgSrc, subheading, href }) => {
+type Props = {
+  heading: string;
+  imgSrc: string;
+  subheading: string;
+  index: number;
+  href: string;
+};
+
+const fadeInVariants: Variants = {
+  initial: {
+    opacity: 0,
+    y: 100
+  },
+  enter: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 2 + i * 0.4
+    }
+  })
+};
+
+export const Link: FC<Props> = ({ heading, imgSrc, subheading, href, index }) => {
   const ref = useRef<any>(null);
 
   const x = useMotionValue(0);
@@ -34,12 +56,15 @@ export const Link = ({ heading, imgSrc, subheading, href }) => {
 
   return (
     <motion.a
+      custom={index}
       href={href}
       ref={ref}
       onMouseMove={handleMouseMove}
       initial='initial'
       whileHover='whileHover'
       className='group relative flex items-center justify-between border-b-2 border-neutral-700 py-4 transition-colors duration-500 hover:border-neutral-50 md:py-8'
+      variants={fadeInVariants}
+      animate='enter'
     >
       <div>
         <motion.span
@@ -52,7 +77,7 @@ export const Link = ({ heading, imgSrc, subheading, href }) => {
             staggerChildren: 0.075,
             delayChildren: 0.25
           }}
-          className='relative z-10 block text-4xl font-bold text-neutral-500 transition-colors duration-500 group-hover:text-neutral-50 md:text-6xl'
+          className='text-white-500 relative z-10 block text-4xl font-bold transition-colors duration-500 group-hover:text-neutral-50 md:text-6xl'
         >
           {heading.split('').map((l, i) => (
             <motion.span
@@ -68,7 +93,7 @@ export const Link = ({ heading, imgSrc, subheading, href }) => {
             </motion.span>
           ))}
         </motion.span>
-        <span className='relative z-10 mt-2 block text-base text-neutral-500 transition-colors duration-500 group-hover:text-neutral-50'>
+        <span className='text-white-500 relative z-10 mt-2 block text-base transition-colors duration-500 group-hover:text-neutral-50'>
           {subheading}
         </span>
       </div>
