@@ -25,6 +25,23 @@ const fadeInVariants: Variants = {
   })
 };
 
+const lineVariants: Variants = {
+  initial: {
+    width: '0%',
+    transition: {
+      duration: 2
+    }
+  },
+  whileHover: {
+    left: 0,
+    width: '100%',
+    transition: {
+      duration: 1.3,
+      type: 'spring'
+    }
+  }
+};
+
 export const Link: FC<Props> = ({ heading, imgSrc, subheading, href, index }) => {
   const ref = useRef<any>(null);
 
@@ -49,8 +66,6 @@ export const Link: FC<Props> = ({ heading, imgSrc, subheading, href, index }) =>
     const xPct = mouseX / width - 0.5;
     const yPct = mouseY / height - 0.5;
 
-    console.log(xPct, yPct);
-
     x.set(xPct);
     y.set(yPct);
   };
@@ -63,7 +78,7 @@ export const Link: FC<Props> = ({ heading, imgSrc, subheading, href, index }) =>
       onMouseMove={handleMouseMove}
       initial='initial'
       whileHover='whileHover'
-      className='group relative flex items-center justify-between border-b-2 border-neutral-700 py-4 transition-colors duration-500 hover:border-neutral-50 md:py-8'
+      className='group relative flex items-center justify-between py-4 transition-colors duration-500  md:py-8'
       variants={fadeInVariants}
       animate='enter'
     >
@@ -98,6 +113,12 @@ export const Link: FC<Props> = ({ heading, imgSrc, subheading, href, index }) =>
           {subheading}
         </span>
       </div>
+
+      <div className='-z-1 absolute left-0 top-[100%] h-[2px] w-full bg-neutral-700'></div>
+      <motion.div
+        variants={lineVariants}
+        className='-z-1 absolute left-1/2 top-[100%] h-[2px] bg-white'
+      ></motion.div>
 
       <motion.img
         style={{
