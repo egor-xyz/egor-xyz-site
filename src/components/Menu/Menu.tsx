@@ -1,5 +1,5 @@
 import { Variants, motion } from 'framer-motion';
-import { LinkItem } from '../LinkItem';
+import { MenuItem } from '../MenuItem';
 
 const menuItems = [
   {
@@ -37,13 +37,17 @@ const menuItems = [
 
 const menuVariants: Variants = {
   initial: {
-    pointerEvents: 'none'
+    pointerEvents: 'none',
+    opacity: 0,
+    transition: {
+      staggerChildren: 0.3
+    }
   },
   enter: {
     pointerEvents: 'initial',
-    opacity: [0, 1],
+    opacity: 1,
     transition: {
-      duration: 3
+      staggerChildren: 0.3
     }
   }
 };
@@ -51,13 +55,13 @@ const menuVariants: Variants = {
 export const Menu = () => {
   return (
     <motion.section
-      className='relative mx-auto  mt-[120px] w-[100%] max-w-5xl overflow-hidden p-24 pl-[240px] lg:pl-4'
+      className='relative mx-auto  mt-[80px] w-[100%] max-w-5xl overflow-hidden p-14 pl-[240px] lg:pl-4'
       initial='initial'
       animate='enter'
       variants={menuVariants}
     >
       {menuItems.map(({ heading, href, imgSrc, subheading }, key) => (
-        <LinkItem
+        <MenuItem
           index={key}
           key={key}
           heading={heading}
