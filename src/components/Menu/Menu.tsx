@@ -4,34 +4,35 @@ import { Link } from '../Link';
 const menuItems = [
   {
     heading: 'About',
-    subheading: 'Learn what we do here',
+    subheading: 'Links and contacts',
     imgSrc: 'https://placedog.net/640/480?random&1',
     href: '/'
   },
   {
-    heading: 'Clients',
-    subheading: 'We work with great people',
-    imgSrc: 'https://placedog.net/640/480?random&2',
-    href: '/'
-  },
-  {
-    heading: 'Portfolio',
-    subheading: 'Our work speaks for itself',
-    imgSrc: 'https://placedog.net/640/480?random&3',
-    href: '/'
-  },
-  {
-    heading: 'Careers',
-    subheading: 'We want cool people',
+    heading: 'Digest',
+    subheading: 'Your weekly dose of front-end news',
     imgSrc: 'https://placedog.net/640/480?random&4',
     href: '/'
   },
   {
-    heading: 'Fun',
-    subheading: "Incase you're bored",
-    imgSrc: 'https://placedog.net/640/480?random&5',
+    heading: 'Extensions',
+    subheading: 'My extension packs',
+    imgSrc: 'https://placedog.net/640/480?random&3',
+    href: '/'
+  },
+  {
+    heading: 'Devkitty',
+    subheading: 'Swiss army knife for developers',
+    imgSrc: 'https://placedog.net/640/480?random&2',
     href: '/'
   }
+
+  // {
+  //   heading: 'Fun',
+  //   subheading: "Incase you're bored",
+  //   imgSrc: 'https://placedog.net/640/480?random&5',
+  //   href: '/'
+  // }
 ];
 
 const menuVariants: Variants = {

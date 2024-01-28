@@ -1,4 +1,4 @@
-import { HTMLMotionProps, Variants, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { Variants, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { FC, useRef } from 'react';
 import { FiArrowRight } from 'react-icons/fi';
 
