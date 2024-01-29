@@ -2,7 +2,7 @@ import { Variants, useAnimate } from 'framer-motion';
 import { useEffect } from 'react';
 import Logo from './assets/logo.svg?react';
 import { Router } from './Router';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const variants: Variants = {
   start: {
@@ -42,12 +42,13 @@ export const App = () => {
       <div className='text-100px relative flex min-h-[100svh] items-center justify-center bg-black bg-gradient-to-t from-blue-600 to-red-500 text-white'>
         <Router />
 
-        <div
+        <Link
+          to='/'
           ref={scope}
           className='fixed cursor-pointer opacity-0'
         >
           <Logo />
-        </div>
+        </Link>
       </div>
     </>
   );

@@ -11,7 +11,7 @@ export const Me = () => {
           opacity: [0, 1],
           y: [100, 0],
           transition: {
-            duration: 2
+            duration: 0.5
           }
         }}
       >

@@ -11,7 +11,8 @@ export const About = () => {
           opacity: [0, 1],
           y: [100, 0],
           transition: {
-            duration: 2
+            delay: 0,
+            duration: 0.5
           }
         }}
       >
@@ -19,7 +20,8 @@ export const About = () => {
           to='/me'
           className='text-xl '
         >
-          To me
+          double card rabbit closely about sense dance fourth from rays baby stomach lose slightly foreign poem tail
+          family why moving duck compass rising such
         </Link>
       </motion.div>
     </EnterAnimation>
