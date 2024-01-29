@@ -1,12 +1,7 @@
-import { Link, createFileRoute } from '@tanstack/react-router';
 import { motion } from 'framer-motion';
-import { EnterAnimation } from '../components/EnterAnimation/EnterAnimation';
+import { EnterAnimation } from '../../components/EnterAnimation/EnterAnimation';
 
-export const Route = createFileRoute('/about')({
-  component: About
-});
-
-function About() {
+export const About = () => {
   return (
     <EnterAnimation>
       <motion.div
@@ -28,4 +23,4 @@ function About() {
       </motion.div>
     </EnterAnimation>
   );
-}
+};

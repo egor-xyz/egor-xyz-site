@@ -1,9 +1,6 @@
-import { Link } from '@tanstack/react-router';
 import { Variants, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { FC, useRef } from 'react';
 import { FiArrowRight } from 'react-icons/fi';
-
-const MLink = motion(Link);
 
 type Props = {
   heading: string;
@@ -75,7 +72,7 @@ export const MenuItem: FC<Props> = ({ heading, imgSrc, subheading, href, index }
   };
 
   return (
-    <MLink
+    <motion.a
       to={href}
       custom={index}
       ref={ref}
@@ -83,7 +80,7 @@ export const MenuItem: FC<Props> = ({ heading, imgSrc, subheading, href, index }
       initial='initial'
       exit='initial'
       whileHover='whileHover'
-      className='group relative flex items-center justify-between py-4 transition-colors duration-500  md:py-8'
+      className='group relative flex items-center justify-between py-4 transition-colors duration-500 md:py-8'
       variants={fadeInVariants}
       animate='enter'
     >
@@ -157,6 +154,6 @@ export const MenuItem: FC<Props> = ({ heading, imgSrc, subheading, href, index }
       >
         <FiArrowRight className='text-5xl text-neutral-50' />
       </motion.div>
-    </MLink>
+    </motion.a>
   );
 };
