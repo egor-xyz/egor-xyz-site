@@ -1,8 +1,9 @@
 import { Variants, useAnimate } from 'framer-motion';
 import { useEffect } from 'react';
-import Logo from './assets/logo.svg?react';
-import { Router } from './Router';
 import { Link, useLocation } from 'react-router-dom';
+import { Router } from './Router';
+import Logo from './assets/logo.svg?react';
+import { TopMenu } from './components/TopMenu';
 import { useStore } from './useStore';
 
 const variants: Variants = {
@@ -46,10 +47,12 @@ export const App = () => {
     <div className='text-100px relative flex min-h-[100svh] items-center justify-center bg-black bg-gradient-to-t from-blue-600 to-red-500 text-white'>
       <Router />
 
+      <TopMenu />
+
       <Link
         to='/'
         ref={scope}
-        className='fixed opacity-0 cursor-pointer'
+        className='fixed cursor-pointer opacity-0'
       >
         <Logo />
       </Link>
