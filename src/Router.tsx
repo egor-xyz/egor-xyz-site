@@ -1,8 +1,11 @@
-import { Route, Routes, useLocation } from 'react-router-dom';
-import { Home } from './components/Home';
-import { About } from './pages/About';
-import { Me } from './pages/Me';
 import { AnimatePresence } from 'framer-motion';
+import { Route, Routes, useLocation } from 'react-router-dom';
+
+import { Home } from './pages/Home';
+import { About } from './pages/About';
+import { Digest } from './pages/Digest';
+import { Extensions } from './pages/Extensions';
+import { Devkitty } from './pages/Devkitty';
 
 export const Router = () => {
   const location = useLocation();
@@ -24,8 +27,18 @@ export const Router = () => {
         />
 
         <Route
-          element={<Me />}
-          path='/me'
+          element={<Digest />}
+          path='/digest'
+        />
+
+        <Route
+          element={<Extensions />}
+          path='/extensions'
+        />
+
+        <Route
+          element={<Devkitty />}
+          path='/devkitty'
         />
 
         <Route
