@@ -86,9 +86,8 @@ export const MenuItem: FC<Props> = ({ heading, imgSrc, subheading, href, index }
       ref={ref}
       onMouseMove={handleMouseMove}
       initial='initial'
-      exit='initial'
       whileHover='whileHover'
-      className='relative flex items-center justify-between py-4 transition-colors duration-500 group md:py-8'
+      className='group relative flex items-center justify-between py-4 transition-colors duration-500 md:py-8'
       variants={fadeInVariants}
       animate='enter'
     >
@@ -103,7 +102,7 @@ export const MenuItem: FC<Props> = ({ heading, imgSrc, subheading, href, index }
             staggerChildren: 0.075,
             delayChildren: 0.25
           }}
-          className='relative z-10 block text-4xl font-bold transition-colors duration-500 text-white-500 group-hover:text-neutral-50 md:text-6xl'
+          className='text-white-500 relative z-10 block text-4xl font-bold transition-colors duration-500 group-hover:text-neutral-50 md:text-6xl'
         >
           {heading.split('').map((l, i) => (
             <motion.span
@@ -119,7 +118,7 @@ export const MenuItem: FC<Props> = ({ heading, imgSrc, subheading, href, index }
             </motion.span>
           ))}
         </motion.span>
-        <span className='relative z-10 block mt-2 text-base transition-colors duration-500 text-white-500 group-hover:text-neutral-50'>
+        <span className='text-white-500 relative z-10 mt-2 block text-base transition-colors duration-500 group-hover:text-neutral-50'>
           {subheading}
         </span>
       </div>
@@ -143,7 +142,7 @@ export const MenuItem: FC<Props> = ({ heading, imgSrc, subheading, href, index }
         }}
         transition={{ duration: 0.5, type: 'spring' }}
         src={imgSrc}
-        className='absolute z-0 object-cover w-32 h-24 rounded-lg md:h-48 md:w-64'
+        className='absolute z-0 h-24 w-32 rounded-lg object-cover md:h-48 md:w-64'
       />
 
       <motion.div
