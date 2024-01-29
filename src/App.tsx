@@ -1,7 +1,7 @@
 import { Variants, useAnimate } from 'framer-motion';
 import { useEffect } from 'react';
 import Logo from './assets/logo.svg?react';
-import { Menu } from './components/Menu';
+import { Router } from './Router';
 
 const variants: Variants = {
   start: {
@@ -38,7 +38,7 @@ export const App = () => {
   return (
     <>
       <div className='text-100px relative flex min-h-[100svh] items-center justify-center bg-black bg-gradient-to-t from-blue-600 to-red-500 text-white'>
-        <Menu />
+        <Router />
 
         <div
           ref={scope}

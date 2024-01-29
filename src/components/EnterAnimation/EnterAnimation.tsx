@@ -10,21 +10,15 @@ const a = (variants: Variants): MotionProps => ({
 
 const slide: Variants = {
   initial: {
-    top: '0',
-    transition: {
-      duration: 0.5
-    }
+    top: '100vh'
   },
   enter: {
-    top: '100vh',
-    transition: {
-      duration: 4
-    }
+    top: '100vh'
   },
   exit: {
     top: '0',
     transition: {
-      duration: 0.5
+      duration: 2
     }
   }
 };

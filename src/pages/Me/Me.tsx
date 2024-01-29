@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { EnterAnimation } from '../../components/EnterAnimation/EnterAnimation';
 import { Link } from 'react-router-dom';
 
-export const About = () => {
+export const Me = () => {
   return (
     <EnterAnimation>
       <motion.div
@@ -16,10 +16,10 @@ export const About = () => {
         }}
       >
         <Link
-          to='/me'
+          to='/about'
           className='text-xl '
         >
-          To me
+          To about
         </Link>
       </motion.div>
     </EnterAnimation>

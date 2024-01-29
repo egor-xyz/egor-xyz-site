@@ -1,6 +1,9 @@
 import { Variants, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { FC, useRef } from 'react';
 import { FiArrowRight } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
+
+const MLink = motion(Link);
 
 type Props = {
   heading: string;
@@ -43,7 +46,7 @@ const lineVariants: Variants = {
 };
 
 export const MenuItem: FC<Props> = ({ heading, imgSrc, subheading, href, index }) => {
-  const ref = useRef<any>(null);
+  const ref = useRef<HTMLElement | SVGElement>(null);
   // is referer same domain
 
   const x = useMotionValue(0);
@@ -55,7 +58,9 @@ export const MenuItem: FC<Props> = ({ heading, imgSrc, subheading, href, index }
   const top = useTransform(mouseYSpring, [0.5, -0.5], ['40%', '60%']);
   const left = useTransform(mouseXSpring, [0.5, -0.5], ['60%', '70%']);
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!ref.current) return;
+
     const rect = ref.current.getBoundingClientRect();
 
     const width = rect.width;
@@ -72,7 +77,7 @@ export const MenuItem: FC<Props> = ({ heading, imgSrc, subheading, href, index }
   };
 
   return (
-    <motion.a
+    <MLink
       to={href}
       custom={index}
       ref={ref}
@@ -154,6 +159,6 @@ export const MenuItem: FC<Props> = ({ heading, imgSrc, subheading, href, index }
       >
         <FiArrowRight className='text-5xl text-neutral-50' />
       </motion.div>
-    </motion.a>
+    </MLink>
   );
 };
