@@ -49,7 +49,12 @@ type Props = {
 export const EnterAnimation: FC<Props> = ({ children }) => {
   return (
     <>
-      <motion.div {...a(perspective)}>{children}</motion.div>
+      <motion.div
+        {...a(perspective)}
+        className='y-[100px] opacity-0'
+      >
+        {children}
+      </motion.div>
 
       <motion.div
         {...a(slide)}
