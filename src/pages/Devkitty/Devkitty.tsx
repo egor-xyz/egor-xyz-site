@@ -1,9 +1,10 @@
+import { Card } from 'src/components/Card';
 import { EnterAnimation } from '../../components/EnterAnimation/EnterAnimation';
 
 export const Devkitty = () => {
   return (
     <EnterAnimation>
-      <div>Devkitty</div>
+      <Card>Devkitty</Card>
     </EnterAnimation>
   );
 };
