@@ -2,6 +2,7 @@ import { Variants, useAnimate } from 'framer-motion';
 import { useEffect } from 'react';
 import Logo from './assets/logo.svg?react';
 import { Router } from './Router';
+import { useLocation } from 'react-router-dom';
 
 const variants: Variants = {
   start: {
@@ -21,6 +22,7 @@ const variants: Variants = {
 
 export const App = () => {
   const [scope, animate] = useAnimate();
+  const location = useLocation();
 
   const animateLogo = async (full: boolean) => {
     if (!full) {
@@ -32,7 +34,7 @@ export const App = () => {
   };
 
   useEffect(() => {
-    animateLogo(true);
+    animateLogo(location.pathname === '/');
   }, []);
 
   return (
