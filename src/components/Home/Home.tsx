@@ -1,4 +1,3 @@
-import { Variants, motion } from 'framer-motion';
 import { MenuItem } from '../MenuItem';
 import { EnterAnimation } from '../EnterAnimation/EnterAnimation';
 
@@ -36,32 +35,10 @@ const menuItems = [
   // }
 ];
 
-const menuVariants: Variants = {
-  initial: {
-    pointerEvents: 'none',
-    opacity: 0,
-    transition: {
-      staggerChildren: 0.3
-    }
-  },
-  enter: {
-    pointerEvents: 'initial',
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.3
-    }
-  }
-};
-
 export const Home = () => {
   return (
     <EnterAnimation>
-      <motion.section
-        className='relative mx-auto  mt-[80px] w-[100%] max-w-5xl overflow-hidden p-14 pl-[240px] lg:pl-4'
-        initial='initial'
-        animate='enter'
-        variants={menuVariants}
-      >
+      <section className='relative mx-auto  mt-[80px] w-[100%] max-w-5xl overflow-hidden p-14 pl-[240px] lg:pl-4'>
         {menuItems.map(({ heading, href, imgSrc, subheading }, key) => (
           <MenuItem
             index={key}
@@ -72,7 +49,7 @@ export const Home = () => {
             href={href}
           />
         ))}
-      </motion.section>
+      </section>
     </EnterAnimation>
   );
 };

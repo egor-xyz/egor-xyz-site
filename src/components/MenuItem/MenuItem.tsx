@@ -20,8 +20,8 @@ const fadeInVariants: Variants = {
     y: 500
   },
   enter: (i) => ({
-    opacity: [0, 0.3, 1],
-    y: [500, 500, 0],
+    opacity: 1,
+    y: 0,
     transition: {
       delay: i,
       duration: 1
@@ -77,7 +77,7 @@ export const MenuItem: FC<Props> = ({ heading, imgSrc, subheading, href, index }
     y.set(yPct);
   };
 
-  const delay = !loaded ? 1.3 + index * 0.3 : index * 0.3;
+  const delay = !loaded ? 2 + index * 0.3 : index * 0.3;
 
   return (
     <MLink
