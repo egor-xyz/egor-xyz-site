@@ -20,12 +20,14 @@ const slide: Variants = {
 
 const perspective: Variants = {
   initial: {
-    y: 300,
-    opacity: 0
+    y: 250,
+    opacity: 0,
+    scale: 0.8
   },
   enter: {
     y: 0,
     opacity: 1,
+    scale: 1,
     transition: {
       duration: 1,
       ease: [0.76, 0, 0.24, 1]
@@ -33,7 +35,7 @@ const perspective: Variants = {
   },
   exit: {
     y: -200,
-    scale: 0.1,
+    scale: 0.3,
     opacity: 0.2,
     transition: {
       duration: 1.2,
