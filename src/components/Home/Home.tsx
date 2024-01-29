@@ -52,7 +52,7 @@ const menuVariants: Variants = {
   }
 };
 
-export const Menu = () => {
+export const Home = () => {
   return (
     <motion.section
       className='relative mx-auto  mt-[80px] w-[100%] max-w-5xl overflow-hidden p-14 pl-[240px] lg:pl-4'

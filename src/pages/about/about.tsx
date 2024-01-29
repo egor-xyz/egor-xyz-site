@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { EnterAnimation } from '../../components/EnterAnimation/EnterAnimation';
+import { Link } from 'react-router-dom';
 
 export const About = () => {
   return (
