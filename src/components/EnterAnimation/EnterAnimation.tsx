@@ -1,4 +1,3 @@
-import { useRouter } from '@tanstack/react-router';
 import { MotionProps, Variants, motion } from 'framer-motion';
 import { FC, Fragment } from 'react';
 
@@ -31,9 +30,8 @@ const slide: Variants = {
 };
 
 export const EnterAnimation: FC<{ children: JSX.Element }> = ({ children }) => {
-  const { state } = useRouter();
   return (
-    <Fragment key={state.location.href}>
+    <Fragment>
       <motion.div
         {...a(slide)}
         className='fixed left-0 h-[100vh] w-[100vw] bg-red-700'

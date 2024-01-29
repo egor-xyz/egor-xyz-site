@@ -1,8 +1,7 @@
-import { Link, Outlet, useRouter } from '@tanstack/react-router';
-import { TanStackRouterDevtools } from '@tanstack/router-devtools';
-import { AnimatePresence, Variants, useAnimate } from 'framer-motion';
+import { Variants, useAnimate } from 'framer-motion';
 import { useEffect } from 'react';
 import Logo from './assets/logo.svg?react';
+import { Menu } from './components/Menu';
 
 const variants: Variants = {
   start: {
@@ -22,7 +21,6 @@ const variants: Variants = {
 
 export const App = () => {
   const [scope, animate] = useAnimate();
-  const { state } = useRouter();
 
   const animateLogo = async (full: boolean) => {
     if (!full) {
@@ -34,27 +32,21 @@ export const App = () => {
   };
 
   useEffect(() => {
-    animateLogo(state.location.href === '/');
+    animateLogo(true);
   }, []);
 
   return (
     <>
       <div className='text-100px relative flex min-h-[100svh] items-center justify-center bg-black bg-gradient-to-t from-blue-600 to-red-500 text-white'>
-        <AnimatePresence mode='wait'>
-          <Outlet />
-        </AnimatePresence>
+        <Menu />
 
         <div
           ref={scope}
           className='fixed cursor-pointer opacity-0'
         >
-          <Link to='/'>
-            <Logo />
-          </Link>
+          <Logo />
         </div>
       </div>
-
-      <TanStackRouterDevtools />
     </>
   );
 };
