@@ -1,5 +1,6 @@
 import { Variants, motion } from 'framer-motion';
 import { MenuItem } from '../MenuItem';
+import { EnterAnimation } from '../EnterAnimation/EnterAnimation';
 
 const menuItems = [
   {
@@ -54,22 +55,24 @@ const menuVariants: Variants = {
 
 export const Home = () => {
   return (
-    <motion.section
-      className='relative mx-auto  mt-[80px] w-[100%] max-w-5xl overflow-hidden p-14 pl-[240px] lg:pl-4'
-      initial='initial'
-      animate='enter'
-      variants={menuVariants}
-    >
-      {menuItems.map(({ heading, href, imgSrc, subheading }, key) => (
-        <MenuItem
-          index={key}
-          key={key}
-          heading={heading}
-          subheading={subheading}
-          imgSrc={imgSrc}
-          href={href}
-        />
-      ))}
-    </motion.section>
+    <EnterAnimation>
+      <motion.section
+        className='relative mx-auto  mt-[80px] w-[100%] max-w-5xl overflow-hidden p-14 pl-[240px] lg:pl-4'
+        initial='initial'
+        animate='enter'
+        variants={menuVariants}
+      >
+        {menuItems.map(({ heading, href, imgSrc, subheading }, key) => (
+          <MenuItem
+            index={key}
+            key={key}
+            heading={heading}
+            subheading={subheading}
+            imgSrc={imgSrc}
+            href={href}
+          />
+        ))}
+      </motion.section>
+    </EnterAnimation>
   );
 };

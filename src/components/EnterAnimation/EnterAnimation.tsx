@@ -1,6 +1,5 @@
 import { MotionProps, Variants, motion } from 'framer-motion';
 import { FC } from 'react';
-import { useLocation } from 'react-router-dom';
 
 const a = (variants: Variants): MotionProps => ({
   initial: 'initial',
@@ -19,7 +18,30 @@ const slide: Variants = {
   exit: {
     top: '0',
     transition: {
-      duration: 2
+      duration: 1,
+      ease: [0.76, 0, 0.24, 1]
+    }
+  }
+};
+
+const perspective: Variants = {
+  initial: {
+    y: 0,
+    scale: 1,
+    opacity: 1
+  },
+  enter: {
+    y: 0,
+    scale: 1,
+    opacity: 1
+  },
+  exit: {
+    y: -100,
+    scale: 0.9,
+    opacity: 0.5,
+    transition: {
+      duration: 1.3,
+      ease: [0.76, 0, 0.24, 1]
     }
   }
 };
@@ -29,18 +51,14 @@ type Props = {
 };
 
 export const EnterAnimation: FC<Props> = ({ children }) => {
-  const location = useLocation();
-  console.log(location.pathname);
   return (
     <>
-      {children}
+      <motion.div {...a(perspective)}>{children}</motion.div>
 
       <motion.div
         {...a(slide)}
-        className='fixed left-0 flex h-[100vh] w-[100vw] items-center justify-center bg-black text-lg text-white'
-      >
-        Redirecting
-      </motion.div>
+        className='text-100px fixed  left-0 flex  h-[100vh] min-h-[100svh] w-[100vw] items-center  justify-center  bg-black  bg-gradient-to-t from-blue-600 to-red-500 text-lg text-white '
+      ></motion.div>
     </>
   );
 };
