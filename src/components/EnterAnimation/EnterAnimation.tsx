@@ -1,5 +1,6 @@
 import { MotionProps, Variants, motion } from 'framer-motion';
-import { FC, Fragment } from 'react';
+import { FC } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const a = (variants: Variants): MotionProps => ({
   initial: 'initial',
@@ -23,15 +24,23 @@ const slide: Variants = {
   }
 };
 
-export const EnterAnimation: FC<{ children: JSX.Element }> = ({ children }) => {
+type Props = {
+  children: JSX.Element;
+};
+
+export const EnterAnimation: FC<Props> = ({ children }) => {
+  const location = useLocation();
+  console.log(location.pathname);
   return (
-    <Fragment>
+    <>
+      {children}
+
       <motion.div
         {...a(slide)}
-        className='fixed left-0 h-[100vh] w-[100vw] bg-red-700'
-      ></motion.div>
-
-      {children}
-    </Fragment>
+        className='fixed left-0 flex h-[100vh] w-[100vw] items-center justify-center bg-black text-lg text-white'
+      >
+        Redirecting
+      </motion.div>
+    </>
   );
 };
