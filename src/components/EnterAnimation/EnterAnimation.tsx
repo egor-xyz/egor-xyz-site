@@ -20,7 +20,7 @@ const slide: Variants = {
 
 const perspective: Variants = {
   initial: {
-    y: 100,
+    y: 300,
     opacity: 0
   },
   enter: {
