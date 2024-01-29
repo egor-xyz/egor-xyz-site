@@ -1,12 +1,6 @@
-import { MotionProps, Variants, motion } from 'framer-motion';
+import { a } from 'src/animations/a';
+import { Variants, motion } from 'framer-motion';
 import { FC } from 'react';
-
-const a = (variants: Variants): MotionProps => ({
-  initial: 'initial',
-  animate: 'enter',
-  exit: 'exit',
-  variants
-});
 
 const slide: Variants = {
   initial: {
@@ -27,10 +21,10 @@ const slide: Variants = {
 const perspective: Variants = {
   exit: {
     y: -200,
-    scale: 0.9,
-    opacity: 0.5,
+    scale: 0.1,
+    opacity: 0.2,
     transition: {
-      duration: 1.3,
+      duration: 1.2,
       ease: [0.76, 0, 0.24, 1]
     }
   }
