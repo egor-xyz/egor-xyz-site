@@ -77,7 +77,6 @@ export const TopMenu = () => {
             key={heading}
             variants={itemAnimations}
             custom={index + 1}
-            // animate={pathname === href ? 'active' : 'enter'}
           >
             <Link to={href}>{heading}</Link>
             <motion.div
