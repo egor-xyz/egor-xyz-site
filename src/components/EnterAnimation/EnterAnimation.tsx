@@ -25,18 +25,8 @@ const slide: Variants = {
 };
 
 const perspective: Variants = {
-  initial: {
-    y: 0,
-    scale: 1,
-    opacity: 1
-  },
-  enter: {
-    y: 0,
-    scale: 1,
-    opacity: 1
-  },
   exit: {
-    y: -100,
+    y: -200,
     scale: 0.9,
     opacity: 0.5,
     transition: {
@@ -54,6 +44,7 @@ export const EnterAnimation: FC<Props> = ({ children }) => {
   return (
     <>
       <motion.div {...a(perspective)}>{children}</motion.div>
+      {/* {children} */}
 
       <motion.div
         {...a(slide)}
