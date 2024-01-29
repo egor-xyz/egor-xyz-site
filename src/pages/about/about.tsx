@@ -1,20 +1,27 @@
-import { motion } from 'framer-motion';
+import { Variants, motion } from 'framer-motion';
 import { EnterAnimation } from '../../components/EnterAnimation/EnterAnimation';
 import { Link } from 'react-router-dom';
+
+const pageFadeIn: Variants = {
+  initial: {
+    opacity: 0,
+    y: 100
+  },
+  enter: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5
+    }
+  }
+};
 
 export const About = () => {
   return (
     <EnterAnimation>
       <motion.div
         className='relative p-2'
-        animate={{
-          opacity: [0, 1],
-          y: [100, 0],
-          transition: {
-            delay: 0,
-            duration: 0.5
-          }
-        }}
+        variants={pageFadeIn}
       >
         <Link
           to='/me'

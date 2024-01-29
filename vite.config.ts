@@ -5,6 +5,10 @@ import { checker } from 'vite-plugin-checker';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: process.env.PUBLIC_URL ?? '/',
+  resolve: {
+    alias: [{ find: 'src', replacement: '/src' }]
+  },
   plugins: [
     svgr(),
     react(),
