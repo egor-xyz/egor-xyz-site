@@ -1,5 +1,5 @@
-import { EnterAnimation } from '../../components/EnterAnimation/EnterAnimation';
 import { Link } from 'react-router-dom';
+import { EnterAnimation } from '../../components/EnterAnimation/EnterAnimation';
 
 export const About = () => {
   return (
