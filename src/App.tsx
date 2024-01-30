@@ -44,7 +44,7 @@ export const App = () => {
   }, []);
 
   return (
-    <div className='text-100px relative flex min-h-[100svh] items-center justify-center bg-black bg-gradient-to-t from-blue-600 to-red-500 text-white'>
+    <div className='relative flex min-h-[100svh] items-center justify-center bg-black bg-gradient-to-t from-blue-600 to-red-500 text-white'>
       <Router />
 
       <TopMenu />
@@ -52,9 +52,9 @@ export const App = () => {
       <Link
         to='/'
         ref={scope}
-        className='fixed cursor-pointer opacity-0'
+        className='fixed mt-[27px] cursor-pointer opacity-0 md:mt-0'
       >
-        <Logo />
+        <Logo className='h-auto w-[200px] md:w-auto' />
       </Link>
     </div>
   );
