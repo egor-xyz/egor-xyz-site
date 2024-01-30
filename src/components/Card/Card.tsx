@@ -8,11 +8,11 @@ type Props = {
 
 export const Card: FC<Props> = ({ children, title }) => {
   return (
-    <div className='relative flex h-[400px] w-[600px] flex-col items-center justify-center rounded-xl bg-white p-8 text-2xl text-black shadow-xl'>
+    <div className='relative flex h-[400px] w-[600px] max-w-[90vw] flex-col items-center justify-center rounded-xl bg-white p-4 text-base text-black shadow-xl md:p-8 md:text-2xl'>
       {title && (
         <BubbleText
           text={title}
-          className='absolute left-4 top-4 text-2xl'
+          className='absolute left-4 top-4 text-base md:text-2xl'
         />
       )}
       {children}
