@@ -8,7 +8,7 @@ import { useStore } from './useStore';
 
 const variants: Variants = {
   start: {
-    scale: [0, 1],
+    scale: [0.3, 1],
     rotate: [180, 0],
     opacity: [0, 1]
   },
