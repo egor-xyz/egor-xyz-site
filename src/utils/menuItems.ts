@@ -1,6 +1,6 @@
 import avatar from 'src/assets/egor.jpg';
-
-console.log(avatar);
+import digest from 'src/assets/digest-cover-small.jpg';
+import extensions from 'src/assets/extensions-cover-small.jpg';
 
 export const menuItems = [
   {
@@ -12,13 +12,13 @@ export const menuItems = [
   {
     heading: 'Digest',
     subheading: 'Your weekly dose of front-end news',
-    imgSrc: 'https://placedog.net/640/480?random&4',
+    imgSrc: digest,
     href: '/digest'
   },
   {
     heading: 'Extensions',
     subheading: 'My extension packs',
-    imgSrc: 'https://placedog.net/640/480?random&3',
+    imgSrc: extensions,
     href: '/extensions'
   },
   {
