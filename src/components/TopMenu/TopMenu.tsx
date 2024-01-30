@@ -60,13 +60,13 @@ const lineVariants: Variants = {
 
 export const TopMenu = () => {
   const { pathname } = useLocation();
-  const isWide = useMedia('(min-width: 480px)');
+  const isWide = useMedia('(min-width: 642)');
 
   console.log(isWide);
 
   return (
     <motion.nav
-      className='fixed bottom-5 text-white sm:top-2'
+      className='fixed text-white bottom-5 sm:top-2'
       {...a(fadeIn)}
       animate={pathname === '/' ? 'exit' : 'enter'}
     >
@@ -74,7 +74,7 @@ export const TopMenu = () => {
         <motion.li
           key='home'
           variants={itemAnimations}
-          custom={{ index: 0, isWide }}
+          custom={{ i: 0, isWide }}
         >
           <Link to='/'>Home</Link>
         </motion.li>
@@ -82,7 +82,7 @@ export const TopMenu = () => {
           <motion.li
             key={heading}
             variants={itemAnimations}
-            custom={{ index: index + 1, isWide }}
+            custom={{ i: index + 1, isWide }}
           >
             <Link to={href}>{heading}</Link>
             <motion.div
