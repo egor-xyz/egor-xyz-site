@@ -12,7 +12,7 @@
 /* To the right */
 .hoverText:hover + .hoverText {
   font-weight: 500;
-  color: rgb(199, 210, 254);
+  color: #ef4444;
 }
 
 .hoverText:hover + .hoverText + .hoverText {
@@ -22,7 +22,7 @@
 /* To the left */
 .hoverText:has(+ .hoverText:hover) {
   font-weight: 500;
-  color: rgb(199, 210, 254);
+  color: #ef4444;
 }
 
 .hoverText:has(+ .hoverText + .hoverText:hover) {

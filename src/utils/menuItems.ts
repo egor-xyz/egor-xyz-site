@@ -1,8 +1,12 @@
+import avatar from 'src/assets/egor.jpg';
+
+console.log(avatar);
+
 export const menuItems = [
   {
     heading: 'About',
     subheading: 'Links and contacts',
-    imgSrc: 'https://placedog.net/640/480?random&1',
+    imgSrc: avatar,
     href: '/about'
   },
   {
