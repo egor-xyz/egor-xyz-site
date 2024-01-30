@@ -32,9 +32,17 @@ export const About = () => {
           src={avatar}
         />
 
+        <motion.p
+          {...a(imageVariants)}
+          className='mt-5 text-center text-xl'
+        >
+          Hi!, My name is Egor <br />
+          More about me:
+        </motion.p>
+
         <motion.div
           {...a(imageVariants)}
-          className='mt-5 flex flex-col'
+          className='mt-3 flex flex-col'
         >
           <a
             className='flex items-center justify-center gap-2 text-blue-500'
@@ -45,14 +53,6 @@ export const About = () => {
             /egorxyz
           </a>
         </motion.div>
-
-        <motion.p
-          {...a(imageVariants)}
-          className='mt-3 text-center text-xl'
-        >
-          Hi! My name is Egor <br />
-          I'm Front End Architect at DynamicYield by Mastercard.
-        </motion.p>
       </Card>
     </EnterAnimation>
   );
