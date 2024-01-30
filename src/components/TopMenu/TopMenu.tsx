@@ -2,6 +2,7 @@ import { Variants, motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { a } from 'src/animations/a';
 import { menuItems } from 'src/utils/menuItems';
+import { useMedia } from 'react-use';
 
 const fadeIn: Variants = {
   initial: {
@@ -23,11 +24,11 @@ const fadeIn: Variants = {
 };
 
 const itemAnimations: Variants = {
-  initial: {
-    y: -100,
+  initial: ({ isWide }) => ({
+    y: isWide ? -100 : 100,
     opacity: 0
-  },
-  enter: (i) => ({
+  }),
+  enter: ({ i }) => ({
     y: 0,
     opacity: 1,
     borderBottom: '1px solid transparent',
@@ -36,8 +37,8 @@ const itemAnimations: Variants = {
       delay: i * 0.1
     }
   }),
-  exit: (i) => ({
-    y: -100,
+  exit: ({ i, isWide }) => ({
+    y: isWide ? -100 : 100,
     opacity: 0,
     transition: {
       duration: 1,
@@ -59,10 +60,13 @@ const lineVariants: Variants = {
 
 export const TopMenu = () => {
   const { pathname } = useLocation();
+  const isWide = useMedia('(min-width: 480px)');
+
+  console.log(isWide);
 
   return (
     <motion.nav
-      className='fixed top-2 text-white'
+      className='fixed bottom-5 text-white sm:top-2'
       {...a(fadeIn)}
       animate={pathname === '/' ? 'exit' : 'enter'}
     >
@@ -70,6 +74,7 @@ export const TopMenu = () => {
         <motion.li
           key='home'
           variants={itemAnimations}
+          custom={{ index: 0, isWide }}
         >
           <Link to='/'>Home</Link>
         </motion.li>
@@ -77,7 +82,7 @@ export const TopMenu = () => {
           <motion.li
             key={heading}
             variants={itemAnimations}
-            custom={index + 1}
+            custom={{ index: index + 1, isWide }}
           >
             <Link to={href}>{heading}</Link>
             <motion.div
