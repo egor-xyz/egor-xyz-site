@@ -39,7 +39,7 @@ export const Devkitty = () => {
             target='_blank'
             href='https://devkitty.app/'
           >
-            Devkitty - Swiss army knife for developers
+            <span className='text-blue-500'>Devkitty</span> - Swiss army knife for developers
           </a>
         </motion.div>
       </Card>
