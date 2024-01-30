@@ -5,7 +5,7 @@ import { FaLinkedin } from 'react-icons/fa';
 import { Variants, motion } from 'framer-motion';
 import { a } from 'src/animations/a';
 
-const imageVariants: Variants = {
+const fadeInVariants: Variants = {
   initial: {
     y: 100,
     opacity: 0,
@@ -27,22 +27,22 @@ export const About = () => {
     <EnterAnimation>
       <Card title='About'>
         <motion.img
-          {...a(imageVariants)}
+          {...a(fadeInVariants)}
           className='h-[200px] rounded-2xl bg-center object-cover shadow-md'
           src={avatar}
         />
 
         <motion.p
-          {...a(imageVariants)}
-          className='mt-5 text-center text-xl'
+          {...a(fadeInVariants)}
+          className='mt-5 text-xl text-center'
         >
           Hi!, My name is Egor <br />
           More about me:
         </motion.p>
 
         <motion.div
-          {...a(imageVariants)}
-          className='mt-3 flex flex-col'
+          {...a(fadeInVariants)}
+          className='flex flex-col mt-3'
         >
           <a
             className='flex items-center justify-center gap-2 text-blue-500'
