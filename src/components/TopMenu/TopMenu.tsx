@@ -36,13 +36,14 @@ const itemAnimations: Variants = {
       delay: i * 0.1
     }
   }),
-  exit: {
+  exit: (i) => ({
     y: -100,
     opacity: 0,
     transition: {
-      duration: 1
+      duration: 1,
+      delay: i * 0.1
     }
-  }
+  })
 };
 
 const lineVariants: Variants = {
