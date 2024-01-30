@@ -32,7 +32,10 @@ export const About = () => {
           src={avatar}
         />
 
-        <div className='my-4 flex flex-col'>
+        <motion.div
+          {...a(imageVariants)}
+          className='mt-5 flex flex-col'
+        >
           <a
             className='flex items-center justify-center gap-2 text-blue-500'
             href='https://www.linkedin.com/in/egorxyz/'
@@ -41,12 +44,15 @@ export const About = () => {
             <FaLinkedin />
             /egorxyz
           </a>
-        </div>
+        </motion.div>
 
-        <p className='text-center text-xl'>
+        <motion.p
+          {...a(imageVariants)}
+          className='mt-3 text-center text-xl'
+        >
           Hi! My name is Egor <br />
           I'm Front End Architect at DynamicYield by Mastercard.
-        </p>
+        </motion.p>
       </Card>
     </EnterAnimation>
   );
