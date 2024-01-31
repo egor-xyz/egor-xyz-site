@@ -59,7 +59,7 @@ const lineVariants: Variants = {
 
 export const TopMenu = () => {
   const { pathname } = useLocation();
-  const isWide = useMedia('(min-width: 642)');
+  const isWide = useMedia('(min-width: 642px)');
 
   return (
     <motion.nav
