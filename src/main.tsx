@@ -4,6 +4,9 @@ import { HashRouter } from 'react-router-dom';
 
 import { App } from './App';
 import './index.css';
+import { preventSwipe } from './utils/preventSwipe';
+
+preventSwipe();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
