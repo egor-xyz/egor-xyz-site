@@ -15,7 +15,6 @@ const fadeIn: Variants = {
     }
   },
   exit: {
-    y: -100,
     opacity: 0,
     transition: {
       duration: 1
@@ -62,12 +61,11 @@ export const TopMenu = () => {
   const { pathname } = useLocation();
   const isWide = useMedia('(min-width: 642)');
 
-  console.log(isWide);
-
   return (
     <motion.nav
       className='fixed text-white bottom-5 sm:top-2'
       {...a(fadeIn)}
+      custom={isWide}
       animate={pathname === '/' ? 'exit' : 'enter'}
     >
       <ul className='flex gap-4'>
