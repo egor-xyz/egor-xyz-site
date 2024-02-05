@@ -1,24 +1,25 @@
 import { Card } from 'src/components/Card';
-import { EnterAnimation } from '../../components/EnterAnimation/EnterAnimation';
 import { Variants, motion } from 'framer-motion';
 import { a } from 'src/animations/a';
 import cover from 'src/assets/extensions-cover.jpg';
 import { TbBrandVscode } from 'react-icons/tb';
 
+import { EnterAnimation } from '../../components/EnterAnimation/EnterAnimation';
+
 const fadeInVariants: Variants = {
-  initial: {
-    y: 100,
-    opacity: 0,
-    scale: 0.4
-  },
   enter: {
-    y: 0,
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 1,
-      delay: 0.5
-    }
+      delay: 0.5,
+      duration: 1
+    },
+    y: 0
+  },
+  initial: {
+    opacity: 0,
+    scale: 0.4,
+    y: 100
   }
 };
 export const Extensions = () => {
@@ -27,8 +28,8 @@ export const Extensions = () => {
       <Card title='VSCode extensions'>
         <motion.img
           {...a(fadeInVariants)}
-          src={cover}
           className='rounded-xl shadow-xl'
+          src={cover}
         />
 
         <motion.div
@@ -37,15 +38,17 @@ export const Extensions = () => {
         >
           <a
             className='flex items-center gap-2'
-            target='_blank'
             href='https://marketplace.visualstudio.com/items?itemName=egor-xyz.front-end-mega-extension-pack'
+            rel='noreferrer'
+target='_blank'
           >
             <TbBrandVscode className='text-blue-500' /> Front-End Mega Extension Pack
           </a>
           <a
             className='flex items-center gap-2'
-            target='_blank'
             href='https://marketplace.visualstudio.com/items?itemName=egor-xyz.tailwind-mega-extension-pack'
+            rel='noreferrer'
+target='_blank'
           >
             <TbBrandVscode className='text-blue-500' /> Tailwind Mega Extension Pack
           </a>

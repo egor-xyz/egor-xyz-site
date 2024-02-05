@@ -6,26 +6,26 @@ import devkitty from 'src/assets/devkitty-cover-small.jpg';
 export const menuItems = [
   {
     heading: 'About',
-    subheading: 'Links and contacts',
+    href: '/about',
     imgSrc: avatar,
-    href: '/about'
+    subheading: 'Links and contacts'
   },
   {
     heading: 'Digest',
-    subheading: 'Your weekly dose of front-end news',
+    href: '/digest',
     imgSrc: digest,
-    href: '/digest'
+    subheading: 'Your weekly dose of front-end news'
   },
   {
     heading: 'Extensions',
-    subheading: 'My extension packs',
+    href: '/extensions',
     imgSrc: extensions,
-    href: '/extensions'
+    subheading: 'My extension packs'
   },
   {
     heading: 'Devkitty',
-    subheading: 'Swiss army knife for developers',
+    href: '/devkitty',
     imgSrc: devkitty,
-    href: '/devkitty'
+    subheading: 'Swiss army knife for developers'
   }
 ];

@@ -5,9 +5,6 @@ import { menuItems } from 'src/utils/menuItems';
 import { useMedia } from 'react-use';
 
 const fadeIn: Variants = {
-  initial: {
-    opacity: 0
-  },
   enter: {
     opacity: 1,
     transition: {
@@ -19,41 +16,44 @@ const fadeIn: Variants = {
     transition: {
       duration: 1
     }
+  },
+  initial: {
+    opacity: 0
   }
 };
 
 const itemAnimations: Variants = {
-  initial: ({ isWide }) => ({
-    y: isWide ? -100 : 100,
-    opacity: 0
-  }),
   enter: ({ i }) => ({
-    y: 0,
-    opacity: 1,
     borderBottom: '1px solid transparent',
+    opacity: 1,
     transition: {
-      duration: 1,
-      delay: i * 0.1
-    }
+      delay: i * 0.1,
+      duration: 1
+    },
+    y: 0
   }),
   exit: ({ i, isWide }) => ({
-    y: isWide ? -100 : 100,
     opacity: 0,
     transition: {
-      duration: 1,
-      delay: i * 0.1
-    }
+      delay: i * 0.1,
+      duration: 1
+    },
+    y: isWide ? -100 : 100
+  }),
+  initial: ({ isWide }) => ({
+    opacity: 0,
+    y: isWide ? -100 : 100
   })
 };
 
 const lineVariants: Variants = {
-  initial: {
-    width: '0',
-    left: '50%'
-  },
   active: {
-    width: '100%',
-    left: '0'
+    left: '0',
+    width: '100%'
+  },
+  initial: {
+    left: '50%',
+    width: '0'
   }
 };
 
@@ -65,28 +65,28 @@ export const TopMenu = () => {
     <motion.nav
       className='fixed text-white bottom-5 sm:top-2'
       {...a(fadeIn)}
-      custom={isWide}
       animate={pathname === '/' ? 'exit' : 'enter'}
+      custom={isWide}
     >
       <ul className='flex gap-4'>
         <motion.li
+          custom={{ i: 0, isWide }}
           key='home'
           variants={itemAnimations}
-          custom={{ i: 0, isWide }}
         >
           <Link to='/'>Home</Link>
         </motion.li>
         {menuItems.map(({ heading, href }, index) => (
           <motion.li
+            custom={{ i: index + 1, isWide }}
             key={heading}
             variants={itemAnimations}
-            custom={{ i: index + 1, isWide }}
           >
             <Link to={href}>{heading}</Link>
             <motion.div
+              animate={pathname === href ? 'active' : 'initial'}
               className='relative h-[1px] w-0 bg-white'
               variants={lineVariants}
-              animate={pathname === href ? 'active' : 'initial'}
             />
           </motion.li>
         ))}

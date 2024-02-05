@@ -1,24 +1,25 @@
 import { Variants, useAnimate } from 'framer-motion';
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+
 import { Router } from './Router';
 import Logo from './assets/logo.svg?react';
 import { TopMenu } from './components/TopMenu';
 import { useStore } from './useStore';
 
 const variants: Variants = {
-  start: {
-    scale: [0.3, 1],
-    rotate: [180, 0],
-    opacity: [0, 1]
-  },
   header: {
-    opacity: 1,
     left: 15,
-    top: 15,
-    scale: 0.4,
+    opacity: 1,
     originX: 0,
-    originY: 0
+    originY: 0,
+    scale: 0.4,
+    top: 15
+  },
+  start: {
+    opacity: [0, 1],
+    rotate: [180, 0],
+    scale: [0.3, 1]
   }
 };
 
@@ -50,9 +51,9 @@ export const App = () => {
       <TopMenu />
 
       <Link
-        to='/'
-        ref={scope}
         className='fixed mt-[27px] cursor-pointer opacity-0 md:mt-0'
+        ref={scope}
+        to='/'
       >
         <Logo className='h-auto w-[200px] md:w-auto' />
       </Link>

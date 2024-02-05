@@ -1,8 +1,9 @@
 import { FC } from 'react';
-import styles from './BubbleText.module.css';
 import { cn } from 'src/utils/cn';
 
-export const BubbleText: FC<{ text: string; className?: string }> = ({ text, className }) => (
+import styles from './BubbleText.module.css';
+
+export const BubbleText: FC<{ className?: string; text: string }> = ({ text, className }) => (
   <h2 className={cn('cursor-default text-center text-5xl font-thin text-black', className)}>
     {text.split('').map((child, idx) => (
       <span
