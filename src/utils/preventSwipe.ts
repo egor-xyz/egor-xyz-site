@@ -5,7 +5,7 @@ const options = { passive: false };
 
 const touchStart = (e: TouchEvent) => {
   if (e.touches.length === 1) {
-    const touch = e.touches[0];
+    const [touch] = e.touches;
     if (touch.clientX < window.innerWidth * 0.1 || touch.clientX > window.innerWidth * 0.9) {
       e.preventDefault();
     }

@@ -9,7 +9,8 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix"
   },
   "dependencies": {
     "clsx": "^2.1.0",
@@ -23,6 +24,7 @@
     "zustand": "^4.5.0"
   },
   "devDependencies": {
+    "@egor.xyz/eslint-config": "^2.0.0",
     "@types/node": "^20.11.10",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",

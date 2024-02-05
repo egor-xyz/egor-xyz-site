@@ -1,24 +1,25 @@
-import { EnterAnimation } from '../../components/EnterAnimation/EnterAnimation';
 import { Card } from 'src/components/Card';
 import avatar from 'src/assets/egor.jpg';
 import { FaLinkedin } from 'react-icons/fa';
 import { Variants, motion } from 'framer-motion';
 import { a } from 'src/animations/a';
 
+import { EnterAnimation } from '../../components/EnterAnimation/EnterAnimation';
+
 const fadeInVariants: Variants = {
-  initial: {
-    y: 100,
-    opacity: 0,
-    scale: 0.4
-  },
   enter: {
-    y: 0,
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 1,
-      delay: 0.5
-    }
+      delay: 0.5,
+      duration: 1
+    },
+    y: 0
+  },
+  initial: {
+    opacity: 0,
+    scale: 0.4,
+    y: 100
   }
 };
 
@@ -47,7 +48,8 @@ export const About = () => {
           <a
             className='flex items-center justify-center gap-2 text-blue-500'
             href='https://www.linkedin.com/in/egorxyz/'
-            target='_blank'
+            rel='noreferrer'
+target='_blank'
           >
             <FaLinkedin />
             /egorxyz

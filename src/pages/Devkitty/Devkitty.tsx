@@ -1,23 +1,24 @@
 import { Card } from 'src/components/Card';
-import { EnterAnimation } from '../../components/EnterAnimation/EnterAnimation';
 import { Variants, motion } from 'framer-motion';
 import { a } from 'src/animations/a';
 import cover from 'src/assets/devkitty-cover.jpg';
 
+import { EnterAnimation } from '../../components/EnterAnimation/EnterAnimation';
+
 const fadeInVariants: Variants = {
-  initial: {
-    y: 100,
-    opacity: 0,
-    scale: 0.4
-  },
   enter: {
-    y: 0,
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 1,
-      delay: 0.5
-    }
+      delay: 0.5,
+      duration: 1
+    },
+    y: 0
+  },
+  initial: {
+    opacity: 0,
+    scale: 0.4,
+    y: 100
   }
 };
 export const Devkitty = () => {
@@ -26,8 +27,8 @@ export const Devkitty = () => {
       <Card title='Devkitty'>
         <motion.img
           {...a(fadeInVariants)}
-          src={cover}
           className='rounded-xl shadow-xl'
+          src={cover}
         />
 
         <motion.div
@@ -36,8 +37,9 @@ export const Devkitty = () => {
         >
           <a
             className='flex items-center gap-2'
-            target='_blank'
             href='https://devkitty.app/'
+            rel='noreferrer'
+target='_blank'
           >
             <span className='text-blue-500'>Devkitty</span> - Swiss army knife for developers
           </a>

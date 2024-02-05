@@ -13,8 +13,8 @@ export const Router = () => {
   return (
     <AnimatePresence mode='wait'>
       <Routes
-        location={location}
         key={location.pathname}
+        location={location}
       >
         <Route
           element={<Home />}
