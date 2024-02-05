@@ -20,7 +20,7 @@ export const menuItems = [
     heading: 'Extensions',
     href: '/extensions',
     imgSrc: extensions,
-    subheading: 'My extension packs'
+    subheading: 'My extension packs and npm packages'
   },
   {
     heading: 'Devkitty',
