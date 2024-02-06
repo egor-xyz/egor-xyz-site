@@ -1,12 +1,14 @@
+/* eslint-disable react/jsx-max-depth */
 import { Card } from 'src/components/Card';
 import avatar from 'src/assets/egor.jpg';
 import { FaLinkedin } from 'react-icons/fa';
-import { Variants, motion } from 'framer-motion';
-import { a } from 'src/animations/a';
+import { motion } from 'framer-motion';
+import { a, A } from 'src/animations/a';
+import Cloud from 'src/assets/cloud.svg?react';
 
 import { EnterAnimation } from '../../components/EnterAnimation/EnterAnimation';
 
-const fadeInVariants: Variants = {
+const fadeInVariants: A = {
   enter: {
     opacity: 1,
     scale: 1,
@@ -23,9 +25,31 @@ const fadeInVariants: Variants = {
   }
 };
 
-export const About = () => {
-  return (
-    <EnterAnimation>
+const cloudAnimation: A = {
+  enter: {
+    transition: {
+      duration: 3,
+      repeat: Infinity,
+      repeatType: 'reverse'
+      // type: 'tween'
+    },
+    x: -40,
+    y: 80
+  },
+  initial: {
+    x: 0
+  }
+};
+
+export const About = () => (
+  <EnterAnimation>
+    <>
+      <motion.div
+        {...a(cloudAnimation)}
+        className='fixed right-[15svw] top-[15svh]'
+      >
+        <Cloud className='relative h-[100px] w-[200px]' />
+      </motion.div>
       <Card title='About'>
         <motion.img
           {...a(fadeInVariants)}
@@ -35,7 +59,7 @@ export const About = () => {
 
         <motion.p
           {...a(fadeInVariants)}
-          className='mt-5 text-xl text-center'
+          className='mt-5 text-center text-xl'
         >
           Hi!, My name is Egor <br />
           More about me:
@@ -43,19 +67,19 @@ export const About = () => {
 
         <motion.div
           {...a(fadeInVariants)}
-          className='flex flex-col mt-3'
+          className='mt-3 flex flex-col'
         >
           <a
             className='flex items-center justify-center gap-2 text-blue-500'
             href='https://www.linkedin.com/in/egorxyz/'
             rel='noreferrer'
-target='_blank'
+            target='_blank'
           >
             <FaLinkedin />
             /egorxyz
           </a>
         </motion.div>
       </Card>
-    </EnterAnimation>
-  );
-};
+    </>
+  </EnterAnimation>
+);
