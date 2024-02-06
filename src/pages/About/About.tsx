@@ -46,10 +46,11 @@ export const About = () => (
     <>
       <motion.div
         {...a(cloudAnimation)}
-        className='fixed right-[15svw] top-[15svh]'
+        className='fixed right-[15svw] top-[5svh] md:top-[15svh]'
       >
-        <Cloud className='relative h-[100px] w-[200px]' />
+        <Cloud className='relative h-[60px] w-[120px] md:h-[100px] md:w-[200px]' />
       </motion.div>
+
       <Card title='About'>
         <motion.img
           {...a(fadeInVariants)}
