@@ -1,6 +1,6 @@
 import { Card } from 'src/components/Card';
 import { Variants, motion } from 'framer-motion';
-import { a } from 'src/animations/a';
+import { a } from 'src/utils/a';
 import cover from 'src/assets/extensions-cover.jpg';
 import { TbBrandVscode, TbBrandNpm } from 'react-icons/tb';
 
