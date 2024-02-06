@@ -63,7 +63,7 @@ export const TopMenu = () => {
 
   return (
     <motion.nav
-      className='fixed text-white bottom-5 sm:top-2'
+      className='fixed bottom-5 h-fit text-white sm:top-2'
       {...a(fadeIn)}
       animate={pathname === '/' ? 'exit' : 'enter'}
       custom={isWide}
