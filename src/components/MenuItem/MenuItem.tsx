@@ -2,8 +2,8 @@ import { Variants, motion, useMotionValue, useSpring, useTransform } from 'frame
 import { FC, useRef } from 'react';
 import { FiArrowRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-
-import { useStore } from '../../useStore';
+import { A } from 'src/utils/a';
+import { useStore } from 'src/useStore';
 
 const MLink = motion(Link);
 
@@ -15,7 +15,7 @@ type Props = {
   subheading: string;
 };
 
-const fadeInVariants: Variants = {
+const fadeInVariants: A = {
   enter: (i) => ({
     opacity: 1,
     transition: {

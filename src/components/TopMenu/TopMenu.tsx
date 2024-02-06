@@ -1,8 +1,8 @@
 import { Variants, motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { a } from 'src/animations/a';
-import { menuItems } from 'src/utils/menuItems';
 import { useMedia } from 'react-use';
+import { a } from 'src/utils/a';
+import { menuItems } from 'src/utils/menuItems';
 
 const fadeIn: Variants = {
   enter: {

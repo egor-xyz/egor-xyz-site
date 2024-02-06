@@ -3,7 +3,7 @@ import { Card } from 'src/components/Card';
 import avatar from 'src/assets/egor.jpg';
 import { FaLinkedin } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import { a, A } from 'src/animations/a';
+import { a, A } from 'src/utils/a';
 import Cloud from 'src/assets/cloud.svg?react';
 
 import { EnterAnimation } from '../../components/EnterAnimation/EnterAnimation';
@@ -27,26 +27,30 @@ const fadeInVariants: A = {
 
 const cloudAnimation: A = {
   enter: {
+    opacity: 1,
     transition: {
       duration: 3,
       repeat: Infinity,
       repeatType: 'reverse'
-      // type: 'tween'
     },
     x: -40,
     y: 80
   },
+  exit: {
+    opacity: 0
+  },
   initial: {
+    opacity: 1,
     x: 0
   }
 };
 
 export const About = () => (
   <EnterAnimation>
-    <>
+    <div className='relative'>
       <motion.div
         {...a(cloudAnimation)}
-        className='fixed right-[15svw] top-[5svh] md:top-[15svh]'
+        className='absolute bottom-[130%] right-[-10px]'
       >
         <Cloud className='relative h-[60px] w-[120px] md:h-[100px] md:w-[200px]' />
       </motion.div>
@@ -81,6 +85,6 @@ export const About = () => (
           </a>
         </motion.div>
       </Card>
-    </>
+    </div>
   </EnterAnimation>
 );

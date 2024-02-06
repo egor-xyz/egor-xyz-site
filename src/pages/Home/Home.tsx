@@ -1,10 +1,10 @@
-import { Variants, motion } from 'framer-motion';
-import { a } from 'src/animations/a';
+import { motion } from 'framer-motion';
 import Jet from 'src/assets/jet.svg?react';
 import { MenuItem } from 'src/components/MenuItem';
+import { A, a } from 'src/utils/a';
 import { menuItems } from 'src/utils/menuItems';
 
-const fly: Variants = {
+const fly: A = {
   enter: {
     bottom: '100%',
     left: '100%',

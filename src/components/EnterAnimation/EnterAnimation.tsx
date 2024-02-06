@@ -1,8 +1,8 @@
-import { a } from 'src/animations/a';
-import { Variants, motion } from 'framer-motion';
+import { A, a } from 'src/utils/a';
+import { motion } from 'framer-motion';
 import { FC } from 'react';
 
-const slide: Variants = {
+const slide: A = {
   enter: {
     top: '100vh'
   },
@@ -18,7 +18,7 @@ const slide: Variants = {
   }
 };
 
-const perspective: Variants = {
+const perspective: A = {
   enter: {
     opacity: 1,
     scale: 1,

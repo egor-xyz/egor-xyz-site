@@ -1,11 +1,11 @@
-import { Card } from 'src/components/Card';
-import { Variants, motion } from 'framer-motion';
-import { a } from 'src/animations/a';
+import { motion } from 'framer-motion';
 import cover from 'src/assets/devkitty-cover.jpg';
+import { Card } from 'src/components/Card';
+import { A, a } from 'src/utils/a';
 
 import { EnterAnimation } from '../../components/EnterAnimation/EnterAnimation';
 
-const fadeInVariants: Variants = {
+const fadeInVariants: A = {
   enter: {
     opacity: 1,
     scale: 1,
@@ -39,7 +39,7 @@ export const Devkitty = () => {
             className='flex items-center gap-2'
             href='https://devkitty.app/'
             rel='noreferrer'
-target='_blank'
+            target='_blank'
           >
             <span className='text-blue-500'>Devkitty</span> - Swiss army knife for developers
           </a>
