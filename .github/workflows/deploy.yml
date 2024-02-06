@@ -1,0 +1,39 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+name: Deploy
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+  cancel-in-progress: false # ${{ github.event_name == 'pull_request' }}
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    if: ${{ !startsWith(github.event.head_commit.message ,'chore(release):') }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          check-latest: true
+          cache: npm
+
+      - name: Install packages
+        run: |
+          npm ci --ignore-scripts
+
+      - name: Build
+        run: |
+          npm run build
+
+      - name: Build
+        run: |
+          npm run deploy
