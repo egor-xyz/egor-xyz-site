@@ -10,7 +10,7 @@ on:
       - main
 
 jobs:
-  release:
+  deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     if: ${{ !startsWith(github.event.head_commit.message ,'chore(release):') }}
@@ -34,6 +34,8 @@ jobs:
         run: |
           npm run build
 
-      - name: Build
-        run: |
-          npm run deploy
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
