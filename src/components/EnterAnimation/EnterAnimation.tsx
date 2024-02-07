@@ -60,7 +60,7 @@ export const EnterAnimation: FC<Props> = ({ children }) => {
 
       <motion.div
         {...a(slide)}
-        className='text-100px fixed  left-0 flex  h-[100vh] min-h-[100svh] w-[100vw] items-center  justify-center  bg-black  bg-gradient-to-t from-blue-600 to-red-500 text-lg text-white '
+        className='text-100px fixed left-0 flex h-[100vh] min-h-[100svh] w-[100vw] items-center justify-center  bg-black  bg-gradient-to-t from-blue-600 to-red-500 text-lg text-white '
       />
     </>
   );
