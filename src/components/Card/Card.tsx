@@ -32,7 +32,7 @@ const titleAnimation: A = {
 
 export const Card: FC<Props> = ({ children, title }) => {
   return (
-    <div className='relative flex w-[600px] max-w-[90vw] flex-col items-center justify-center gap-1 overflow-hidden rounded-xl bg-white p-4 text-base text-black shadow-xl md:p-4 md:text-2xl'>
+    <div className='relative flex w-[600px] max-w-[90vw] flex-col items-center justify-center gap-2 overflow-hidden rounded-xl bg-white p-4 text-base text-black shadow-xl md:gap-3 md:p-4 md:text-2xl'>
       {title && (
         <MotionBubble
           {...a(titleAnimation)}
