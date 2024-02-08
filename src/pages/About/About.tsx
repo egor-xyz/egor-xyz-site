@@ -87,7 +87,7 @@ export const About = () => {
 
           <motion.p
             {...a(fadeInVariants)}
-            className='my-5 text-center text-xl'
+            className='text-center text-xl '
           >
             Hi!, My name is Egor
           </motion.p>
