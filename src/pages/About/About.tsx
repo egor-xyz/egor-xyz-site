@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-max-depth */
 import { Card } from 'src/components/Card';
 import avatar from 'src/assets/egor.jpg';
-import { FaLinkedin, FaGithub } from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaMedium, FaStackOverflow } from 'react-icons/fa';
 import { motion, useAnimate, Variants } from 'framer-motion';
 import { a, A } from 'src/utils/a';
 import Cloud from 'src/assets/cloud.svg?react';
@@ -87,14 +87,14 @@ export const About = () => {
 
           <motion.p
             {...a(fadeInVariants)}
-            className='mt-5 text-center text-xl'
+            className='my-5 text-center text-xl'
           >
             Hi!, My name is Egor
           </motion.p>
 
           <motion.div
             {...a(fadeInVariants)}
-            className='mt-3 flex flex-row gap-5 text-xl'
+            className='flex flex-row flex-wrap items-center justify-center gap-2 text-sm md:gap-5 md:text-xl'
           >
             <a
               className='flex items-center justify-center gap-2 text-[#0967c3]'
@@ -114,6 +114,26 @@ export const About = () => {
             >
               <FaGithub />
               GitHub
+            </a>
+
+            <a
+              className='flex items-center justify-center gap-2 text-black'
+              href='https://egor-xyz.medium.com/'
+              rel='noreferrer'
+              target='_blank'
+            >
+              <FaMedium />
+              Medium
+            </a>
+
+            <a
+              className='flex items-center justify-center gap-2 text-[#e7700e]'
+              href='https://stackoverflow.com/users/2746447/egor-xyz'
+              rel='noreferrer'
+              target='_blank'
+            >
+              <FaStackOverflow />
+              StackOverflow
             </a>
           </motion.div>
         </Card>
