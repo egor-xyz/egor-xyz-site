@@ -1,11 +1,12 @@
 /* eslint-disable react/jsx-max-depth */
-import { Card } from 'src/components/Card';
-import avatar from 'src/assets/egor.jpg';
-import { FaLinkedin, FaGithub, FaMedium, FaStackOverflow } from 'react-icons/fa';
-import { motion, useAnimate, Variants } from 'framer-motion';
-import { a, A } from 'src/utils/a';
-import Cloud from 'src/assets/cloud.svg?react';
+import { Variants, motion, useAnimate } from 'framer-motion';
 import { useEffect } from 'react';
+import { FaGithub, FaLinkedin, FaMedium } from 'react-icons/fa';
+import Cloud from 'src/assets/cloud.svg?react';
+import avatar from 'src/assets/egor.jpg';
+import { Card } from 'src/components/Card';
+import { A, a } from 'src/utils/a';
+import { cn } from 'src/utils/cn';
 
 import { EnterAnimation } from '../../components/EnterAnimation/EnterAnimation';
 
@@ -48,6 +49,27 @@ const cloudAnimation: Variants = {
     scale: 0.2
   }
 };
+
+const links = [
+  {
+    className: 'text-[#0967c3]',
+    href: 'https://www.linkedin.com/in/egorxyz/',
+    Icon: FaLinkedin,
+    text: 'LinkedIn'
+  },
+  {
+    className: 'text-black',
+    href: 'https://github.com/egor-xyz',
+    Icon: FaGithub,
+    text: 'GitHub'
+  },
+  {
+    className: 'text-black',
+    href: 'https://egor-xyz.medium.com/',
+    Icon: FaMedium,
+    text: 'Medium'
+  }
+];
 
 export const About = () => {
   const [scope, animate] = useAnimate();
@@ -96,45 +118,18 @@ export const About = () => {
             {...a(fadeInVariants)}
             className='flex flex-row flex-wrap items-center justify-center gap-2 text-sm md:gap-5 md:text-xl'
           >
-            <a
-              className='flex items-center justify-center gap-2 text-[#0967c3]'
-              href='https://www.linkedin.com/in/egorxyz/'
-              rel='noreferrer'
-              target='_blank'
-            >
-              <FaLinkedin />
-              LinkedIn
-            </a>
-
-            <a
-              className='flex items-center justify-center gap-2 text-black'
-              href='https://github.com/egor-xyz'
-              rel='noreferrer'
-              target='_blank'
-            >
-              <FaGithub />
-              GitHub
-            </a>
-
-            <a
-              className='flex items-center justify-center gap-2 text-black'
-              href='https://egor-xyz.medium.com/'
-              rel='noreferrer'
-              target='_blank'
-            >
-              <FaMedium />
-              Medium
-            </a>
-
-            <a
-              className='flex items-center justify-center gap-2 text-[#e7700e]'
-              href='https://stackoverflow.com/users/2746447/egor-xyz'
-              rel='noreferrer'
-              target='_blank'
-            >
-              <FaStackOverflow />
-              StackOverflow
-            </a>
+            {links.map(({ Icon, className, href, text }, key) => (
+              <a
+                className={cn('flex items-center justify-center gap-2', className)}
+                href={href}
+                key={key}
+                rel='noreferrer'
+                target='_blank'
+              >
+                <Icon />
+                {text}
+              </a>
+            ))}
           </motion.div>
         </Card>
       </div>
