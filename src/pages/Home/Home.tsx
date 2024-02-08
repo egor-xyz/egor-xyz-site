@@ -21,26 +21,24 @@ const fly: A = {
   }
 };
 
-export const Home = () => {
-  return (
-    <section className='relative mx-auto mt-[60px] w-[100%] max-w-5xl overflow-hidden p-14 pl-[20px] md:ml-[300px] md:mt-[80px] md:pl-[4px] '>
-      <motion.div
-        className='fixed h-20'
-        {...a(fly)}
-      >
-        <Jet className='fixed h-20' />
-      </motion.div>
+export const Home = () => (
+  <section className='relative mx-auto mt-[60px] w-[100%] max-w-5xl overflow-hidden p-14 pl-[20px] md:ml-[300px] md:mt-[80px] md:pl-[4px] '>
+    <motion.div
+      className='fixed h-20'
+      {...a(fly)}
+    >
+      <Jet className='fixed h-20' />
+    </motion.div>
 
-      {menuItems.map(({ heading, href, imgSrc, subheading }, key) => (
-        <MenuItem
-          heading={heading}
-          href={href}
-          imgSrc={imgSrc}
-          index={key}
-          key={key}
-          subheading={subheading}
-        />
-      ))}
-    </section>
-  );
-};
+    {menuItems.map(({ heading, href, imgSrc, subheading }, key) => (
+      <MenuItem
+        heading={heading}
+        href={href}
+        imgSrc={imgSrc}
+        index={key}
+        key={key}
+        subheading={subheading}
+      />
+    ))}
+  </section>
+);
