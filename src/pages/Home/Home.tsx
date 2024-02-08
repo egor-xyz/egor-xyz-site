@@ -22,7 +22,7 @@ const fly: A = {
 };
 
 export const Home = () => (
-  <section className='relative mx-auto mt-[60px] w-[100%] max-w-5xl overflow-hidden p-14 pl-[20px] md:ml-[300px] md:mt-[80px] md:pl-[4px] '>
+  <section className='mx-auto mt-[60px] w-[100%] max-w-5xl overflow-hidden p-14 pl-[20px] md:ml-[300px] md:mt-[80px] md:pl-[4px] '>
     <motion.div
       className='fixed h-20'
       {...a(fly)}
