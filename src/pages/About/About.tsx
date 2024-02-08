@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-max-depth */
 import { Card } from 'src/components/Card';
 import avatar from 'src/assets/egor.jpg';
-import { FaLinkedin } from 'react-icons/fa';
+import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import { motion, useAnimate, Variants } from 'framer-motion';
 import { a, A } from 'src/utils/a';
 import Cloud from 'src/assets/cloud.svg?react';
@@ -89,22 +89,31 @@ export const About = () => {
             {...a(fadeInVariants)}
             className='mt-5 text-center text-xl'
           >
-            Hi!, My name is Egor <br />
-            More about me:
+            Hi!, My name is Egor
           </motion.p>
 
           <motion.div
             {...a(fadeInVariants)}
-            className='mt-3 flex flex-col'
+            className='mt-3 flex flex-row gap-5 text-xl'
           >
             <a
-              className='flex items-center justify-center gap-2 text-blue-500'
+              className='flex items-center justify-center gap-2 text-[#0967c3]'
               href='https://www.linkedin.com/in/egorxyz/'
               rel='noreferrer'
               target='_blank'
             >
               <FaLinkedin />
-              /egorxyz
+              LinkedIn
+            </a>
+
+            <a
+              className='flex items-center justify-center gap-2 text-black'
+              href='https://github.com/egor-xyz'
+              rel='noreferrer'
+              target='_blank'
+            >
+              <FaGithub />
+              GitHub
             </a>
           </motion.div>
         </Card>
