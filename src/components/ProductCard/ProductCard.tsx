@@ -14,12 +14,12 @@ type Props = {
 export const ProductCard: FC<Props> = ({ Icon, text, href, description }) => {
   return (
     <a
-      className='flex max-w-[90svw] items-center justify-items-start rounded-xl bg-white text-base text-black shadow-xl md:text-xl'
+      className='relative flex max-w-[90svw] items-center justify-items-start rounded-xl bg-white text-base text-black shadow-xl md:text-xl'
       href={href}
       rel='noreferrer'
       target='_blank'
     >
-      <div className='bg-black bg-gradient-to-t from-blue-600 to-red-500 p-2 shadow-inner'>
+      <div className='bg-black bg-gradient-to-t from-blue-600 to-red-500 p-2'>
         <Icon className='h-[100px] w-[100px]' />
       </div>
 
