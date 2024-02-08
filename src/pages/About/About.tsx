@@ -2,9 +2,10 @@
 import { Card } from 'src/components/Card';
 import avatar from 'src/assets/egor.jpg';
 import { FaLinkedin } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+import { motion, useAnimate, Variants } from 'framer-motion';
 import { a, A } from 'src/utils/a';
 import Cloud from 'src/assets/cloud.svg?react';
+import { useEffect } from 'react';
 
 import { EnterAnimation } from '../../components/EnterAnimation/EnterAnimation';
 
@@ -25,66 +26,89 @@ const fadeInVariants: A = {
   }
 };
 
-const cloudAnimation: A = {
+const cloudAnimation: Variants = {
   enter: {
     opacity: 1,
+    scale: 1
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.2,
     transition: {
-      duration: 3,
-      repeat: Infinity,
-      repeatType: 'reverse'
-    },
+      duration: 0.3
+    }
+  },
+  fly: {
+    opacity: 1,
     x: -40,
     y: 80
   },
-  exit: {
-    opacity: 0
-  },
   initial: {
-    opacity: 1,
-    x: 0
+    opacity: 0,
+    scale: 0.2
   }
 };
 
-export const About = () => (
-  <EnterAnimation>
-    <div className='relative'>
-      <motion.div
-        {...a(cloudAnimation)}
-        className='absolute bottom-[130%] right-[-10px]'
-      >
-        <Cloud className='relative h-[60px] w-[120px] md:h-[100px] md:w-[200px]' />
-      </motion.div>
+export const About = () => {
+  const [scope, animate] = useAnimate();
 
-      <Card title='About'>
-        <motion.img
-          {...a(fadeInVariants)}
-          className='h-[200px] rounded-2xl bg-center object-cover shadow-md'
-          src={avatar}
-        />
+  const animateCloud = async () => {
+    await animate(scope.current, cloudAnimation.initial);
+    await animate(scope.current, cloudAnimation.enter, { delay: 1, duration: 2 });
+    await animate(scope.current, cloudAnimation.fly, {
+      duration: 3,
+      repeat: Infinity,
+      repeatType: 'reverse'
+    });
+  };
 
-        <motion.p
-          {...a(fadeInVariants)}
-          className='mt-5 text-center text-xl'
-        >
-          Hi!, My name is Egor <br />
-          More about me:
-        </motion.p>
+  useEffect(() => {
+    animateCloud();
+  }, []);
 
+  return (
+    <EnterAnimation>
+      <div className='relative'>
         <motion.div
-          {...a(fadeInVariants)}
-          className='mt-3 flex flex-col'
+          className='absolute bottom-[130%] right-[-10px] scale-[.2] opacity-0'
+          exit='exit'
+          ref={scope}
+          variants={cloudAnimation}
         >
-          <a
-            className='flex items-center justify-center gap-2 text-blue-500'
-            href='https://www.linkedin.com/in/egorxyz/'
-            rel='noreferrer'
-            target='_blank'
-          >
-            <FaLinkedin />
-            /egorxyz
-          </a>
+          <Cloud className='relative h-[60px] w-[120px] md:h-[100px] md:w-[200px]' />
         </motion.div>
-      </Card>
-    </div>
-  </EnterAnimation>
-);
+
+        <Card title='About'>
+          <motion.img
+            {...a(fadeInVariants)}
+            className='h-[200px] rounded-2xl bg-center object-cover shadow-md'
+            src={avatar}
+          />
+
+          <motion.p
+            {...a(fadeInVariants)}
+            className='mt-5 text-center text-xl'
+          >
+            Hi!, My name is Egor <br />
+            More about me:
+          </motion.p>
+
+          <motion.div
+            {...a(fadeInVariants)}
+            className='mt-3 flex flex-col'
+          >
+            <a
+              className='flex items-center justify-center gap-2 text-blue-500'
+              href='https://www.linkedin.com/in/egorxyz/'
+              rel='noreferrer'
+              target='_blank'
+            >
+              <FaLinkedin />
+              /egorxyz
+            </a>
+          </motion.div>
+        </Card>
+      </div>
+    </EnterAnimation>
+  );
+};
