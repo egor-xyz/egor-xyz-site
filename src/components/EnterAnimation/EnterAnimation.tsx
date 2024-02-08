@@ -45,7 +45,7 @@ const perspective: A = {
 };
 
 type Props = {
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
 };
 
 export const EnterAnimation: FC<Props> = ({ children }) => {

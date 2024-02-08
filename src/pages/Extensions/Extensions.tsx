@@ -1,8 +1,9 @@
-import { Card } from 'src/components/Card';
 import { Variants, motion } from 'framer-motion';
+import { TbBrandNpm } from 'react-icons/tb';
+import FMEPLogo from 'src/assets/fmep-logo.svg?react';
+import TailwindPackLogo from 'src/assets/tailwind-pack-logo.svg?react';
+import { ProductCard } from 'src/components/ProductCard';
 import { a } from 'src/utils/a';
-import cover from 'src/assets/extensions-cover.jpg';
-import { TbBrandVscode, TbBrandNpm } from 'react-icons/tb';
 
 import { EnterAnimation } from '../../components/EnterAnimation/EnterAnimation';
 
@@ -25,43 +26,31 @@ const fadeInVariants: Variants = {
 export const Extensions = () => {
   return (
     <EnterAnimation>
-      <Card title='VSCode extensions'>
-        <motion.img
-          {...a(fadeInVariants)}
-          className='mt-10 rounded-xl shadow-xl'
-          src={cover}
+      <motion.div
+        className='relative mt-5 flex w-full flex-col justify-start gap-8 text-lg'
+        {...a(fadeInVariants)}
+      >
+        <ProductCard
+          description='Make your Visual Studio Code the best IDE for the Front End developer'
+          href='https://marketplace.visualstudio.com/items?itemName=egor-xyz.front-end-mega-extension-pack'
+          Icon={FMEPLogo}
+          text='VSCode Front-End Mega Extension Pack'
         />
 
-        <motion.div
-          className='mt-5 flex w-full flex-col justify-start gap-2 text-lg'
-          {...a(fadeInVariants)}
-        >
-          <a
-            className='flex items-center gap-2'
-            href='https://marketplace.visualstudio.com/items?itemName=egor-xyz.front-end-mega-extension-pack'
-            rel='noreferrer'
-            target='_blank'
-          >
-            <TbBrandVscode className='text-blue-500' /> Front-End Mega Extension Pack
-          </a>
-          <a
-            className='flex items-center gap-2'
-            href='https://marketplace.visualstudio.com/items?itemName=egor-xyz.tailwind-mega-extension-pack'
-            rel='noreferrer'
-            target='_blank'
-          >
-            <TbBrandVscode className='text-blue-500' /> Tailwind Mega Extension Pack
-          </a>
-          <a
-            className='flex items-center gap-2'
-            href='https://www.npmjs.com/package/@egor.xyz/eslint-config'
-            rel='noreferrer'
-            target='_blank'
-          >
-            <TbBrandNpm className='text-red-400' /> ESLint configuration with hundreds of rules
-          </a>
-        </motion.div>
-      </Card>
+        <ProductCard
+          description='Make your Visual Studio Code the best IDE for the Tailwind framework'
+          href='https://marketplace.visualstudio.com/items?itemName=egor-xyz.tailwind-mega-extension-pack'
+          Icon={TailwindPackLogo}
+          text='VSCode Tailwind Mega Extension Pack'
+        />
+
+        <ProductCard
+          description='Ensure your ESLint configurations with the highest coding standards'
+          href='https://www.npmjs.com/package/@egor.xyz/eslint-config'
+          Icon={TbBrandNpm}
+          text='ESLint configuration with hundreds of rules'
+        />
+      </motion.div>
     </EnterAnimation>
   );
 };
