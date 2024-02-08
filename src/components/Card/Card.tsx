@@ -1,4 +1,6 @@
 import { FC } from 'react';
+import { motion } from 'framer-motion';
+import { A, a } from 'src/utils/a';
 
 import { BubbleText } from '../BubbleText';
 
@@ -7,12 +9,34 @@ type Props = {
   title?: string;
 };
 
+const MotionBubble = motion(BubbleText);
+
+const titleAnimation: A = {
+  enter: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delay: 1,
+      duration: 1,
+      type: 'spring'
+    },
+    x: 0
+  },
+  initial: {
+    opacity: 0,
+    scale: 0.1,
+    transformOrigin: 'left center',
+    x: -100
+  }
+};
+
 export const Card: FC<Props> = ({ children, title }) => {
   return (
-    <div className='relative flex min-h-[400px] w-[600px] max-w-[90vw] flex-col items-center justify-center rounded-xl bg-white p-4 text-base text-black shadow-xl md:p-8 md:text-2xl'>
+    <div className='relative flex w-[600px] max-w-[90vw] flex-col items-center justify-center gap-1 overflow-hidden rounded-xl bg-white p-4 text-base text-black shadow-xl md:p-4 md:text-2xl'>
       {title && (
-        <BubbleText
-          className='absolute left-4 top-4 text-base md:text-2xl'
+        <MotionBubble
+          {...a(titleAnimation)}
+          className='w-full text-left text-base md:text-2xl'
           text={title}
         />
       )}
