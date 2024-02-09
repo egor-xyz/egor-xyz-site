@@ -14,7 +14,7 @@ type Props = {
 export const ProductCard: FC<Props> = ({ Icon, text, href, description }) => {
   return (
     <a
-      className='relative flex max-w-[90svw] items-center justify-items-start rounded-xl bg-white text-base text-black shadow-xl md:text-xl'
+      className='relative flex max-w-[90svw] items-center justify-items-start overflow-hidden rounded-xl bg-white text-base text-black shadow-xl md:text-xl'
       href={href}
       rel='noreferrer'
       target='_blank'
