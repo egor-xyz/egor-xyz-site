@@ -1,23 +1,26 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-const konami = '38384040373937396665';
+const konami = 'ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightba';
 
 export const useKonami = () => {
-  const keys = useRef<number[]>([]);
+  const keys = useRef<string[]>([]);
   const [isKonami, setIsKonami] = useState(false);
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      // reset on esc key
-      if (e.keyCode === 27) {
+      if (e.key === 'Escape') {
+        console.log(e.key);
         keys.current = [];
-        isKonami && setIsKonami(false);
+        setIsKonami(false);
         return;
       }
 
-      keys.current.push(e.keyCode);
+      keys.current.push(e.key);
 
       const key = keys.current.join('');
+
+      console.log(key);
+      console.log(konami);
 
       if (key.length > konami.length) {
         keys.current = [];
