@@ -8,6 +8,7 @@ import { TopMenu } from './components/TopMenu';
 import { useStore } from './useStore';
 // @ts-expect-error - Typings are missing
 import Gradient from './utils/gradient';
+import { useKonami } from './hooks/useKonami';
 
 const variants: Variants = {
   header: {
@@ -28,6 +29,7 @@ const variants: Variants = {
 const gradient = new Gradient();
 
 export const App = () => {
+  const isKonami = useKonami();
   const [scope, animate] = useAnimate();
   const location = useLocation();
   const { loaded } = useStore();
@@ -49,6 +51,8 @@ export const App = () => {
 
     !loaded && animateLogo(location.pathname === '/');
   }, []);
+
+  isKonami && console.log(isKonami);
 
   return (
     <div className='relative flex min-h-[100svh] items-center justify-center text-white'>
