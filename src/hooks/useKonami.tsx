@@ -24,8 +24,6 @@ export const useKonami = (selector: string) => {
         if (clippyAgent.current) return;
         clippyAgent.current = agent;
 
-        console.log('Clippy loaded');
-
         agent.show(false);
         agent.speak('Hi Konami fan!', false);
         agent.speak('You found me!', false);
