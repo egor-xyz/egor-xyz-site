@@ -15,8 +15,8 @@ export const useKonami = (selector: string) => {
     }
 
     clippy.load({
-      failCb: () => {
-        console.log('Clippy failed to load');
+      failCb: (e) => {
+        console.log('Clippy failed to load', e);
       },
       name: 'Links',
       selector,
