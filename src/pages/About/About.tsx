@@ -52,7 +52,7 @@ const cloudAnimation: Variants = {
 
 const links = [
   {
-    className: 'text-[#0967c3]',
+    className: 'text-black',
     href: 'https://www.linkedin.com/in/egorxyz/',
     Icon: FaLinkedin,
     text: 'LinkedIn'
@@ -109,7 +109,8 @@ export const About = () => {
 
           <motion.p
             {...a(fadeInVariants)}
-            className='text-center text-xl '
+            // add text shadow
+            className='text-center text-xl drop-shadow'
           >
             Hi!, My name is Egor
           </motion.p>
@@ -120,7 +121,7 @@ export const About = () => {
           >
             {links.map(({ Icon, className, href, text }, key) => (
               <a
-                className={cn('flex items-center justify-center gap-2', className)}
+                className={cn('flex items-center justify-center gap-2 drop-shadow', className)}
                 href={href}
                 key={key}
                 rel='noreferrer'

@@ -70,7 +70,7 @@ export const Digest = () => {
               rel='noreferrer'
               target='_blank'
             >
-              <FaTelegramPlane className='text-blue-500' /> Read on Telegram
+              <FaTelegramPlane className='text-blue-600 drop-shadow' /> Read on Telegram
             </a>
             <a
               className='flex items-center gap-2'
@@ -78,7 +78,7 @@ export const Digest = () => {
               rel='noreferrer'
               target='_blank'
             >
-              <FaLinkedin className='text-blue-500' /> Read on LinkedIn
+              <FaLinkedin className='text-blue-600 drop-shadow' /> Read on LinkedIn
             </a>
           </motion.div>
         </Card>

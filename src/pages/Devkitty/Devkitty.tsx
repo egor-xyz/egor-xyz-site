@@ -25,25 +25,25 @@ export const Devkitty = () => {
   return (
     <EnterAnimation>
       <Card title='Devkitty'>
-        <motion.img
-          {...a(fadeInVariants)}
-          className='rounded-xl shadow-xl'
-          src={cover}
-        />
-
-        <motion.div
-          className='mt-5 flex'
-          {...a(fadeInVariants)}
+        <a
+          className='w-full'
+          href='https://devkitty.app/'
+          rel='noreferrer'
+          target='_blank'
         >
-          <a
-            className='flex items-center gap-2'
-            href='https://devkitty.app/'
-            rel='noreferrer'
-            target='_blank'
+          <motion.img
+            {...a(fadeInVariants)}
+            className='rounded-xl shadow-xl'
+            src={cover}
+          />
+
+          <motion.div
+            className='mt-5 text-center drop-shadow'
+            {...a(fadeInVariants)}
           >
-            <span className='text-blue-500'>Devkitty</span> - Swiss army knife for developers
-          </a>
-        </motion.div>
+            Swiss army knife for developers
+          </motion.div>
+        </a>
       </Card>
     </EnterAnimation>
   );
