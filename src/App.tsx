@@ -29,7 +29,7 @@ const variants: Variants = {
 const gradient = new Gradient();
 
 export const App = () => {
-  const isKonami = useKonami();
+  useKonami('#clippy');
   const [scope, animate] = useAnimate();
   const location = useLocation();
   const { loaded } = useStore();
@@ -52,8 +52,6 @@ export const App = () => {
     !loaded && animateLogo(location.pathname === '/');
   }, []);
 
-  isKonami && console.log(isKonami);
-
   return (
     <div className='relative flex min-h-[100svh] items-center justify-center text-white'>
       <canvas
@@ -72,6 +70,8 @@ export const App = () => {
       >
         <Logo className='h-auto w-[200px] md:w-auto' />
       </Link>
+
+      <div id='clippy' />
     </div>
   );
 };
