@@ -33,18 +33,18 @@ type Props = {
 export const ProductCard: FC<Props> = ({ Icon, text, href, description }) => {
   return (
     <motion.a
-      className='relative flex max-w-[90svw] items-center justify-items-start overflow-hidden rounded-xl bg-white text-base text-black shadow-xl md:text-xl'
+      className='md:text-l relative flex w-full max-w-[90svw] items-center justify-items-start overflow-hidden rounded-xl bg-white text-base text-black shadow-xl'
       href={href}
       rel='noreferrer'
       target='_blank'
       {...a(fadeInVariants)}
     >
       <div className='bg-black bg-gradient-to-t from-blue-600 to-red-500 p-2'>
-        <Icon className='h-[100px] w-[100px]' />
+        <Icon className='h-[80px] w-[80px]' />
       </div>
 
       <div
-        className='flex-col px-4'
+        className='flex-col px-2'
         rel='noreferrer'
       >
         <div className='text-[#0099FF]'>{text}</div>
