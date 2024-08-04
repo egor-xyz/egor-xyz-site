@@ -1,17 +1,49 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import clippy, { Agent } from 'clippyts';
 
 const konami = 'ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightba';
 
-export const useKonami = () => {
+export const useKonami = (selector: string) => {
   const keys = useRef<string>('');
   const [isKonami, setIsKonami] = useState(false);
+
+  const clippyAgent = useRef<Agent>();
+
+  const loadClippy = () => {
+    if (clippyAgent.current) {
+      return;
+    }
+
+    clippy.load({
+      failCb: () => {
+        console.log('Clippy failed to load');
+      },
+      name: 'Links',
+      selector,
+      successCb: (agent) => {
+        if (clippyAgent.current) return;
+        clippyAgent.current = agent;
+
+        console.log('Clippy loaded');
+
+        agent.show(false);
+        agent.speak('Hi Konami fan!', false);
+        agent.speak('You found me!', false);
+        agent.play('Congratulate');
+
+        document.body.addEventListener('click', () => {
+          agent.animate();
+        });
+      }
+    });
+  };
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        console.log(e.key);
         keys.current = '';
         setIsKonami(false);
+        clippyAgent.current?.hide(false, () => {});
         return;
       }
 
@@ -23,7 +55,7 @@ export const useKonami = () => {
       }
 
       if (keys.current === konami) {
-        setIsKonami(true);
+        loadClippy();
         keys.current = '';
       }
     },
@@ -32,8 +64,7 @@ export const useKonami = () => {
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
+
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
-
-  return isKonami;
 };

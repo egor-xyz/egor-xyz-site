@@ -1,7 +1,6 @@
 import { Variants, useAnimate } from 'framer-motion';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import clippy from 'clippyts';
 
 import { Router } from './Router';
 import Logo from './assets/logo.svg?react';
@@ -30,11 +29,10 @@ const variants: Variants = {
 const gradient = new Gradient();
 
 export const App = () => {
-  const isKonami = useKonami();
+  useKonami('#clippy');
   const [scope, animate] = useAnimate();
   const location = useLocation();
   const { loaded } = useStore();
-  const clippyLoaded = useRef(false);
 
   const animateLogo = async (full: boolean) => {
     useStore.setState({ loaded: true });
@@ -48,42 +46,11 @@ export const App = () => {
     await animate(scope.current, variants.header, { duration: 0.7 });
   };
 
-  const loadClippy = () => {
-    if (clippyLoaded.current) {
-      return;
-    }
-
-    clippy.load({
-      failCb: () => {
-        console.log('Clippy failed to load');
-      },
-      name: 'Links',
-      selector: '#clippy',
-      successCb: (agent) => {
-        if (clippyLoaded.current) return;
-        clippyLoaded.current = true;
-
-        console.log('Clippy loaded');
-
-        console.log('agent', agent);
-        // @ts-expect-error - Typings are missing
-        agent.show();
-        // agent.speak('Hello, I am Clippy!', false);
-        agent.animate();
-        console.log(agent.animations());
-      }
-    });
-  };
-
   useEffect(() => {
     gradient.initGradient('#gradient-canvas');
 
     !loaded && animateLogo(location.pathname === '/');
-
-    loadClippy();
   }, []);
-
-  isKonami && console.log(isKonami);
 
   return (
     <div className='relative flex min-h-[100svh] items-center justify-center text-white'>
