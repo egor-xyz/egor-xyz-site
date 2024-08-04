@@ -6,6 +6,8 @@ import { Router } from './Router';
 import Logo from './assets/logo.svg?react';
 import { TopMenu } from './components/TopMenu';
 import { useStore } from './useStore';
+// @ts-expect-error - Typings are missing
+import Gradient from './utils/gradient';
 
 const variants: Variants = {
   header: {
@@ -22,6 +24,8 @@ const variants: Variants = {
     scale: [0.3, 1]
   }
 };
+
+const gradient = new Gradient();
 
 export const App = () => {
   const [scope, animate] = useAnimate();
@@ -41,11 +45,18 @@ export const App = () => {
   };
 
   useEffect(() => {
+    gradient.initGradient('#gradient-canvas');
+
     !loaded && animateLogo(location.pathname === '/');
   }, []);
 
   return (
-    <div className='relative flex min-h-[100svh] items-center justify-center bg-black bg-gradient-to-t from-blue-600 to-red-500 text-white'>
+    <div className='relative flex min-h-[100svh] items-center justify-center text-white'>
+      <canvas
+        data-transition-in
+        id='gradient-canvas'
+      />
+
       <Router />
 
       <TopMenu />
