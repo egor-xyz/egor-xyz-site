@@ -2,11 +2,27 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import clippy, { Agent } from 'clippyts';
 import { cn } from 'src/utils/cn';
 import { motion } from 'framer-motion';
-import { a } from 'src/utils/a';
+import { a, A } from 'src/utils/a';
 
 const konami = 'ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightba';
 const agents = ['Links', 'Clippy', 'Bonzi', 'F1', 'Genie', 'Genius', 'Merlin', 'Peedy', 'Rocky', 'Rover'] as const;
 type Agents = (typeof agents)[number];
+
+const actionsFadeIn: A = {
+  enter: {
+    opacity: 1,
+    transition: {
+      delay: 1,
+      duration: 1,
+      type: 'spring'
+    },
+    x: 0
+  },
+  initial: {
+    opacity: 0,
+    x: 100
+  }
+};
 
 export const Clippy = () => {
   const keys = useRef<string>('');
@@ -86,21 +102,7 @@ export const Clippy = () => {
 
       {showActions && (
         <motion.div
-          {...a({
-            enter: {
-              opacity: 1,
-              transition: {
-                delay: 1,
-                duration: 1,
-                type: 'spring'
-              },
-              x: 0
-            },
-            initial: {
-              opacity: 0,
-              x: 100
-            }
-          })}
+          {...a(actionsFadeIn)}
           className='absolute bottom-3 right-3 flex min-w-[110px] flex-col items-start justify-center gap-1 overflow-hidden rounded-lg border border-white/30 bg-white/20 p-1 text-black shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md'
         >
           {agents.map((agent) => (
