@@ -61,24 +61,27 @@ export const Digest = () => {
           />
 
           <motion.div
-            className='mt-5 flex flex-col gap-5 md:flex-row'
+            className='mt-2 flex flex-row gap-6 text-xl'
             {...a(fadeInVariants)}
           >
             <a
-              className='flex items-center gap-2'
-              href='https://t.me/frontend_weekly_news_digest'
-              rel='noreferrer'
-              target='_blank'
-            >
-              <FaTelegramPlane className='text-blue-600 drop-shadow' /> Read on Telegram
-            </a>
-            <a
-              className='flex items-center gap-2'
+              className='flex items-center gap-1'
               href='https://www.linkedin.com/newsletters/7153365464419614725/'
               rel='noreferrer'
               target='_blank'
             >
-              <FaLinkedin className='text-blue-600 drop-shadow' /> Read on LinkedIn
+              <FaLinkedin className='text-blue-600' />
+              <span className='drop-shadow'>LinkedIn</span>
+            </a>
+
+            <a
+              className='flex items-center gap-1'
+              href='https://t.me/frontend_weekly_news_digest'
+              rel='noreferrer'
+              target='_blank'
+            >
+              <FaTelegramPlane className='text-blue-600' />
+              <span className='drop-shadow'>Telegram</span>
             </a>
           </motion.div>
         </Card>
