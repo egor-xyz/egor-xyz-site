@@ -8,7 +8,7 @@ import { TopMenu } from './components/TopMenu';
 import { useStore } from './useStore';
 // @ts-expect-error - Typings are missing
 import Gradient from './utils/gradient';
-import { useKonami } from './hooks/useKonami';
+import { Clippy } from './components/Clippy';
 
 const variants: Variants = {
   header: {
@@ -29,7 +29,6 @@ const variants: Variants = {
 const gradient = new Gradient();
 
 export const App = () => {
-  useKonami('#clippy');
   const [scope, animate] = useAnimate();
   const location = useLocation();
   const { loaded } = useStore();
@@ -71,7 +70,7 @@ export const App = () => {
         <Logo className='h-auto w-[200px] md:w-auto' />
       </Link>
 
-      <div id='clippy' />
+      <Clippy />
     </div>
   );
 };
