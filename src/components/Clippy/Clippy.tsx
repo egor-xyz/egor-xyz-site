@@ -100,6 +100,10 @@ export const Clippy = () => {
     <>
       <div className='clippy' />
 
+      {!showActions && (
+        <div className='fixed bottom-2 right-2 hidden text-xs text-white opacity-50 lg:block'>コナミコマンド</div>
+      )}
+
       {showActions && (
         <motion.div
           {...a(actionsFadeIn)}
