@@ -10,12 +10,12 @@ const fadeInVariants: Variants = {
       delay: 0.5,
       duration: 1
     },
-    y: 0
+    x: 0
   },
   initial: {
     opacity: 0,
     scale: 0.4,
-    y: 100
+    x: 100
   }
 };
 
@@ -33,13 +33,13 @@ type Props = {
 export const ProductCard: FC<Props> = ({ Icon, text, href, description }) => {
   return (
     <motion.a
-      className='md:text-l relative flex w-full max-w-[90svw] items-center justify-items-start overflow-hidden rounded-xl bg-white text-base text-black shadow-xl'
+      className='md:text-l relative flex w-full max-w-[90svw] items-center justify-items-start text-base text-black'
       href={href}
       rel='noreferrer'
       target='_blank'
       {...a(fadeInVariants)}
     >
-      <div className='bg-black bg-gradient-to-t from-blue-600 to-red-500 p-2'>
+      <div className='p-2'>
         <Icon className='h-[80px] w-[80px]' />
       </div>
 
@@ -47,7 +47,8 @@ export const ProductCard: FC<Props> = ({ Icon, text, href, description }) => {
         className='flex-col px-2'
         rel='noreferrer'
       >
-        <div className='text-[#0099FF]'>{text}</div>
+        <div className='font-bold drop-shadow'>{text}</div>
+
         <div className='max-w-[370px] pt-1 text-sm md:pt-2 md:text-base'>{description}</div>
       </div>
     </motion.a>
