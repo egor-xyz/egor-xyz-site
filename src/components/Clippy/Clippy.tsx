@@ -77,8 +77,6 @@ export const Clippy = () => {
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
 
-    loadClippy(name);
-
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
