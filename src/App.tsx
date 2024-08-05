@@ -6,11 +6,16 @@ import { Router } from './Router';
 import Logo from './assets/logo.svg?react';
 import { TopMenu } from './components/TopMenu';
 import { useStore } from './useStore';
+import { Clippy } from './components/Clippy';
 // @ts-expect-error - Typings are missing
 import Gradient from './utils/gradient';
-import { Clippy } from './components/Clippy';
 
 const variants: Variants = {
+  enter: {
+    opacity: 1,
+    rotate: 0,
+    scale: 1
+  },
   header: {
     left: 15,
     opacity: 1,
@@ -19,10 +24,10 @@ const variants: Variants = {
     scale: 0.4,
     top: 15
   },
-  start: {
-    opacity: [0, 1],
-    rotate: [180, 0],
-    scale: [0.3, 1]
+  initial: {
+    opacity: 0,
+    rotate: 180,
+    scale: 0
   }
 };
 
@@ -41,7 +46,8 @@ export const App = () => {
       return;
     }
 
-    await animate(scope.current, variants.start, { duration: 1.3 });
+    await animate(scope.current, variants.initial);
+    await animate(scope.current, variants.enter, { duration: 1.3 });
     await animate(scope.current, variants.header, { duration: 0.7 });
   };
 
@@ -64,7 +70,7 @@ export const App = () => {
       <TopMenu />
 
       <Link
-        className='fixed mt-[27px] cursor-pointer opacity-0 md:mt-0'
+        className='fixed mt-[27px] scale-0 cursor-pointer opacity-0 md:mt-0'
         ref={scope}
         to='/'
       >
