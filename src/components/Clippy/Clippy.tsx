@@ -26,7 +26,7 @@ const actionsFadeIn: A = {
 
 export const Clippy = () => {
   const keys = useRef<string>('');
-  const [showActions, setShowActions] = useState(true);
+  const [showActions, setShowActions] = useState(false);
   const [name, setName] = useState<Agents>('Links');
 
   const clippyAgent = useRef<Agent>();
