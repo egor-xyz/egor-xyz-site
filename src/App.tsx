@@ -49,6 +49,7 @@ export const App = () => {
     gradient.initGradient('#gradient-canvas');
 
     !loaded && animateLogo(location.pathname === '/');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

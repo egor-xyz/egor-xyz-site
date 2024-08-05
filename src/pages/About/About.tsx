@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-max-depth */
-import { Variants, motion, useAnimate } from 'framer-motion';
+import { Variants, motion, useAnimate, usePresence } from 'framer-motion';
 import { useEffect } from 'react';
 import { FaGithub, FaLinkedin, FaMedium } from 'react-icons/fa';
 import Cloud from 'src/assets/cloud.svg?react';
@@ -34,19 +34,18 @@ const cloudAnimation: Variants = {
   },
   exit: {
     opacity: 0,
-    scale: 0.2,
+    scale: 0,
     transition: {
       duration: 0.3
     }
   },
   fly: {
-    opacity: 1,
     x: -40,
-    y: 80
+    y: 180
   },
   initial: {
     opacity: 0,
-    scale: 0.2
+    scale: 0
   }
 };
 
@@ -73,32 +72,43 @@ const links = [
 
 export const About = () => {
   const [scope, animate] = useAnimate();
-
-  const animateCloud = async () => {
-    await animate(scope.current, cloudAnimation.initial);
-    await animate(scope.current, cloudAnimation.enter, { delay: 1, duration: 2 });
-    await animate(scope.current, cloudAnimation.fly, {
-      duration: 3,
-      repeat: Infinity,
-      repeatType: 'reverse'
-    });
-  };
+  const [isPresent, safeToRemove] = usePresence();
 
   useEffect(() => {
-    animateCloud();
-  }, []);
+    if (isPresent) {
+      const enterAnimation = async () => {
+        await animate(scope.current, cloudAnimation.initial);
+        await animate(scope.current, cloudAnimation.enter, {
+          duration: 2
+        });
+        await animate(scope.current, cloudAnimation.fly, {
+          duration: 3,
+          repeat: Infinity,
+          repeatType: 'reverse'
+        });
+      };
+      enterAnimation();
+    } else {
+      const exitAnimation = async () => {
+        await animate(scope.current, cloudAnimation.exit, {
+          duration: 1
+        });
+        safeToRemove();
+      };
+
+      exitAnimation();
+    }
+  }, [animate, isPresent, safeToRemove, scope]);
 
   return (
     <EnterAnimation>
       <div className='relative'>
-        <motion.div
+        <div
           className='absolute bottom-[130%] right-[-10px] scale-[.2] opacity-0'
-          exit='exit'
           ref={scope}
-          variants={cloudAnimation}
         >
           <Cloud className='relative h-[60px] w-[120px] md:h-[100px] md:w-[200px]' />
-        </motion.div>
+        </div>
 
         <Card title='About'>
           <motion.img

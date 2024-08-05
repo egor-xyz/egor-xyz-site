@@ -35,38 +35,41 @@ export const Clippy = () => {
     clippyAgent.current?.animate();
   }, []);
 
-  const loadClippy = useCallback((name: Agents, greeting: boolean = true) => {
-    document.body.removeEventListener('click', animate);
-    clippyAgent.current?.stop();
-    clippyAgent.current?.hide(false, () => {});
-    clippyAgent.current = undefined;
+  const loadClippy = useCallback(
+    (name: Agents, greeting: boolean = true) => {
+      document.body.removeEventListener('click', animate);
+      clippyAgent.current?.stop();
+      clippyAgent.current?.hide(false, () => {});
+      clippyAgent.current = undefined;
 
-    setName(name);
+      setName(name);
 
-    clippy.load({
-      failCb: (e) => {
-        console.log('Clippy failed to load', e);
-      },
-      name,
-      selector: '.clippy',
-      successCb: (agent) => {
-        if (clippyAgent.current) return;
-        clippyAgent.current = agent;
+      clippy.load({
+        failCb: (e) => {
+          console.log('Clippy failed to load', e);
+        },
+        name,
+        selector: '.clippy',
+        successCb: (agent) => {
+          if (clippyAgent.current) return;
+          clippyAgent.current = agent;
 
-        agent.show(false);
+          agent.show(false);
 
-        if (greeting) {
-          agent.speak('Hi Konami fan!', false);
-          agent.speak('You found me!', false);
-          agent.play('Congratulate');
+          if (greeting) {
+            agent.speak('Hi Konami fan!', false);
+            agent.speak('You found me!', false);
+            agent.play('Congratulate');
+          }
+
+          document.body.addEventListener('click', animate);
+
+          setShowActions(true);
         }
-
-        document.body.addEventListener('click', animate);
-
-        setShowActions(true);
-      }
-    });
-  }, []);
+      });
+    },
+    [animate]
+  );
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -87,13 +90,14 @@ export const Clippy = () => {
         keys.current = '';
       }
     },
-    [keys]
+    [loadClippy, name]
   );
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
 
     return () => window.removeEventListener('keydown', handleKeyDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
