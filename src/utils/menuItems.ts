@@ -17,15 +17,15 @@ export const menuItems = [
     subheading: 'Your weekly dose of front-end news'
   },
   {
-    heading: 'Extensions',
-    href: '/extensions',
-    imgSrc: extensions,
-    subheading: 'My extension packs and npm packages'
-  },
-  {
     heading: 'Devkitty',
     href: '/devkitty',
     imgSrc: devkitty,
     subheading: 'Swiss army knife for developers'
+  },
+  {
+    heading: 'Extensions',
+    href: '/extensions',
+    imgSrc: extensions,
+    subheading: 'My extension packs and npm packages'
   }
 ];
