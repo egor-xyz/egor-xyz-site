@@ -59,7 +59,7 @@ export const App = () => {
   }, []);
 
   return (
-    <div className='relative flex min-h-[100svh] items-center justify-center text-white'>
+    <div className='flex h-[100svh] items-center justify-center overflow-hidden text-white'>
       <canvas
         data-transition-in
         id='gradient-canvas'
