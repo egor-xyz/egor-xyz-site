@@ -82,7 +82,7 @@ export const About = () => {
           duration: 2
         });
         await animate(scope.current, cloudAnimation.fly, {
-          duration: 3,
+          duration: 4,
           repeat: Infinity,
           repeatType: 'reverse'
         });
