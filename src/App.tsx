@@ -27,7 +27,7 @@ const variants: Variants = {
   initial: {
     opacity: 0,
     rotate: 180,
-    scale: 0
+    scale: 0.1
   }
 };
 
@@ -70,7 +70,7 @@ export const App = () => {
       <TopMenu />
 
       <Link
-        className='fixed mt-[27px] scale-0 cursor-pointer opacity-0 md:mt-0'
+        className='fixed z-10 mt-[27px] scale-[.1] cursor-pointer opacity-0 md:mt-0'
         ref={scope}
         to='/'
       >
