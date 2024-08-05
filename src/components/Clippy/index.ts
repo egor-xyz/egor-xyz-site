@@ -1,0 +1,1 @@
+export { Clippy } from './Clippy';
