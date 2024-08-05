@@ -27,7 +27,7 @@ const variants: Variants = {
   initial: {
     opacity: 0,
     rotate: 180,
-    scale: 0.1
+    scale: 0.3
   }
 };
 
