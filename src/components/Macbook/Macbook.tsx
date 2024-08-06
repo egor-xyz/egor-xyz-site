@@ -128,8 +128,8 @@ export const Macbook = () => {
         <ambientLight intensity={1} />
 
         <directionalLight
-          position={[5, 0, 12]}
-          intensity={0.5}
+          position={[5, 2, 12]}
+          intensity={0.3}
           castShadow
         />
 
