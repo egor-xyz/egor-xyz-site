@@ -1,11 +1,12 @@
 /* eslint-disable */
 
+import { motion } from 'framer-motion';
 import { Environment, OrbitControls, useGLTF } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
 import { Mesh, MeshStandardMaterial } from 'three';
 import { GLTF } from 'three-stdlib';
-import styles from './Macbook.module.css';
+import { a, A } from 'src/utils/a';
 
 type GLTFResult = GLTF & {
   animations: any[];
@@ -95,16 +96,34 @@ function MacbookModel(props: JSX.IntrinsicElements['group']) {
   );
 }
 
+const variants: A = {
+  enter: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 2,
+      duration: 1
+    }
+  },
+  initial: {
+    opacity: 0,
+    y: -100
+  }
+};
+
 export const Macbook = () => {
   return (
-    <div className={styles.canvasWrapper}>
+    <motion.div
+      className='fixed right-0 top-0 h-full w-full md:h-[100vh] md:w-[50vw]'
+      {...a(variants)}
+    >
       <Canvas
         camera={{
           position: [2, 2, 3],
           zoom: 0.8
         }}
       >
-        <ambientLight intensity={3} />
+        <ambientLight intensity={2} />
 
         <OrbitControls
           autoRotate
@@ -115,7 +134,7 @@ export const Macbook = () => {
         </Suspense>
         <Environment preset='forest' />
       </Canvas>
-    </div>
+    </motion.div>
   );
 };
 
