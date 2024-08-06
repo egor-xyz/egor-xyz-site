@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import Jet from 'src/assets/jet.svg?react';
+import { Macbook } from 'src/components/Macbook';
 import { MenuItem } from 'src/components/MenuItem';
 import { A, a } from 'src/utils/a';
 import { menuItems } from 'src/utils/menuItems';
@@ -22,7 +23,9 @@ const fly: A = {
 };
 
 export const Home = () => (
-  <section className='mx-auto mt-[60px] w-[100%] max-w-5xl overflow-hidden p-14 pl-[20px] md:ml-[300px] md:mt-[80px] md:pl-[4px] '>
+  <section className='mx-auto mt-[60px] w-[100%] max-w-5xl overflow-hidden p-14 pl-[20px] md:ml-[300px] md:mt-[80px] md:pl-[4px]'>
+    <Macbook />
+
     <motion.div
       className='fixed h-20'
       {...a(fly)}
