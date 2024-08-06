@@ -119,8 +119,8 @@ export const Macbook = () => {
     >
       <Canvas
         camera={{
-          position: [2, 2, 3],
-          zoom: 0.8
+          position: [3, 2, -2]
+          // zoom: 0.7
         }}
       >
         <ambientLight intensity={1.8} />
@@ -133,6 +133,7 @@ export const Macbook = () => {
 
         <OrbitControls
           autoRotate
+          autoRotateSpeed={1}
           enableZoom={false}
         />
         <Suspense fallback={null}>
