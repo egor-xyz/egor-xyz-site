@@ -43,7 +43,7 @@ function MacbookModel(props: JSX.IntrinsicElements['group']) {
       receiveShadow
     >
       <group
-        rotation={[-1.4, -0.45, -2.4]}
+        rotation={[-1.4, -0.42, -2.4]}
         position={[0, -0.8, 0]}
       >
         <mesh
@@ -125,7 +125,7 @@ export const Macbook = () => {
           zoom: 1.6
         }}
       >
-        <ambientLight intensity={1} />
+        <ambientLight intensity={1.5} />
 
         <OrbitControls
           autoRotate
