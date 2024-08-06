@@ -104,7 +104,8 @@ export const Macbook = () => {
           zoom: 0.8
         }}
       >
-        <ambientLight />
+        <ambientLight intensity={3} />
+
         <OrbitControls
           autoRotate
           enableZoom={false}
@@ -112,7 +113,7 @@ export const Macbook = () => {
         <Suspense fallback={null}>
           <MacbookModel />
         </Suspense>
-        <Environment preset='city' />
+        <Environment preset='forest' />
       </Canvas>
     </div>
   );
