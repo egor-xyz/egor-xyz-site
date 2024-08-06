@@ -1,37 +1,10 @@
-import { motion } from 'framer-motion';
-import Jet from 'src/assets/jet.svg?react';
 import { Macbook } from 'src/components/Macbook';
 import { MenuItem } from 'src/components/MenuItem';
-import { A, a } from 'src/utils/a';
 import { menuItems } from 'src/utils/menuItems';
-
-const fly: A = {
-  enter: {
-    bottom: '100%',
-    left: '100%',
-    opacity: 1,
-    transition: {
-      delay: 1,
-      duration: 5
-    }
-  },
-  initial: {
-    bottom: 0,
-    left: 0,
-    opacity: 0
-  }
-};
 
 export const Home = () => (
   <section className='mx-auto mt-[60px] w-[100%] max-w-5xl overflow-hidden p-14 pl-[20px] md:ml-[300px] md:mt-[80px] md:pl-[4px]'>
     <Macbook />
-
-    <motion.div
-      className='fixed h-20'
-      {...a(fly)}
-    >
-      <Jet className='fixed h-20' />
-    </motion.div>
 
     {menuItems.map(({ heading, href, imgSrc, subheading }, key) => (
       <MenuItem
