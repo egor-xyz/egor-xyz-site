@@ -101,7 +101,7 @@ const variants: A = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 2,
+      delay: 3,
       duration: 1
     }
   },
@@ -114,7 +114,7 @@ const variants: A = {
 export const Macbook = () => {
   return (
     <motion.div
-      className='fixed right-0 top-0 h-full w-full md:h-[100vh] md:w-[50vw]'
+      className='fixed right-0 top-0 h-full w-full md:h-[100vh] md:w-[70vw]'
       {...a(variants)}
     >
       <Canvas
@@ -124,6 +124,16 @@ export const Macbook = () => {
         }}
       >
         <ambientLight intensity={2} />
+        <ambientLight
+          intensity={2}
+          position={[20, -32, -60]}
+        />
+
+        <directionalLight
+          position={[0, 0, -330]}
+          intensity={0.5}
+          castShadow
+        />
 
         <OrbitControls
           autoRotate
