@@ -1,0 +1,1 @@
+export { Macbook } from './Macbook';
