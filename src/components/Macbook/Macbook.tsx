@@ -131,6 +131,7 @@ export const Macbook = () => {
           autoRotate
           autoRotateSpeed={2}
           enableZoom={false}
+          enablePan={false}
         />
         <Suspense fallback={null}>
           <MacbookModel />
