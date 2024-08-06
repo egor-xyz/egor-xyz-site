@@ -119,8 +119,7 @@ export const Macbook = () => {
     >
       <Canvas
         camera={{
-          position: [3, 2, -2]
-          // zoom: 0.7
+          position: [3, 2, 2]
         }}
       >
         <ambientLight intensity={1.8} />
