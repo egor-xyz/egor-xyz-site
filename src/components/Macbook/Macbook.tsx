@@ -42,7 +42,10 @@ function MacbookModel(props: JSX.IntrinsicElements['group']) {
       castShadow
       receiveShadow
     >
-      <group rotation={[-Math.PI / 2, 0, 0]}>
+      <group
+        rotation={[-1.4, 0, -1]}
+        position={[0, -0.8, 0]}
+      >
         <mesh
           castShadow
           receiveShadow
@@ -101,7 +104,7 @@ const variants: A = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 3,
+      delay: 3.5,
       duration: 1
     }
   },
@@ -114,21 +117,15 @@ const variants: A = {
 export const Macbook = () => {
   return (
     <motion.div
-      className='fixed right-0 top-0 h-full w-full md:h-[100vh] md:w-[70vw]'
+      className='fixed right-0 top-0 h-full w-full md:w-[70vw]'
       {...a(variants)}
     >
       <Canvas
         camera={{
-          position: [3, 2, 2]
+          zoom: 1.6
         }}
       >
-        <ambientLight intensity={1.8} />
-
-        <directionalLight
-          position={[0, 0, -330]}
-          intensity={0.5}
-          castShadow
-        />
+        <ambientLight intensity={1} />
 
         <OrbitControls
           autoRotate
