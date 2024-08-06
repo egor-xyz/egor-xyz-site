@@ -59,7 +59,7 @@ export const MenuItem: FC<Props> = ({ heading, subheading, href, index }) => {
   return (
     <MLink
       animate='enter'
-      className='group relative flex items-center justify-between py-4 transition-colors duration-500 md:py-8'
+      className='group relative flex max-w-[340px] items-center justify-between py-4 transition-colors duration-500 md:py-8'
       custom={delay}
       initial='initial'
       ref={ref}
