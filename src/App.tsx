@@ -7,8 +7,7 @@ import Logo from './assets/logo.svg?react';
 import { TopMenu } from './components/TopMenu';
 import { useStore } from './useStore';
 import { Clippy } from './components/Clippy';
-// @ts-expect-error - Typings are missing
-import Gradient from './utils/gradient';
+import { Gradient, GradientType } from './utils/gradient';
 
 const variants: Variants = {
   enter: {
@@ -31,7 +30,8 @@ const variants: Variants = {
   }
 };
 
-const gradient = new Gradient();
+// @ts-expect-error - Ignore this line
+const gradient: GradientType = new Gradient();
 
 export const App = () => {
   const [scope, animate] = useAnimate();
