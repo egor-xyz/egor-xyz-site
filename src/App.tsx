@@ -30,8 +30,7 @@ const variants: Variants = {
   }
 };
 
-// @ts-expect-error - Ignore this line
-const gradient: GradientType = new Gradient();
+const gradient = new Gradient() as unknown as GradientType;
 
 export const App = () => {
   const [scope, animate] = useAnimate();
