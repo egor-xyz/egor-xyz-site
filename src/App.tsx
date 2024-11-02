@@ -12,7 +12,6 @@ import { Gradient, GradientType } from './utils/gradient';
 const variants: Variants = {
   enter: {
     opacity: 1,
-    rotate: 0,
     scale: 1
   },
   header: {
@@ -25,7 +24,6 @@ const variants: Variants = {
   },
   initial: {
     opacity: 0,
-    rotate: 180,
     scale: 0.3
   }
 };
@@ -46,7 +44,7 @@ export const App = () => {
     }
 
     await animate(scope.current, variants.initial);
-    await new Promise((resolve) => setTimeout(resolve, 300));
+    await new Promise((resolve) => setTimeout(resolve, 100));
     await animate(scope.current, variants.enter, { duration: 1.3 });
     await animate(scope.current, variants.header, { duration: 0.7 });
   };
