@@ -30,7 +30,7 @@ const fadeInVariants: A = {
 };
 
 export const MenuItem: FC<Props> = ({ heading, subheading, href, index }) => {
-  const ref = useRef<HTMLElement | SVGElement>(null);
+  const ref = useRef<HTMLAnchorElement>(null);
   const { loaded } = useStore();
 
   const x = useMotionValue(0);
