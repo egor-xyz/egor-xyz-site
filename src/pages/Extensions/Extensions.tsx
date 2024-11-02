@@ -1,5 +1,5 @@
 import { TbBrandNpm } from 'react-icons/tb';
-import FMEPLogo from 'src/assets/fmep-logo.svg?react';
+import MarketLogo from 'src/assets/fmep-logo.svg?react';
 import TailwindPackLogo from 'src/assets/tailwind-pack-logo.svg?react';
 import { ProductCard } from 'src/components/ProductCard';
 import { Card } from 'src/components/Card';
@@ -13,7 +13,7 @@ export const Extensions = () => {
         <ProductCard
           description='Make your Visual Studio Code the best IDE for the Front End developer'
           href='https://marketplace.visualstudio.com/items?itemName=egor-xyz.front-end-mega-extension-pack'
-          Icon={FMEPLogo}
+          Icon={MarketLogo}
           text='VSCode Front-End Mega Extension Pack'
         />
 

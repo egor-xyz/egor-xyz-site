@@ -5,17 +5,16 @@ import { a } from 'src/utils/a';
 const fadeInVariants: Variants = {
   enter: {
     opacity: 1,
-    scale: 1,
     transition: {
-      delay: 0.5,
-      duration: 1
+      delay: 0.6,
+      duration: 1.4,
+      type: 'spring'
     },
     x: 0
   },
   initial: {
     opacity: 0,
-    scale: 0.4,
-    x: 100
+    x: -500
   }
 };
 
@@ -33,7 +32,7 @@ type Props = {
 export const ProductCard: FC<Props> = ({ Icon, text, href, description }) => {
   return (
     <motion.a
-      className='md:text-l relative flex w-full max-w-[90svw] items-center justify-items-start text-base text-black'
+      className='md:text-l relative flex w-full max-w-[90svw] items-center justify-items-start text-base text-black opacity-0'
       href={href}
       rel='noreferrer'
       target='_blank'

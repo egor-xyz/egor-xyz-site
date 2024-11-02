@@ -54,7 +54,7 @@ export const MenuItem: FC<Props> = ({ heading, subheading, href, index }) => {
     y.set(yPct);
   };
 
-  const delay = !loaded ? 2 + index * 0.3 : index * 0.3;
+  const delay = !loaded ? 2.5 + index * 0.3 : 1.1 + index * 0.3;
 
   return (
     <MLink
