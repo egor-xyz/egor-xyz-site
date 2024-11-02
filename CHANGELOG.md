@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/egor-xyz/egor-xyz-site/compare/v1.2.1...v1.2.2) (2024-11-02)
+
+
+### Bug Fixes
+
+* fix animation ([9a8920f](https://github.com/egor-xyz/egor-xyz-site/commit/9a8920fb19ec28a721033c190f8a724cd4c68990))
+
 ## [1.2.1](https://github.com/egor-xyz/egor-xyz-site/compare/v1.2.0...v1.2.1) (2024-11-02)
 
 
