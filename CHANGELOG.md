@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/egor-xyz/egor-xyz-site/compare/v1.2.0...v1.2.1) (2024-11-02)
+
+
+### Bug Fixes
+
+* cloud animation ([6e60918](https://github.com/egor-xyz/egor-xyz-site/commit/6e60918744dac8c41d56d51346294eb50d909949))
+
 # [1.2.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.1.0...v1.2.0) (2024-11-02)
 
 
