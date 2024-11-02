@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.1.0...v1.2.0) (2024-11-02)
+
+
+### Features
+
+* update accessWidget ([866a385](https://github.com/egor-xyz/egor-xyz-site/commit/866a385e066b35e638d1d3bbb9000cf5f479f6d8))
+
 # [1.1.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.0.0...v1.1.0) (2024-11-02)
 
 
