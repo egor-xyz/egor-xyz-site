@@ -27,18 +27,18 @@ const fadeInVariants: A = {
 const deerAnimation: A = {
   enter: {
     opacity: 1,
-    rotate: 0,
     scale: 1,
     transition: {
       delay: 1,
       duration: 1
-    }
+    },
+    x: 0
   },
   initial: {
     opacity: 0,
-    rotate: -45,
     scale: 0.3,
-    transformOrigin: 'bottom center'
+    transformOrigin: 'bottom center',
+    x: -10
   }
 };
 
@@ -47,7 +47,7 @@ export const Digest = () => {
     <EnterAnimation>
       <div className='relative'>
         <motion.div
-          className='absolute -right-5 bottom-[99.4%]'
+          className='absolute -right-5 bottom-[99.4%] z-10'
           {...a(deerAnimation)}
         >
           <Deer className='h-[150px]' />
