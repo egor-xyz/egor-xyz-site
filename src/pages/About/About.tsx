@@ -104,10 +104,10 @@ export const About = () => {
     <EnterAnimation>
       <div className='relative'>
         <div
-          className='absolute bottom-[130%] right-[-10px] scale-[.2] opacity-0'
+          className='absolute bottom-[130%] right-[-10px] opacity-10'
           ref={scope}
         >
-          <Cloud className='relative h-[60px] w-[120px] md:h-[100px] md:w-[200px]' />
+          <Cloud className='h-[60px] w-[120px] md:h-[100px] md:w-[200px]' />
         </div>
 
         <Card title='About'>
