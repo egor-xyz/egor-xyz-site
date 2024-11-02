@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.0.0...v1.1.0) (2024-11-02)
+
+
+### Features
+
+* Simplify animations ([7e85c7f](https://github.com/egor-xyz/egor-xyz-site/commit/7e85c7f09ce1dc2b99b2e004cc3631c75b347692))
+
 # 1.0.0 (2024-11-02)
 
 
