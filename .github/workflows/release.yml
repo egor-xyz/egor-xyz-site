@@ -1,18 +1,19 @@
-name: Deploy
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref_name }}
-  cancel-in-progress: false # ${{ github.event_name == 'pull_request' }}
+name: Release
+
 on:
   push:
     branches:
       - main
 
+permissions:
+  pages: write
+  id-token: write
+  contents: write
+  issues: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-    permissions:
-      contents: write
 
     steps:
       - name: Checkout
@@ -21,20 +22,24 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Setup Node
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: .nvmrc
-          check-latest: true
-          cache: npm
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
 
       - name: Install packages
         run: |
-          npm ci --ignore-scripts
+          pnpm install
 
       - name: Build
         run: |
-          npm run build
+          pnpm build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -43,9 +48,6 @@ jobs:
 
   deploy:
     needs: build
-    permissions:
-      pages: write
-      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -54,3 +56,8 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Run Semantic Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release
