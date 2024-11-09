@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.2.3...v1.3.0) (2024-11-09)
+
+
+### Features
+
+* remove few animations ([30ab5a4](https://github.com/egor-xyz/egor-xyz-site/commit/30ab5a4d35275de8e9564c597d100fde542b2f17))
+
 ## [1.2.3](https://github.com/egor-xyz/egor-xyz-site/compare/v1.2.2...v1.2.3) (2024-11-02)
 
 
