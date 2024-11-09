@@ -14,7 +14,7 @@ export const menuItems = [
     heading: 'Digest',
     href: '/digest',
     imgSrc: digest,
-    subheading: 'Your weekly dose of front-end news'
+    subheading: 'Your weekly dose of frontend news'
   },
   {
     heading: 'Devkitty',

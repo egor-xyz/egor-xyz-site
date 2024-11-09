@@ -14,7 +14,7 @@ export const Extensions = () => {
           description='Make your Visual Studio Code the best IDE for the Front End developer'
           href='https://marketplace.visualstudio.com/items?itemName=egor-xyz.front-end-mega-extension-pack'
           Icon={MarketLogo}
-          text='VSCode Front-End Mega Extension Pack'
+          text='VSCode Frontend Mega Extension Pack'
         />
 
         <div className='my-2 h-[1px] w-full bg-white/30' />
