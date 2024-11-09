@@ -46,7 +46,9 @@ export const Papers = () => {
           onAnimationEnd={() => removePaper(paper.id)}
         >
           <div className='flex h-full w-full flex-col p-1'>
-            <div className='mb-[2px] border-b border-gray-800 pb-[2px] text-[8px] font-bold'>Daily News</div>
+            <div className='mb-[2px] border-b border-gray-800 pb-[2px] text-[14px] font-bold text-gray-600'>
+              {'<'}Frontend News{'>'}
+            </div>
             <div className='mb-[2px] flex space-x-[2px]'>
               <div className='w-1/2 space-y-[2px]'>
                 <div className='h-1 w-full rounded-sm bg-gray-300' />

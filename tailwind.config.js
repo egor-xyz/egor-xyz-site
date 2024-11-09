@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       animation: {
-        'fall': 'fall linear forwards 1'
+        fall: 'fall linear forwards 1'
       },
       colors: {
         'e-blue': '#0099FF',
@@ -13,7 +13,7 @@ export default {
       },
       keyframes: {
         fall: {
-          '0%': { transform: 'translateY(-120vh) rotate(0deg);' },
+          '0%': { transform: 'translateY(-110vh) rotate(0deg);' },
           '100%': { transform: 'translateY(120vh) rotate(360deg)' }
         }
       }
