@@ -104,7 +104,7 @@ const variants: A = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 3.5,
+      delay: 1.7,
       duration: 1
     }
   },
@@ -139,7 +139,7 @@ export const Macbook = () => {
 
         <OrbitControls
           autoRotate
-          autoRotateSpeed={3}
+          autoRotateSpeed={1.3}
           enableZoom={false}
           enablePan={false}
         />
