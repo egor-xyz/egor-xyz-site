@@ -43,9 +43,7 @@ export const App = () => {
       return;
     }
 
-    await animate(scope.current, variants.initial);
-    await new Promise((resolve) => setTimeout(resolve, 100));
-    await animate(scope.current, variants.enter, { duration: 1.3 });
+    await animate(scope.current, variants.enter, { duration: 1 });
     await animate(scope.current, variants.header, { duration: 0.7 });
   };
 
