@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.5.0...v1.6.0) (2024-11-09)
+
+
+### Features
+
+* digest animation papers ([045699d](https://github.com/egor-xyz/egor-xyz-site/commit/045699de3e53414694d9e2ebb2fef423167904f3))
+
 # [1.5.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.4.0...v1.5.0) (2024-11-09)
 
 
