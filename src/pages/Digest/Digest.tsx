@@ -5,7 +5,7 @@ import cover from 'src/assets/digest-cover.jpg';
 import { Card } from 'src/components/Card';
 import { EnterAnimation } from 'src/components/EnterAnimation';
 import { a, A } from 'src/utils/a';
-import Deer from 'src/assets/deer.svg?react';
+import { Papers } from 'src/components/BubbleText/Papers/Papers';
 
 const fadeInVariants: A = {
   enter: {
@@ -24,35 +24,12 @@ const fadeInVariants: A = {
   }
 };
 
-const deerAnimation: A = {
-  enter: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      delay: 1,
-      duration: 1
-    },
-    x: 0
-  },
-  initial: {
-    opacity: 0,
-    scale: 0.3,
-    transformOrigin: 'bottom center',
-    x: -10
-  }
-};
-
 export const Digest = () => {
   return (
     <EnterAnimation>
-      <div className='relative'>
-        <motion.div
-          className='absolute -right-5 bottom-[99.4%] z-10'
-          {...a(deerAnimation)}
-        >
-          <Deer className='h-[150px]' />
-        </motion.div>
+      <Papers />
 
+      <div className='relative'>
         <Card title='Frontend Weekly News Digest'>
           <motion.img
             {...a(fadeInVariants)}
