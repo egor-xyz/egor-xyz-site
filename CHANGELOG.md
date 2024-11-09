@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.3.0...v1.4.0) (2024-11-09)
+
+
+### Features
+
+* Frontend ([c8494d1](https://github.com/egor-xyz/egor-xyz-site/commit/c8494d15afec34c30aa102807379b3ed87b1d1b7))
+
 # [1.3.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.2.3...v1.3.0) (2024-11-09)
 
 
