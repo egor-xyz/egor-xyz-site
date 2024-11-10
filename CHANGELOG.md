@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.6.0...v1.7.0) (2024-11-10)
+
+
+### Features
+
+* g analytics ([e7b80ad](https://github.com/egor-xyz/egor-xyz-site/commit/e7b80ad8db86976ee8f7f34078f58752528bdb1c))
+
 # [1.6.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.5.0...v1.6.0) (2024-11-09)
 
 
