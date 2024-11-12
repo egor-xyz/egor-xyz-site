@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/egor-xyz/egor-xyz-site/compare/v1.7.0...v1.7.1) (2024-11-12)
+
+
+### Bug Fixes
+
+* 3d model position ([dc61a94](https://github.com/egor-xyz/egor-xyz-site/commit/dc61a94ea4101b4eab40e5bfec07f00a8f7a78d9))
+
 # [1.7.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.6.0...v1.7.0) (2024-11-10)
 
 
