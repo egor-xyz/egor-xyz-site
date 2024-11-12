@@ -18,14 +18,14 @@ const fadeInVariants: A = {
   enter: (i) => ({
     opacity: 1,
     transition: {
-      delay: i,
-      duration: 1
+      delay: i + 0.6,
+      duration: 1.3
     },
     y: 0
   }),
   initial: {
-    opacity: 0,
-    y: 500
+    opacity: 0.4,
+    y: 1000
   }
 };
 
@@ -59,7 +59,7 @@ export const MenuItem: FC<Props> = ({ heading, subheading, href, index }) => {
   return (
     <MLink
       animate='enter'
-      className='group relative flex max-w-[340px] items-center justify-between py-4 transition-colors duration-500 md:py-8'
+      className='flex max-w-[340px] flex-col items-start justify-center gap-1'
       custom={delay}
       initial='initial'
       ref={ref}
@@ -68,38 +68,34 @@ export const MenuItem: FC<Props> = ({ heading, subheading, href, index }) => {
       whileHover='whileHover'
       onMouseMove={handleMouseMove}
     >
-      <div>
-        <motion.span
-          className='text-white-500 relative z-10 block text-4xl font-bold transition-colors duration-500 group-hover:text-neutral-50 md:text-6xl'
-          transition={{
-            delayChildren: 0.25,
-            staggerChildren: 0.075,
-            type: 'spring'
-          }}
-          variants={{
-            initial: { x: 0 },
-            whileHover: { x: -16 }
-          }}
-        >
-          {heading.split('').map((l, i) => (
-            <motion.span
-              className='inline-block drop-shadow'
-              key={i}
-              transition={{ type: 'spring' }}
-              variants={{
-                initial: { x: 0 },
-                whileHover: { x: 16 }
-              }}
-            >
-              {l}
-            </motion.span>
-          ))}
-        </motion.span>
+      <motion.div
+        className='text-4xl font-bold'
+        transition={{
+          delayChildren: 0.25,
+          staggerChildren: 0.075,
+          type: 'spring'
+        }}
+        variants={{
+          initial: { x: 0 },
+          whileHover: { x: -16 }
+        }}
+      >
+        {heading.split('').map((l, i) => (
+          <motion.span
+            className='inline-block drop-shadow'
+            key={i}
+            transition={{ type: 'spring' }}
+            variants={{
+              initial: { x: 0 },
+              whileHover: { x: 16 }
+            }}
+          >
+            {l}
+          </motion.span>
+        ))}
+      </motion.div>
 
-        <span className='text-white-500 relative z-10 mt-2 block text-base drop-shadow transition-colors duration-500 group-hover:text-neutral-50'>
-          {subheading}
-        </span>
-      </div>
+      <div className='text-slate-200 drop-shadow'>{subheading}</div>
     </MLink>
   );
 };
