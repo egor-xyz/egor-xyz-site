@@ -43,7 +43,7 @@ function MacbookModel(props: JSX.IntrinsicElements['group']) {
       receiveShadow
     >
       <group
-        rotation={[-1.4, -0.3, -2.5]}
+        rotation={[-1.4, -0.3, -1.5]}
         position={[0, -0.8, 0]}
       >
         <mesh
