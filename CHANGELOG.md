@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.8.0...v1.9.0) (2024-11-12)
+
+
+### Features
+
+* animations ([a14585e](https://github.com/egor-xyz/egor-xyz-site/commit/a14585e6f07c653f7224c507196459cbc80a40be))
+
 # [1.8.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.7.1...v1.8.0) (2024-11-12)
 
 
