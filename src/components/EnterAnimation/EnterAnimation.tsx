@@ -34,8 +34,11 @@ type Props = {
 
 export const EnterAnimation: FC<Props> = ({ children }) => {
   return (
-    <>
-      <motion.div {...a(perspective)}>{children}</motion.div>
-    </>
+    <motion.div
+      className='relative'
+      {...a(perspective)}
+    >
+      {children}
+    </motion.div>
   );
 };

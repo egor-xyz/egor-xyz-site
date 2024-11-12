@@ -102,48 +102,46 @@ export const About = () => {
 
   return (
     <EnterAnimation>
-      <div className='relative'>
-        <div
-          className='absolute bottom-[130%] right-[-10px] opacity-10'
-          ref={scope}
-        >
-          <Cloud className='h-[60px] w-[120px] md:h-[100px] md:w-[200px]' />
-        </div>
-
-        <Card title='About'>
-          <motion.img
-            {...a(fadeInVariants)}
-            className='h-[200px] rounded-2xl bg-center object-cover shadow-md'
-            src={avatar}
-          />
-
-          <motion.p
-            {...a(fadeInVariants)}
-            // add text shadow
-            className='text-center text-xl drop-shadow'
-          >
-            Hi!, My name is Egor
-          </motion.p>
-
-          <motion.div
-            {...a(fadeInVariants)}
-            className='flex flex-row flex-wrap items-center justify-center gap-2 text-sm md:gap-5 md:text-xl'
-          >
-            {links.map(({ Icon, className, href, text }, key) => (
-              <a
-                className={cn('flex items-center justify-center gap-2 drop-shadow', className)}
-                href={href}
-                key={key}
-                rel='noreferrer'
-                target='_blank'
-              >
-                <Icon />
-                {text}
-              </a>
-            ))}
-          </motion.div>
-        </Card>
+      <div
+        className='absolute bottom-[130%] right-[-10px] opacity-10'
+        ref={scope}
+      >
+        <Cloud className='h-[60px] w-[120px] md:h-[100px] md:w-[200px]' />
       </div>
+
+      <Card title='About'>
+        <motion.img
+          {...a(fadeInVariants)}
+          className='h-[200px] rounded-2xl bg-center object-cover shadow-md'
+          src={avatar}
+        />
+
+        <motion.p
+          {...a(fadeInVariants)}
+          // add text shadow
+          className='text-center text-xl drop-shadow'
+        >
+          Hi!, My name is Egor
+        </motion.p>
+
+        <motion.div
+          {...a(fadeInVariants)}
+          className='flex flex-row flex-wrap items-center justify-center gap-2 text-sm md:gap-5 md:text-xl'
+        >
+          {links.map(({ Icon, className, href, text }, key) => (
+            <a
+              className={cn('flex items-center justify-center gap-2 drop-shadow', className)}
+              href={href}
+              key={key}
+              rel='noreferrer'
+              target='_blank'
+            >
+              <Icon />
+              {text}
+            </a>
+          ))}
+        </motion.div>
+      </Card>
     </EnterAnimation>
   );
 };
