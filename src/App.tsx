@@ -10,6 +10,11 @@ import { Clippy } from './components/Clippy';
 import { Gradient, GradientType } from './utils/gradient';
 
 const variants: Variants = {
+  initial: {
+    opacity: 0,
+    scale: 1
+  },
+  // eslint-disable-next-line sort-keys-fix/sort-keys-fix
   enter: {
     opacity: 1,
     scale: 1
@@ -19,12 +24,8 @@ const variants: Variants = {
     opacity: 1,
     originX: 0,
     originY: 0,
-    scale: 0.4,
+    scale: 0.5,
     top: 15
-  },
-  initial: {
-    opacity: 0,
-    scale: 0.3
   }
 };
 
@@ -37,6 +38,8 @@ export const App = () => {
 
   const animateLogo = async (full: boolean) => {
     useStore.setState({ loaded: true });
+
+    await animate(scope.current, variants.initial, { duration: 0 });
 
     if (!full) {
       await animate(scope.current, variants.header, { duration: 0 });
@@ -70,7 +73,7 @@ export const App = () => {
         ref={scope}
         to='/'
       >
-        <Logo className='h-auto w-[200px] md:w-auto' />
+        <Logo className='h-auto w-[200px] md:w-[250px]' />
       </Link>
 
       <Clippy />

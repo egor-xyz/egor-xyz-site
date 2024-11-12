@@ -104,7 +104,7 @@ const variants: A = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1.7,
+      delay: 1.5,
       duration: 1
     }
   },
