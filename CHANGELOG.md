@@ -1,3 +1,10 @@
+## [1.14.2](https://github.com/egor-xyz/egor-xyz-site/compare/v1.14.1...v1.14.2) (2024-11-14)
+
+
+### Bug Fixes
+
+* adjust margin for Home section layout ([acc928f](https://github.com/egor-xyz/egor-xyz-site/commit/acc928f68a6a8b0d31ee33042950ee4bef36ad98))
+
 ## [1.14.1](https://github.com/egor-xyz/egor-xyz-site/compare/v1.14.0...v1.14.1) (2024-11-14)
 
 
