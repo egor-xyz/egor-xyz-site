@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/egor-xyz/egor-xyz-site/compare/v1.13.0...v1.13.1) (2024-11-14)
+
+
+### Bug Fixes
+
+* checkbox ([c5ea335](https://github.com/egor-xyz/egor-xyz-site/commit/c5ea335b132c0f91256e56aec0211c6e10d8d574))
+
 # [1.13.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.12.0...v1.13.0) (2024-11-14)
 
 
