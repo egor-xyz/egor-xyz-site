@@ -1,3 +1,10 @@
+## [1.14.3](https://github.com/egor-xyz/egor-xyz-site/compare/v1.14.2...v1.14.3) (2024-11-14)
+
+
+### Bug Fixes
+
+* iPad onCLick ([94b9156](https://github.com/egor-xyz/egor-xyz-site/commit/94b9156ce8a68a69025e892a395b2baaa97eadd7))
+
 ## [1.14.2](https://github.com/egor-xyz/egor-xyz-site/compare/v1.14.1...v1.14.2) (2024-11-14)
 
 
