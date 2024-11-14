@@ -1,19 +1,13 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 
+import { useThemeStore } from '../../store/themeStore';
 import { Gradient, GradientType } from '../../utils/gradient';
 import { Space } from '../Space';
 
-type Theme = 'light' | 'dark';
-
 export const Backgrounds: FC = () => {
-  const [theme, setTheme] = useState<Theme>(() => {
-    const storedTheme = localStorage.getItem('theme');
-    return storedTheme ? (storedTheme as Theme) : 'dark';
-  });
+  const { theme, setTheme } = useThemeStore();
 
   useEffect(() => {
-    localStorage.setItem('theme', theme);
-
     if (theme === 'dark') return;
     const gradient = new Gradient() as unknown as GradientType;
     gradient.initGradient('#gradient-canvas');

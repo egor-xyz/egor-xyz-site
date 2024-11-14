@@ -1,6 +1,7 @@
 import { FC, SVGProps } from 'react';
 import { Variants, motion } from 'motion/react';
 import { a } from 'src/utils/a';
+import { useThemeStore } from 'src/store/themeStore';
 
 const fadeInVariants: Variants = {
   enter: {
@@ -30,9 +31,10 @@ type Props = {
 };
 
 export const ProductCard: FC<Props> = ({ Icon, text, href, description }) => {
+  const { theme } = useThemeStore();
   return (
     <motion.a
-      className='md:text-l relative flex w-full max-w-[90svw] items-center justify-items-start text-base text-black opacity-0'
+      className={`md:text-l relative flex w-full max-w-[90svw] items-center justify-items-start text-base ${theme === 'dark' ? 'text-stone-200' : 'text-black'} opacity-0`}
       href={href}
       rel='noreferrer'
       target='_blank'
