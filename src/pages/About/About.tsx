@@ -7,6 +7,7 @@ import avatar from 'src/assets/egor.jpg';
 import { Card } from 'src/components/Card';
 import { A, a } from 'src/utils/a';
 import { cn } from 'src/utils/cn';
+import { useThemeStore } from 'src/store/themeStore';
 
 import { EnterAnimation } from '../../components/EnterAnimation/EnterAnimation';
 
@@ -49,30 +50,31 @@ const cloudAnimation: Variants = {
   }
 };
 
-const links = [
-  {
-    className: 'text-black',
-    href: 'https://www.linkedin.com/in/egorxyz/',
-    Icon: FaLinkedin,
-    text: 'LinkedIn'
-  },
-  {
-    className: 'text-black',
-    href: 'https://github.com/egor-xyz',
-    Icon: FaGithub,
-    text: 'GitHub'
-  },
-  {
-    className: 'text-black',
-    href: 'https://egor-xyz.medium.com/',
-    Icon: FaMedium,
-    text: 'Medium'
-  }
-];
-
 export const About = () => {
   const [scope, animate] = useAnimate();
   const [isPresent, safeToRemove] = usePresence();
+  const { theme } = useThemeStore();
+
+  const links = [
+    {
+      className: theme === 'dark' ? 'text-white' : 'text-black',
+      href: 'https://www.linkedin.com/in/egorxyz/',
+      Icon: FaLinkedin,
+      text: 'LinkedIn'
+    },
+    {
+      className: theme === 'dark' ? 'text-white' : 'text-black',
+      href: 'https://github.com/egor-xyz',
+      Icon: FaGithub,
+      text: 'GitHub'
+    },
+    {
+      className: theme === 'dark' ? 'text-white' : 'text-black',
+      href: 'https://egor-xyz.medium.com/',
+      Icon: FaMedium,
+      text: 'Medium'
+    }
+  ];
 
   useEffect(() => {
     if (isPresent) {

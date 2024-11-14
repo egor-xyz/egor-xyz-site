@@ -48,16 +48,6 @@ export const Space: React.FC = () => {
 
     camera.position.z = 5;
 
-    // Mouse move handler
-    const handleMouseMove = (event: MouseEvent) => {
-      mousePosition.current = {
-        x: (event.clientX / window.innerWidth) * 2 - 1,
-        y: -(event.clientY / window.innerHeight) * 2 + 1
-      };
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-
     // Animation
     const animate = () => {
       requestAnimationFrame(animate);
@@ -98,7 +88,6 @@ export const Space: React.FC = () => {
     window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
       // eslint-disable-next-line react-hooks/exhaustive-deps
       containerRef.current?.removeChild(renderer.domElement);
