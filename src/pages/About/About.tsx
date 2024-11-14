@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-max-depth */
-import { Variants, motion, useAnimate, usePresence } from 'framer-motion';
+import { Variants, motion, useAnimate, usePresence } from 'motion/react';
 import { useEffect } from 'react';
 import { FaGithub, FaLinkedin, FaMedium } from 'react-icons/fa';
 import Cloud from 'src/assets/cloud.svg?react';

@@ -1,4 +1,4 @@
-import { Variants, motion } from 'framer-motion';
+import { Variants, motion } from 'motion/react';
 import { Link, useLocation } from 'react-router-dom';
 import { useMedia } from 'react-use';
 import { a } from 'src/utils/a';

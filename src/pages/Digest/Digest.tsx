@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-max-depth */
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { FaLinkedin, FaTelegramPlane } from 'react-icons/fa';
 import cover from 'src/assets/digest-cover.jpg';
 import { Card } from 'src/components/Card';
