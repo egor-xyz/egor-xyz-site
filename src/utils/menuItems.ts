@@ -5,12 +5,6 @@ import devkitty from 'src/assets/devkitty-cover-small.jpg';
 
 export const menuItems = [
   {
-    heading: 'About',
-    href: '/about',
-    imgSrc: avatar,
-    subheading: 'Links and contacts'
-  },
-  {
     heading: 'Digest',
     href: '/digest',
     imgSrc: digest,
@@ -27,5 +21,11 @@ export const menuItems = [
     href: '/extensions',
     imgSrc: extensions,
     subheading: 'My extension packs and npm packages'
+  },
+  {
+    heading: 'About',
+    href: '/about',
+    imgSrc: avatar,
+    subheading: 'Links and contacts'
   }
 ];
