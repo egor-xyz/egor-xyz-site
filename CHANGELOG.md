@@ -1,3 +1,10 @@
+## [1.14.4](https://github.com/egor-xyz/egor-xyz-site/compare/v1.14.3...v1.14.4) (2024-11-14)
+
+
+### Bug Fixes
+
+* update theme toggle to use onPointerDown event ([55aab6e](https://github.com/egor-xyz/egor-xyz-site/commit/55aab6e8594e5ecb4cc02925dc26fd53ddb26bfa))
+
 ## [1.14.3](https://github.com/egor-xyz/egor-xyz-site/compare/v1.14.2...v1.14.3) (2024-11-14)
 
 
