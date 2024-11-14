@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.13.1...v1.14.0) (2024-11-14)
+
+
+### Features
+
+* update theme color handling and add dynamic meta tag ([cabf9fc](https://github.com/egor-xyz/egor-xyz-site/commit/cabf9fc72905b416f4d75af7b736ebf8a7dc6b12))
+
 ## [1.13.1](https://github.com/egor-xyz/egor-xyz-site/compare/v1.13.0...v1.13.1) (2024-11-14)
 
 
