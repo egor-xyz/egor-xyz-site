@@ -9,7 +9,6 @@ export const Backgrounds: FC = () => {
   const { theme, setTheme } = useThemeStore();
 
   const onClick = () => {
-    if ('ontouchstart' in window) return false;
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
@@ -44,8 +43,7 @@ export const Backgrounds: FC = () => {
         />
         <div
           className="relative h-[30px] w-[60px] cursor-pointer rounded-full bg-white from-orange-500 to-yellow-400 opacity-30 shadow-sm duration-300 after:absolute after:left-[5px] after:top-[5px] after:h-[20px] after:w-[20px] after:rounded-full after:bg-gradient-to-r after:shadow-md after:duration-300 after:content-[''] active:after:w-[50px] peer-checked:bg-zinc-500 peer-checked:after:left-[55px] peer-checked:after:translate-x-[-100%] peer-checked:after:from-zinc-900 peer-checked:after:to-zinc-900"
-          onClick={onClick}
-          onTouchStart={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+          onPointerDown={onClick}
         />
       </label>
     </>
