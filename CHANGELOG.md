@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.10.0...v1.11.0) (2024-11-14)
+
+
+### Features
+
+* migrate from framer-motion to motion/react ([adc5680](https://github.com/egor-xyz/egor-xyz-site/commit/adc56804e33508935fbb084c563f69f15a01b2dd))
+
 # [1.10.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.9.0...v1.10.0) (2024-11-14)
 
 
