@@ -13,7 +13,7 @@ export const Space: React.FC = () => {
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor(0x212121, 1);
+    renderer.setClearColor(0x000000, 1);
     containerRef.current.appendChild(renderer.domElement);
 
     // Create particles
