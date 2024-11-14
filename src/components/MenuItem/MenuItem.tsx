@@ -1,4 +1,4 @@
-import { motion, useMotionValue } from 'framer-motion';
+import { motion, useMotionValue } from 'motion/react';
 import { FC, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { A } from 'src/utils/a';

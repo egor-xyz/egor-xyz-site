@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import clippy, { Agent } from 'clippyts';
 import { cn } from 'src/utils/cn';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { a, A } from 'src/utils/a';
 
 const konami = 'ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightba';

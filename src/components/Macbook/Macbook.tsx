@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Environment, OrbitControls, useGLTF } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';

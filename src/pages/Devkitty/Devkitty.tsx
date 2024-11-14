@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import cover from 'src/assets/devkitty-cover.jpg';
 import { Card } from 'src/components/Card';
 import { A, a } from 'src/utils/a';

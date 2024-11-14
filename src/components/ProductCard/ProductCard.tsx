@@ -1,5 +1,5 @@
 import { FC, SVGProps } from 'react';
-import { Variants, motion } from 'framer-motion';
+import { Variants, motion } from 'motion/react';
 import { a } from 'src/utils/a';
 
 const fadeInVariants: Variants = {

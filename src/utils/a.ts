@@ -1,4 +1,4 @@
-import { MotionProps, Variant, Variants } from 'framer-motion';
+import { MotionProps, Variant, Variants } from 'motion/react';
 
 export type A = {
   enter?: Variant;

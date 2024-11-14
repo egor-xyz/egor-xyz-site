@@ -1,4 +1,4 @@
-import { Variants, useAnimate } from 'framer-motion';
+import { Variants, useAnimate } from 'motion/react';
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 

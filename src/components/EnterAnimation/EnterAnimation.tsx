@@ -1,5 +1,5 @@
 import { A, a } from 'src/utils/a';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { FC } from 'react';
 
 const perspective: A = {
