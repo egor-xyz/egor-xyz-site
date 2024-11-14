@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.12.0...v1.13.0) (2024-11-14)
+
+
+### Features
+
+* Space background ([fefa00a](https://github.com/egor-xyz/egor-xyz-site/commit/fefa00a9e1339ed8c9d81dafb490aefb2a558bde))
+
 # [1.12.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.11.0...v1.12.0) (2024-11-14)
 
 
