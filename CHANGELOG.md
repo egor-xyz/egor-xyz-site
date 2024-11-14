@@ -1,3 +1,12 @@
+## [1.14.1](https://github.com/egor-xyz/egor-xyz-site/compare/v1.14.0...v1.14.1) (2024-11-14)
+
+
+### Bug Fixes
+
+* iPad touch click ([8c58789](https://github.com/egor-xyz/egor-xyz-site/commit/8c5878948dc20877b84bf5705160c13d08b344e4))
+* update theme color handling and improve toggle accessibility ([935a49f](https://github.com/egor-xyz/egor-xyz-site/commit/935a49f056607dab8c4994d4b93a23e6a79d2863))
+* Versions ([0907828](https://github.com/egor-xyz/egor-xyz-site/commit/0907828f96f8bd171c7bf3d627225ce3940a1b1c))
+
 # [1.14.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.13.1...v1.14.0) (2024-11-14)
 
 ### Features
