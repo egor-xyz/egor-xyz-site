@@ -7,7 +7,7 @@ import Logo from './assets/logo.svg?react';
 import { TopMenu } from './components/TopMenu';
 import { useStore } from './useStore';
 import { Clippy } from './components/Clippy';
-import { Gradient, GradientType } from './utils/gradient';
+import { Backgrounds } from './components/Backgrounds';
 
 const variants: Variants = {
   initial: {
@@ -29,8 +29,6 @@ const variants: Variants = {
   }
 };
 
-const gradient = new Gradient() as unknown as GradientType;
-
 export const App = () => {
   const [scope, animate] = useAnimate();
   const location = useLocation();
@@ -51,18 +49,13 @@ export const App = () => {
   };
 
   useEffect(() => {
-    gradient.initGradient('#gradient-canvas');
-
     !loaded && animateLogo(location.pathname === '/');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className='flex h-[100svh] items-center justify-center overflow-hidden text-white'>
-      <canvas
-        data-transition-in
-        id='gradient-canvas'
-      />
+      <Backgrounds />
 
       <Router />
 
