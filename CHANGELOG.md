@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.9.0...v1.10.0) (2024-11-14)
+
+
+### Features
+
+* move 'About' menu item ([3fa1f99](https://github.com/egor-xyz/egor-xyz-site/commit/3fa1f992704bd77427cb1aa70ef08273576cdb66))
+
 # [1.9.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.8.0...v1.9.0) (2024-11-12)
 
 
