@@ -1,3 +1,10 @@
+## [1.14.5](https://github.com/egor-xyz/egor-xyz-site/compare/v1.14.4...v1.14.5) (2024-11-14)
+
+
+### Bug Fixes
+
+* small screens ([a908caf](https://github.com/egor-xyz/egor-xyz-site/commit/a908cafa3983baae342bf4b1fc6be417423f5d39))
+
 ## [1.14.4](https://github.com/egor-xyz/egor-xyz-site/compare/v1.14.3...v1.14.4) (2024-11-14)
 
 
