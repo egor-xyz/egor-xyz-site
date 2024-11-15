@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.14.5...v1.15.0) (2024-11-15)
+
+
+### Features
+
+* update page title to 'Egor's page' ([35db086](https://github.com/egor-xyz/egor-xyz-site/commit/35db086109b7ab36bbf31b6956632c34d6fda88b))
+
 ## [1.14.5](https://github.com/egor-xyz/egor-xyz-site/compare/v1.14.4...v1.14.5) (2024-11-14)
 
 
