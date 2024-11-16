@@ -115,20 +115,20 @@ export const Macbook = () => {
   const [rotationSpeed, setRotationSpeed] = useState(3);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setRotationSpeed(8);
-    }, 5000);
+    let timer = setTimeout(() => {
+      setRotationSpeed(6);
+    }, 10000);
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <motion.div
-      className='fixed right-0 top-0 h-full w-full md:w-[70vw]'
+      className='fixed right-0 top-0 h-full w-full'
       {...a(variants)}
     >
       <Canvas
         camera={{
-          zoom: 1.4
+          zoom: 1.3
         }}
       >
         <ambientLight intensity={1.2} />
@@ -142,7 +142,7 @@ export const Macbook = () => {
           autoRotateSpeed={rotationSpeed}
           enableZoom={false}
           enablePan={false}
-          target={[0, 0.8, 0]}
+          target={[0, 0.7, 0]}
         />
         <Suspense fallback={null}>
           <MacbookModel />
