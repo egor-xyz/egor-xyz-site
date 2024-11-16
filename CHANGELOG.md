@@ -1,3 +1,10 @@
+# [1.17.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.16.0...v1.17.0) (2024-11-16)
+
+
+### Features
+
+* 3d model ([7340732](https://github.com/egor-xyz/egor-xyz-site/commit/7340732f3388ce5dc935408e022b4fe6882fc819))
+
 # [1.16.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.15.0...v1.16.0) (2024-11-16)
 
 
