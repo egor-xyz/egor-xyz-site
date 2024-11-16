@@ -42,10 +42,7 @@ function MacbookModel(props: JSX.IntrinsicElements['group']) {
       castShadow
       receiveShadow
     >
-      <group
-        rotation={[-1.4, -0.3, -1.5]}
-        position={[0, -0.8, 0]}
-      >
+      <group rotation={[-1.4, -0.75, -2.1]}>
         <mesh
           castShadow
           receiveShadow
@@ -126,22 +123,19 @@ export const Macbook = () => {
         }}
       >
         <ambientLight intensity={1.2} />
-        <directionalLight
-          position={[15, 0, 20]}
-          intensity={1}
-          castShadow
-        />
+
         <directionalLight
           position={[0, -9, 0]}
-          intensity={0.5}
+          intensity={0.3}
           castShadow
         />
 
         <OrbitControls
           autoRotate
-          autoRotateSpeed={1.3}
+          autoRotateSpeed={3}
           enableZoom={false}
           enablePan={false}
+          target={[0, 0.8, 0]}
         />
         <Suspense fallback={null}>
           <MacbookModel />
