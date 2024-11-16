@@ -1,3 +1,12 @@
+# [1.16.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.15.0...v1.16.0) (2024-11-16)
+
+
+### Features
+
+* 3d model ([4d47f7a](https://github.com/egor-xyz/egor-xyz-site/commit/4d47f7ae8d87a052d12de1228190ffe8507fa7bc))
+* 3d model ([d9b3e74](https://github.com/egor-xyz/egor-xyz-site/commit/d9b3e74a26ec7521664f5d60be488d391fbfb497))
+* 3d model ([a19221d](https://github.com/egor-xyz/egor-xyz-site/commit/a19221d45b584fff5174e39ea958f1c51085fb89))
+
 # [1.15.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.14.5...v1.15.0) (2024-11-15)
 
 
