@@ -115,10 +115,25 @@ export const Macbook = () => {
   const [rotationSpeed, setRotationSpeed] = useState(3);
 
   useEffect(() => {
-    let timer = setTimeout(() => {
-      setRotationSpeed(6);
-    }, 10000);
-    return () => clearTimeout(timer);
+    let speed = 3;
+    let timeElapsed = 0;
+    const interval = setInterval(() => {
+      timeElapsed += 0.1;
+
+      if (timeElapsed <= 6) {
+        setRotationSpeed(3);
+      } else if (timeElapsed > 6 && timeElapsed <= 8.5) {
+        speed += 0.5;
+        setRotationSpeed(speed);
+      } else if (timeElapsed > 8.5 && timeElapsed <= 11) {
+        speed -= 0.5;
+        setRotationSpeed(speed);
+      } else {
+        timeElapsed = 0;
+        speed = 3;
+      }
+    }, 100);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -131,7 +146,7 @@ export const Macbook = () => {
           zoom: 1.3
         }}
       >
-        <ambientLight intensity={1.2} />
+        <ambientLight intensity={1.3} />
         <directionalLight
           position={[0, -9, 0]}
           intensity={0.3}
