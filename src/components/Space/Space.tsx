@@ -18,7 +18,7 @@ export const Space: React.FC = () => {
 
     // Load texture
     const textureLoader = new THREE.TextureLoader();
-    const starTexture = textureLoader.load('src/assets/star.png');
+    const starTexture = textureLoader.load('/star.png');
 
     // Create particles
     const particlesGeometry = new THREE.BufferGeometry();
