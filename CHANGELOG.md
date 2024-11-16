@@ -1,3 +1,10 @@
+# [1.19.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.18.0...v1.19.0) (2024-11-16)
+
+
+### Features
+
+* stars ([57c222d](https://github.com/egor-xyz/egor-xyz-site/commit/57c222ddbbd7829032b5c7641941b0e6aa5a6f8f))
+
 # [1.18.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.17.0...v1.18.0) (2024-11-16)
 
 
