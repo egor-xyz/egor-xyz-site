@@ -3,7 +3,7 @@
 import { motion } from 'motion/react';
 import { Environment, OrbitControls, useGLTF } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Mesh, MeshStandardMaterial } from 'three';
 import { GLTF } from 'three-stdlib';
 import { a, A } from 'src/utils/a';
@@ -112,6 +112,15 @@ const variants: A = {
 };
 
 export const Macbook = () => {
+  const [rotationSpeed, setRotationSpeed] = useState(3);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setRotationSpeed(8);
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <motion.div
       className='fixed right-0 top-0 h-full w-full md:w-[70vw]'
@@ -123,16 +132,14 @@ export const Macbook = () => {
         }}
       >
         <ambientLight intensity={1.2} />
-
         <directionalLight
           position={[0, -9, 0]}
           intensity={0.3}
           castShadow
         />
-
         <OrbitControls
           autoRotate
-          autoRotateSpeed={3}
+          autoRotateSpeed={rotationSpeed}
           enableZoom={false}
           enablePan={false}
           target={[0, 0.8, 0]}
