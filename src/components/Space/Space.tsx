@@ -16,27 +16,37 @@ export const Space: React.FC = () => {
     renderer.setClearColor(0x000000, 1);
     containerRef.current.appendChild(renderer.domElement);
 
+    // Load texture
+    const textureLoader = new THREE.TextureLoader();
+    const starTexture = textureLoader.load('src/assets/star.png');
+
     // Create particles
     const particlesGeometry = new THREE.BufferGeometry();
     const particlesCount = 2000;
     const positions = new Float32Array(particlesCount * 3);
     const colors = new Float32Array(particlesCount * 3);
+    const rotations = new Float32Array(particlesCount);
 
-    for (let i = 0; i < particlesCount * 3; i += 3) {
-      positions[i] = (Math.random() - 0.5) * 10;
-      positions[i + 1] = (Math.random() - 0.5) * 10;
-      positions[i + 2] = (Math.random() - 0.5) * 10;
+    for (let i = 0; i < particlesCount; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 10;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
 
-      colors[i] = Math.random() * 0.3 + 0.7;
-      colors[i + 1] = Math.random() * 0.3 + 0.7;
-      colors[i + 2] = Math.random() * 0.3 + 0.7;
+      colors[i * 3] = Math.random() * 0.3 + 0.7;
+      colors[i * 3 + 1] = Math.random() * 0.3 + 0.7;
+      colors[i * 3 + 2] = Math.random() * 0.3 + 0.7;
+
+      rotations[i] = Math.random() * 2 * Math.PI;
     }
 
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    particlesGeometry.setAttribute('rotation', new THREE.BufferAttribute(rotations, 1));
 
     const particlesMaterial = new THREE.PointsMaterial({
       blending: THREE.AdditiveBlending,
+      depthWrite: false,
+      map: starTexture,
       opacity: 0.8,
       size: 0.02,
       transparent: true,
@@ -57,6 +67,13 @@ export const Space: React.FC = () => {
 
       const positions = particlesGeometry.attributes.position.array as Float32Array;
       const colors = particlesGeometry.attributes.color.array as Float32Array;
+      const rotations = particlesGeometry.attributes.rotation.array as Float32Array;
+
+      for (let i = 0; i < particlesCount; i++) {
+        rotations[i] += 0.01;
+      }
+
+      particlesGeometry.attributes.rotation.needsUpdate = true;
 
       for (let i = 0; i < particlesCount * 3; i += 3) {
         const x = positions[i];
