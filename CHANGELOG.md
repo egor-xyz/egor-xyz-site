@@ -1,3 +1,10 @@
+## [1.19.1](https://github.com/egor-xyz/egor-xyz-site/compare/v1.19.0...v1.19.1) (2024-11-17)
+
+
+### Bug Fixes
+
+* adjust ambient light intensity in Macbook component ([d73bd8e](https://github.com/egor-xyz/egor-xyz-site/commit/d73bd8e96565bd0d4910204b61265558b828ec3f))
+
 # [1.19.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.18.0...v1.19.0) (2024-11-16)
 
 
