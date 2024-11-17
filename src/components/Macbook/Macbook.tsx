@@ -146,7 +146,7 @@ export const Macbook = () => {
           zoom: 1.3
         }}
       >
-        <ambientLight intensity={1.3} />
+        <ambientLight intensity={1.6} />
         <directionalLight
           position={[0, -9, 0]}
           intensity={0.3}
