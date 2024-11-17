@@ -1,3 +1,10 @@
+## [1.19.2](https://github.com/egor-xyz/egor-xyz-site/compare/v1.19.1...v1.19.2) (2024-11-17)
+
+
+### Bug Fixes
+
+* iPad links ([45ab093](https://github.com/egor-xyz/egor-xyz-site/commit/45ab0932dea0dd549aed18a110a0365bca8e898c))
+
 ## [1.19.1](https://github.com/egor-xyz/egor-xyz-site/compare/v1.19.0...v1.19.1) (2024-11-17)
 
 
