@@ -1,10 +1,8 @@
 import { motion, useMotionValue } from 'motion/react';
 import { FC, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { A } from 'src/utils/a';
 import { useStore } from 'src/useStore';
-
-const MLink = motion(Link);
 
 type Props = {
   heading: string;
@@ -30,13 +28,14 @@ const fadeInVariants: A = {
 };
 
 export const MenuItem: FC<Props> = ({ heading, subheading, href, index }) => {
-  const ref = useRef<HTMLAnchorElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const { loaded } = useStore();
+  const navigate = useNavigate();
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
 
     const rect = ref.current.getBoundingClientRect();
@@ -54,21 +53,31 @@ export const MenuItem: FC<Props> = ({ heading, subheading, href, index }) => {
     y.set(yPct);
   };
 
+  const onRedirect = (href: string) => {
+    console.log('redirecting to', href);
+    navigate(href);
+  };
+
   const delay = !loaded ? 1.5 + index * 0.3 : index * 0.3;
 
   return (
-    <MLink
+    <motion.div
       animate='enter'
       className='flex max-w-[340px] flex-col items-start justify-center gap-1'
       custom={delay}
       initial='initial'
       ref={ref}
-      to={href}
+      style={{
+        cursor: 'pointer'
+      }}
       variants={fadeInVariants}
       whileHover='whileHover'
       onMouseMove={handleMouseMove}
+      onPointerDown={() => {
+        onRedirect(href);
+      }}
     >
-      <motion.div
+      <motion.span
         className='text-4xl font-bold'
         transition={{
           delayChildren: 0.25,
@@ -93,9 +102,9 @@ export const MenuItem: FC<Props> = ({ heading, subheading, href, index }) => {
             {l}
           </motion.span>
         ))}
-      </motion.div>
+      </motion.span>
 
       <div className='text-slate-200 drop-shadow'>{subheading}</div>
-    </MLink>
+    </motion.div>
   );
 };
