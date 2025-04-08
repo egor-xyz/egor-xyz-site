@@ -35,7 +35,7 @@ jobs:
 
       - name: Install packages
         run: |
-          pnpm install --install-peers
+          pnpm i
 
       - name: Build
         run: |
