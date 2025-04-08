@@ -1,7 +1,7 @@
-import { FC } from 'react';
 import { motion } from 'motion/react';
-import { A, a } from 'src/utils/a';
+import { type FC } from 'react';
 import { useThemeStore } from 'src/store/themeStore';
+import { type A, a } from 'src/utils/a';
 
 type Props = {
   children?: React.ReactNode;
@@ -41,9 +41,11 @@ export const Card: FC<Props> = ({ children, title }) => {
           >
             {title}
           </motion.h1>
+
           <div className='mb-2 h-[1px] w-full bg-white/30' />
         </>
       )}
+
       {children}
     </div>
   );

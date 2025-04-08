@@ -1,8 +1,8 @@
 import { motion, useMotionValue } from 'motion/react';
-import { FC, useRef } from 'react';
+import { type FC, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { A } from 'src/utils/a';
 import { useStore } from 'src/useStore';
+import { type A } from 'src/utils/a';
 
 type Props = {
   heading: string;
@@ -27,7 +27,7 @@ const fadeInVariants: A = {
   }
 };
 
-export const MenuItem: FC<Props> = ({ heading, subheading, href, index }) => {
+export const MenuItem: FC<Props> = ({ heading, href, index, subheading }) => {
   const ref = useRef<HTMLDivElement>(null);
   const { loaded } = useStore();
   const navigate = useNavigate();
@@ -66,16 +66,16 @@ export const MenuItem: FC<Props> = ({ heading, subheading, href, index }) => {
       className='flex max-w-[340px] flex-col items-start justify-center gap-1'
       custom={delay}
       initial='initial'
+      onMouseMove={handleMouseMove}
+      onPointerDown={() => {
+        onRedirect(href);
+      }}
       ref={ref}
       style={{
         cursor: 'pointer'
       }}
       variants={fadeInVariants}
       whileHover='whileHover'
-      onMouseMove={handleMouseMove}
-      onPointerDown={() => {
-        onRedirect(href);
-      }}
     >
       <motion.span
         className='text-4xl font-bold'
@@ -89,10 +89,10 @@ export const MenuItem: FC<Props> = ({ heading, subheading, href, index }) => {
           whileHover: { x: -16 }
         }}
       >
-        {heading.split('').map((l, i) => (
+        {heading.split('').map((l, index) => (
           <motion.span
             className='inline-block drop-shadow-sm'
-            key={i}
+            key={index}
             transition={{ type: 'spring' }}
             variants={{
               initial: { x: 0 },

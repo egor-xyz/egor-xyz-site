@@ -1,1 +1,0 @@
-export { BubbleText } from './BubbleText';

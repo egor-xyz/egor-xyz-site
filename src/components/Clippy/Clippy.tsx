@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import clippy, { Agent } from 'clippyts';
-import { cn } from 'src/utils/cn';
+import clippy, { type Agent } from 'clippyts';
 import { motion } from 'motion/react';
-import { a, A } from 'src/utils/a';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { a, type A } from 'src/utils/a';
+import { cn } from 'src/utils/cn';
 
 const konami = 'ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightba';
 const agents = ['Links', 'Clippy', 'Bonzi', 'F1', 'Genie', 'Genius', 'Merlin', 'Peedy', 'Rocky', 'Rover'] as const;
@@ -36,7 +36,7 @@ export const Clippy = () => {
   }, []);
 
   const loadClippy = useCallback(
-    (name: Agents, greeting: boolean = true) => {
+    (name: Agents, greeting = true) => {
       document.body.removeEventListener('click', animate);
       clippyAgent.current?.stop();
       clippyAgent.current?.hide(false, () => {});

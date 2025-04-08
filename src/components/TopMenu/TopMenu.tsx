@@ -1,4 +1,4 @@
-import { Variants, motion } from 'motion/react';
+import { motion, type Variants } from 'motion/react';
 import { Link, useLocation } from 'react-router-dom';
 import { useMedia } from 'react-use';
 import { a } from 'src/utils/a';
@@ -76,6 +76,7 @@ export const TopMenu = () => {
         >
           <Link to='/'>Home</Link>
         </motion.li>
+
         {menuItems.map(({ heading, href }, index) => (
           <motion.li
             custom={{ i: index + 1, isWide }}
@@ -83,6 +84,7 @@ export const TopMenu = () => {
             variants={itemAnimations}
           >
             <Link to={href}>{heading}</Link>
+
             <motion.div
               animate={pathname === href ? 'active' : 'initial'}
               className='relative h-[1px] w-0 bg-white'

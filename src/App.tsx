@@ -1,20 +1,15 @@
-import { Variants, useAnimate } from 'motion/react';
+import { useAnimate, type Variants } from 'motion/react';
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import { Router } from './Router';
 import Logo from './assets/logo.svg?react';
-import { TopMenu } from './components/TopMenu';
-import { useStore } from './useStore';
-import { Clippy } from './components/Clippy';
 import { Backgrounds } from './components/Backgrounds';
+import { Clippy } from './components/Clippy';
+import { TopMenu } from './components/TopMenu';
+import { Router } from './Router';
+import { useStore } from './useStore';
 
 const variants: Variants = {
-  initial: {
-    opacity: 0,
-    scale: 1
-  },
-  // eslint-disable-next-line sort-keys-fix/sort-keys-fix
   enter: {
     opacity: 1,
     scale: 1
@@ -26,6 +21,10 @@ const variants: Variants = {
     originY: 0,
     scale: 0.5,
     top: 15
+  },
+  initial: {
+    opacity: 0,
+    scale: 1
   }
 };
 
@@ -49,16 +48,16 @@ export const App = () => {
   };
 
   useEffect(() => {
-    !loaded && animateLogo(location.pathname === '/');
+    if (!loaded) {
+      animateLogo(location.pathname === '/');
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className='flex h-[100svh] items-center justify-center overflow-hidden text-white'>
       <Backgrounds />
-
       <Router />
-
       <TopMenu />
 
       <Link
