@@ -20,10 +20,6 @@ const variants: Variants = {
     originY: 0,
     scale: 0.5,
     top: 15
-  },
-  initial: {
-    opacity: 0,
-    scale: 1
   }
 };
 
