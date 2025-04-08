@@ -24,6 +24,8 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
+        with:
+          run_install:
 
       - name: Build
         run: |
