@@ -33,9 +33,9 @@ export const App = () => {
   const { loaded } = useStore();
 
   const animateLogo = async (full: boolean) => {
-    useStore.setState({ loaded: true });
+    if (!scope.current) return;
 
-    await animate(scope.current, variants.initial, { duration: 0 });
+    useStore.setState({ loaded: true });
 
     if (!full) {
       await animate(scope.current, variants.header, { duration: 0 });
@@ -51,7 +51,7 @@ export const App = () => {
       animateLogo(location.pathname === '/');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [scope]);
 
   return (
     <div className='flex h-[100svh] items-center justify-center overflow-hidden text-white'>
