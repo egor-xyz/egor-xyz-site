@@ -1,3 +1,10 @@
+# [1.20.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.19.2...v1.20.0) (2025-04-08)
+
+
+### Features
+
+* Update packages ([89cbdf0](https://github.com/egor-xyz/egor-xyz-site/commit/89cbdf0669cf26579d923185ae167538364e8577))
+
 ## [1.19.2](https://github.com/egor-xyz/egor-xyz-site/compare/v1.19.1...v1.19.2) (2024-11-17)
 
 
