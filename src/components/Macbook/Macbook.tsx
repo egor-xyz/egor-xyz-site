@@ -99,15 +99,13 @@ function MacbookModel(props: React.ComponentProps<'group'>) {
 const variants: A = {
   enter: {
     opacity: 1,
-    y: 0,
     transition: {
       delay: 1.5,
-      duration: 1
+      duration: 3
     }
   },
   initial: {
-    opacity: 0,
-    y: 0
+    opacity: 0
   }
 };
 
