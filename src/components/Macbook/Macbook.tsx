@@ -3,7 +3,7 @@
 import { motion } from 'motion/react';
 import { Environment, OrbitControls, useGLTF } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense } from 'react';
 import { Mesh, MeshStandardMaterial } from 'three';
 import { GLTF } from 'three-stdlib';
 import { a, A } from 'src/utils/a';
@@ -42,7 +42,7 @@ function MacbookModel(props: React.ComponentProps<'group'>) {
       castShadow
       receiveShadow
     >
-      <group rotation={[-1.4, -0.75, -2.1]}>
+      <group rotation={[-1.7, -0.8, -2.5]}>
         <mesh
           castShadow
           receiveShadow
@@ -107,35 +107,11 @@ const variants: A = {
   },
   initial: {
     opacity: 0,
-    y: -100
+    y: 0
   }
 };
 
 export const Macbook = () => {
-  const [rotationSpeed, setRotationSpeed] = useState(3);
-
-  useEffect(() => {
-    let speed = 3;
-    let timeElapsed = 0;
-    const interval = setInterval(() => {
-      timeElapsed += 0.1;
-
-      if (timeElapsed <= 6) {
-        setRotationSpeed(3);
-      } else if (timeElapsed > 6 && timeElapsed <= 8.5) {
-        speed += 0.5;
-        setRotationSpeed(speed);
-      } else if (timeElapsed > 8.5 && timeElapsed <= 11) {
-        speed -= 0.5;
-        setRotationSpeed(speed);
-      } else {
-        timeElapsed = 0;
-        speed = 3;
-      }
-    }, 100);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <motion.div
       className='fixed top-0 right-0 h-full w-full'
@@ -143,7 +119,7 @@ export const Macbook = () => {
     >
       <Canvas
         camera={{
-          zoom: 1.3
+          zoom: 2
         }}
       >
         <ambientLight intensity={1.6} />
@@ -154,7 +130,7 @@ export const Macbook = () => {
         />
         <OrbitControls
           autoRotate
-          autoRotateSpeed={rotationSpeed}
+          autoRotateSpeed={2}
           enableZoom={false}
           enablePan={false}
           target={[0, 0.7, 0]}
