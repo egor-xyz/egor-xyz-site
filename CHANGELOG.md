@@ -1,3 +1,10 @@
+# [1.29.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.28.0...v1.29.0) (2025-04-08)
+
+
+### Features
+
+* update README with project details and features ([767eab4](https://github.com/egor-xyz/egor-xyz-site/commit/767eab49d0c8143bdd4aee8c7fec6cf6534fd486))
+
 # [1.28.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.27.0...v1.28.0) (2025-04-08)
 
 
