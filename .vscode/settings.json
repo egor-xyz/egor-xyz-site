@@ -1,0 +1,7 @@
+{
+  "cSpell.words": ["Clippy", "Devkitty", "Macbook"],
+  "eslint.useFlatConfig": true,
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
+}
