@@ -1,3 +1,22 @@
+# [1.21.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.20.0...v1.21.0) (2025-04-08)
+
+
+### Bug Fixes
+
+* animation issue ([ff26364](https://github.com/egor-xyz/egor-xyz-site/commit/ff2636439a66440c910f2e59b0aca512d90a11f7))
+* animation issue ([e9dcac1](https://github.com/egor-xyz/egor-xyz-site/commit/e9dcac1dd7fbd8b4ffdc0393af653cc0705318ad))
+* animation issue ([fbbf61d](https://github.com/egor-xyz/egor-xyz-site/commit/fbbf61df051145da8c4ad6694586af82f7b6b23b))
+* animation issue ([ac66ffa](https://github.com/egor-xyz/egor-xyz-site/commit/ac66ffa79d459442870dc6c9c1dbeeff28bf49c7))
+* animation issue ([873101e](https://github.com/egor-xyz/egor-xyz-site/commit/873101e9485d3feabf88006d2246541bad340513))
+* animation issue ([6090260](https://github.com/egor-xyz/egor-xyz-site/commit/6090260e13976d344817d41acd640a6000d185f7))
+* animation issue ([46cd6f8](https://github.com/egor-xyz/egor-xyz-site/commit/46cd6f82dea437df8df927afe2764d13cd607759))
+* animation issue ([3d3a07f](https://github.com/egor-xyz/egor-xyz-site/commit/3d3a07f3ef477a2b87fbfae4230617abe2857762))
+
+
+### Features
+
+* Update packages pnpm 10 ([d0afc75](https://github.com/egor-xyz/egor-xyz-site/commit/d0afc75419ef5f24df537630b32d68d4c5140203))
+
 # [1.20.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.19.2...v1.20.0) (2025-04-08)
 
 
