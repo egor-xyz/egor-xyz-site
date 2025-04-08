@@ -4,7 +4,6 @@ import { HashRouter } from 'react-router-dom';
 
 import { App } from './App';
 import { preventSwipe } from './utils/preventSwipe';
-
 import './index.css';
 
 preventSwipe();

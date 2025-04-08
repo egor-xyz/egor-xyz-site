@@ -1,8 +1,8 @@
 import { create } from 'zustand';
 
-type Theme = 'light' | 'dark';
+type Theme = 'dark' | 'light';
 
-interface ThemeState {
+type ThemeState = {
   setTheme: (theme: Theme) => void;
   theme: Theme;
 }
