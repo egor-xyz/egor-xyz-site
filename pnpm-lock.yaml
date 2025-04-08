@@ -52,8 +52,8 @@ importers:
         version: 5.0.3(@types/react@19.1.0)(react@19.1.0)(use-sync-external-store@1.5.0(react@19.1.0))
     devDependencies:
       '@egor.xyz/eslint-config':
-        specifier: ^3.2.0
-        version: 3.2.0(@eslint/js@9.24.0)(eslint-config-prettier@10.1.1(eslint@9.24.0(jiti@2.4.2)))(eslint-plugin-perfectionist@4.11.0(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3))(eslint-plugin-react-hooks@5.2.0(eslint@9.24.0(jiti@2.4.2)))(eslint-plugin-react-refresh@0.4.19(eslint@9.24.0(jiti@2.4.2)))(eslint-plugin-react@7.37.5(eslint@9.24.0(jiti@2.4.2)))(eslint@9.24.0(jiti@2.4.2))(typescript-eslint@8.29.1(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3))
+        specifier: ^3.4.0
+        version: 3.4.0(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3)
       '@semantic-release/changelog':
         specifier: ^6.0.3
         version: 6.0.3(semantic-release@24.2.3(typescript@5.8.3))
@@ -90,6 +90,9 @@ importers:
       '@vitejs/plugin-react-swc':
         specifier: ^3.8.1
         version: 3.8.1(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2))
+      eslint:
+        specifier: ^9.24.0
+        version: 9.24.0(jiti@2.4.2)
       postcss:
         specifier: ^8.5.3
         version: 8.5.3
@@ -205,17 +208,10 @@ packages:
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
     engines: {node: '>=0.1.90'}
 
-  '@egor.xyz/eslint-config@3.2.0':
-    resolution: {integrity: sha512-YqOQgwdUZ1fNjaZXvjKlQ9ZNvHOyBWdaxM1RF91lWHXbCrj6Qx1RY9f6PiE6PDMirJRBFNn3Sg3qpj3ohaMTfg==}
+  '@egor.xyz/eslint-config@3.4.0':
+    resolution: {integrity: sha512-k5KH/Daa2uOWpawB27iR10O4ncGBL/Qgbap4p32g/dGq+Pw3Ez63Simc+bFrEo4m6Jo0huYSWaR1Ce8oENi+iA==}
     peerDependencies:
-      '@eslint/js': ^9.24.0
       eslint: ^9.24.0
-      eslint-config-prettier: ^10.1.1
-      eslint-plugin-perfectionist: ^4.11.0
-      eslint-plugin-react: ^7.37.5
-      eslint-plugin-react-hooks: ^5.2.0
-      eslint-plugin-react-refresh: ^0.4.19
-      typescript-eslint: ^8.29.1
 
   '@esbuild/aix-ppc64@0.25.2':
     resolution: {integrity: sha512-wCIboOL2yXZym2cgm6mlA742s9QeJ8DjGVaL39dLN4rRwrOgOyYSnOaFPhKZGLb2ngj4EyfAFjsNJwPXZvseag==}
@@ -3663,7 +3659,7 @@ snapshots:
   '@colors/colors@1.5.0':
     optional: true
 
-  '@egor.xyz/eslint-config@3.2.0(@eslint/js@9.24.0)(eslint-config-prettier@10.1.1(eslint@9.24.0(jiti@2.4.2)))(eslint-plugin-perfectionist@4.11.0(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3))(eslint-plugin-react-hooks@5.2.0(eslint@9.24.0(jiti@2.4.2)))(eslint-plugin-react-refresh@0.4.19(eslint@9.24.0(jiti@2.4.2)))(eslint-plugin-react@7.37.5(eslint@9.24.0(jiti@2.4.2)))(eslint@9.24.0(jiti@2.4.2))(typescript-eslint@8.29.1(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3))':
+  '@egor.xyz/eslint-config@3.4.0(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3)':
     dependencies:
       '@eslint/js': 9.24.0
       eslint: 9.24.0(jiti@2.4.2)
@@ -3673,6 +3669,9 @@ snapshots:
       eslint-plugin-react-hooks: 5.2.0(eslint@9.24.0(jiti@2.4.2))
       eslint-plugin-react-refresh: 0.4.19(eslint@9.24.0(jiti@2.4.2))
       typescript-eslint: 8.29.1(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3)
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
 
   '@esbuild/aix-ppc64@0.25.2':
     optional: true

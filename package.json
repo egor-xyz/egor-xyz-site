@@ -32,7 +32,7 @@
     "zustand": "^5.0.3"
   },
   "devDependencies": {
-    "@egor.xyz/eslint-config": "^3.2.0",
+    "@egor.xyz/eslint-config": "^3.4.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/git": "^10.0.1",
@@ -45,6 +45,7 @@
     "@types/react-dom": "^19.1.1",
     "@types/three": "^0.175.0",
     "@vitejs/plugin-react-swc": "^3.8.1",
+    "eslint": "^9.24.0",
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
@@ -57,5 +58,5 @@
     "vite-plugin-dynamic-import": "^1.6.0",
     "vite-plugin-svgr": "^4.3.0"
   },
-  "packageManager": "pnpm@9.15.9"
+  "packageManager": "pnpm@10.8.0"
 }
