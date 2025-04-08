@@ -22,7 +22,7 @@ export default defineConfig({
     react(),
     checker({
       eslint: {
-        lintCommand: 'eslint',
+        lintCommand: 'lint',
         useFlatConfig: true
       },
       typescript: true

@@ -23,9 +23,9 @@ type Props = {
   description: string;
   href: string;
   Icon: FC<
-    {
+    SVGProps<SVGSVGElement> & {
       title?: string | undefined;
-    } & SVGProps<SVGSVGElement>
+    }
   >;
   text: string;
 };
