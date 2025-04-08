@@ -1,7 +1,7 @@
-import { FC, SVGProps } from 'react';
-import { Variants, motion } from 'motion/react';
-import { a } from 'src/utils/a';
+import { motion, type Variants } from 'motion/react';
+import { type FC, type SVGProps } from 'react';
 import { useThemeStore } from 'src/store/themeStore';
+import { a } from 'src/utils/a';
 
 const fadeInVariants: Variants = {
   enter: {
@@ -20,17 +20,17 @@ const fadeInVariants: Variants = {
 };
 
 type Props = {
-  Icon: FC<
-    SVGProps<SVGSVGElement> & {
-      title?: string | undefined;
-    }
-  >;
   description: string;
   href: string;
+  Icon: FC<
+    {
+      title?: string | undefined;
+    } & SVGProps<SVGSVGElement>
+  >;
   text: string;
 };
 
-export const ProductCard: FC<Props> = ({ Icon, text, href, description }) => {
+export const ProductCard: FC<Props> = ({ description, href, Icon, text }) => {
   const { theme } = useThemeStore();
   return (
     <motion.a
@@ -48,8 +48,7 @@ export const ProductCard: FC<Props> = ({ Icon, text, href, description }) => {
         className='flex-col px-2'
         rel='noreferrer'
       >
-        <div className='font-bold drop-shadow'>{text}</div>
-
+        <div className='font-bold drop-shadow-sm'>{text}</div>
         <div className='max-w-[370px] pt-1 text-sm md:pt-2 md:text-base'>{description}</div>
       </div>
     </motion.a>

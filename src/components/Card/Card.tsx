@@ -1,7 +1,7 @@
-import { FC } from 'react';
 import { motion } from 'motion/react';
-import { A, a } from 'src/utils/a';
+import { type FC } from 'react';
 import { useThemeStore } from 'src/store/themeStore';
+import { type A, a } from 'src/utils/a';
 
 type Props = {
   children?: React.ReactNode;
@@ -31,19 +31,21 @@ export const Card: FC<Props> = ({ children, title }) => {
   const { theme } = useThemeStore();
   return (
     <div
-      className={`relative flex w-[600px] max-w-[90vw] flex-col items-center justify-center gap-1 overflow-hidden rounded-lg border border-white/30 bg-white/20 px-4 py-2 text-base ${theme === 'dark' ? 'text-stone-200' : 'text-black'} shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-sm md:px-4 md:py-2 md:text-2xl`}
+      className={`relative flex w-[600px] max-w-[90vw] flex-col items-center justify-center gap-1 overflow-hidden rounded-lg border border-white/30 bg-white/20 px-4 py-2 text-base ${theme === 'dark' ? 'text-stone-200' : 'text-black'} shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-xs md:px-4 md:py-2 md:text-2xl`}
     >
       {title && (
         <>
           <motion.h1
             {...a(titleAnimation)}
-            className='w-full text-left text-base drop-shadow md:text-2xl'
+            className='w-full text-left text-base drop-shadow-sm md:text-2xl'
           >
             {title}
           </motion.h1>
+
           <div className='mb-2 h-[1px] w-full bg-white/30' />
         </>
       )}
+
       {children}
     </div>
   );

@@ -1,7 +1,7 @@
-import avatar from 'src/assets/egor.jpg';
-import digest from 'src/assets/digest-cover-small.jpg';
-import extensions from 'src/assets/extensions-cover-small.jpg';
 import devkitty from 'src/assets/devkitty-cover-small.jpg';
+import digest from 'src/assets/digest-cover-small.jpg';
+import avatar from 'src/assets/egor.jpg';
+import extensions from 'src/assets/extensions-cover-small.jpg';
 
 export const menuItems = [
   {

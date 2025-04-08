@@ -22,7 +22,8 @@ export default defineConfig({
     react(),
     checker({
       eslint: {
-        lintCommand: 'eslint "./src/**/*.{ts,tsx}"'
+        lintCommand: 'eslint',
+        useFlatConfig: true
       },
       typescript: true
     })

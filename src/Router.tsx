@@ -1,11 +1,11 @@
 import { AnimatePresence } from 'motion/react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
-import { Home } from './pages/Home';
 import { About } from './pages/About';
+import { Devkitty } from './pages/Devkitty';
 import { Digest } from './pages/Digest';
 import { Extensions } from './pages/Extensions';
-import { Devkitty } from './pages/Devkitty';
+import { Home } from './pages/Home';
 
 export const Router = () => {
   const location = useLocation();

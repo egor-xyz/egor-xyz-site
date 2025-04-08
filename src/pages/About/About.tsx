@@ -1,13 +1,12 @@
-/* eslint-disable react/jsx-max-depth */
-import { Variants, motion, useAnimate, usePresence } from 'motion/react';
+import { motion, useAnimate, usePresence, type Variants } from 'motion/react';
 import { useEffect } from 'react';
 import { FaGithub, FaLinkedin, FaMedium } from 'react-icons/fa';
 import Cloud from 'src/assets/cloud.svg?react';
 import avatar from 'src/assets/egor.jpg';
 import { Card } from 'src/components/Card';
-import { A, a } from 'src/utils/a';
-import { cn } from 'src/utils/cn';
 import { useThemeStore } from 'src/store/themeStore';
+import { type A, a } from 'src/utils/a';
+import { cn } from 'src/utils/cn';
 
 import { EnterAnimation } from '../../components/EnterAnimation/EnterAnimation';
 
@@ -105,7 +104,7 @@ export const About = () => {
   return (
     <EnterAnimation>
       <div
-        className='absolute bottom-[130%] right-[-10px] opacity-10'
+        className='absolute right-[-10px] bottom-[130%] opacity-10'
         ref={scope}
       >
         <Cloud className='h-[60px] w-[120px] md:h-[100px] md:w-[200px]' />
@@ -121,7 +120,7 @@ export const About = () => {
         <motion.p
           {...a(fadeInVariants)}
           // add text shadow
-          className='text-center text-xl drop-shadow'
+          className='text-center text-xl drop-shadow-sm'
         >
           Hi!, My name is Egor
         </motion.p>
@@ -130,11 +129,11 @@ export const About = () => {
           {...a(fadeInVariants)}
           className='flex flex-row flex-wrap items-center justify-center gap-2 text-sm md:gap-5 md:text-xl'
         >
-          {links.map(({ Icon, className, href, text }, key) => (
+          {links.map(({ className, href, Icon, text }, index) => (
             <a
-              className={cn('flex items-center justify-center gap-2 drop-shadow', className)}
+              className={cn('flex items-center justify-center gap-2 drop-shadow-sm', className)}
               href={href}
-              key={key}
+              key={index}
               rel='noreferrer'
               target='_blank'
             >

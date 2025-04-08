@@ -1,6 +1,6 @@
-import { A, a } from 'src/utils/a';
 import { motion } from 'motion/react';
-import { FC } from 'react';
+import { type FC } from 'react';
+import { type A, a } from 'src/utils/a';
 
 const perspective: A = {
   enter: {
@@ -29,16 +29,14 @@ const perspective: A = {
 };
 
 type Props = {
-  children: JSX.Element | JSX.Element[];
+  children: React.ReactNode;
 };
 
-export const EnterAnimation: FC<Props> = ({ children }) => {
-  return (
-    <motion.div
-      className='relative'
-      {...a(perspective)}
-    >
-      {children}
-    </motion.div>
-  );
-};
+export const EnterAnimation: FC<Props> = ({ children }) => (
+  <motion.div
+    className='relative'
+    {...a(perspective)}
+  >
+    {children}
+  </motion.div>
+);
