@@ -48,7 +48,7 @@ export const ProductCard: FC<Props> = ({ Icon, text, href, description }) => {
         className='flex-col px-2'
         rel='noreferrer'
       >
-        <div className='font-bold drop-shadow'>{text}</div>
+        <div className='font-bold drop-shadow-sm'>{text}</div>
 
         <div className='max-w-[370px] pt-1 text-sm md:pt-2 md:text-base'>{description}</div>
       </div>

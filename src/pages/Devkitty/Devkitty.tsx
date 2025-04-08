@@ -38,7 +38,7 @@ export const Devkitty = () => {
           />
 
           <motion.div
-            className='mt-5 text-center drop-shadow'
+            className='mt-5 text-center drop-shadow-sm'
             {...a(fadeInVariants)}
           >
             Swiss army knife for developers

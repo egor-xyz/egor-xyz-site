@@ -48,7 +48,7 @@ export const Digest = () => {
               target='_blank'
             >
               <FaLinkedin className='text-blue-600' />
-              <span className='drop-shadow'>LinkedIn</span>
+              <span className='drop-shadow-sm'>LinkedIn</span>
             </a>
 
             <a
@@ -58,7 +58,7 @@ export const Digest = () => {
               target='_blank'
             >
               <FaTelegramPlane className='text-blue-600' />
-              <span className='drop-shadow'>Telegram</span>
+              <span className='drop-shadow-sm'>Telegram</span>
             </a>
           </motion.div>
         </Card>

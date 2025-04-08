@@ -121,7 +121,7 @@ export const About = () => {
         <motion.p
           {...a(fadeInVariants)}
           // add text shadow
-          className='text-center text-xl drop-shadow'
+          className='text-center text-xl drop-shadow-sm'
         >
           Hi!, My name is Egor
         </motion.p>
@@ -132,7 +132,7 @@ export const About = () => {
         >
           {links.map(({ Icon, className, href, text }, key) => (
             <a
-              className={cn('flex items-center justify-center gap-2 drop-shadow', className)}
+              className={cn('flex items-center justify-center gap-2 drop-shadow-sm', className)}
               href={href}
               key={key}
               rel='noreferrer'

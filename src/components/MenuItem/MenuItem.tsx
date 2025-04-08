@@ -91,7 +91,7 @@ export const MenuItem: FC<Props> = ({ heading, subheading, href, index }) => {
       >
         {heading.split('').map((l, i) => (
           <motion.span
-            className='inline-block drop-shadow'
+            className='inline-block drop-shadow-sm'
             key={i}
             transition={{ type: 'spring' }}
             variants={{
@@ -104,7 +104,7 @@ export const MenuItem: FC<Props> = ({ heading, subheading, href, index }) => {
         ))}
       </motion.span>
 
-      <div className='text-slate-200 drop-shadow'>{subheading}</div>
+      <div className='text-slate-200 drop-shadow-sm'>{subheading}</div>
     </motion.div>
   );
 };

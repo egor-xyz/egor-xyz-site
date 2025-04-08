@@ -36,7 +36,7 @@ export const Papers = () => {
     <div className='pointer-events-none fixed bottom-0 left-0 right-0 top-0'>
       {papers.map((paper) => (
         <div
-          className='animate-fall absolute top-0 h-40 w-32 rounded bg-white shadow-md'
+          className='animate-fall absolute top-0 h-40 w-32 rounded-sm bg-white shadow-md'
           key={paper.id}
           style={{
             animationDuration: paper.animationDuration,
@@ -51,18 +51,18 @@ export const Papers = () => {
             </div>
             <div className='mb-[2px] flex space-x-[2px]'>
               <div className='w-1/2 space-y-[2px]'>
-                <div className='h-1 w-full rounded-sm bg-gray-300' />
-                <div className='h-1 w-3/4 rounded-sm bg-gray-300' />
-                <div className='h-1 w-full rounded-sm bg-gray-300' />
+                <div className='h-1 w-full rounded-xs bg-gray-300' />
+                <div className='h-1 w-3/4 rounded-xs bg-gray-300' />
+                <div className='h-1 w-full rounded-xs bg-gray-300' />
               </div>
-              <div className='h-10 w-1/2 rounded-sm bg-gray-200' />
+              <div className='h-10 w-1/2 rounded-xs bg-gray-200' />
             </div>
             <div className='space-y-[2px]'>
-              <div className='h-[2px] w-full rounded-sm bg-gray-300' />
-              <div className='h-[2px] w-full rounded-sm bg-gray-300' />
-              <div className='h-[2px] w-3/4 rounded-sm bg-gray-300' />
-              <div className='h-[2px] w-full rounded-sm bg-gray-300' />
-              <div className='h-[2px] w-5/6 rounded-sm bg-gray-300' />
+              <div className='h-[2px] w-full rounded-xs bg-gray-300' />
+              <div className='h-[2px] w-full rounded-xs bg-gray-300' />
+              <div className='h-[2px] w-3/4 rounded-xs bg-gray-300' />
+              <div className='h-[2px] w-full rounded-xs bg-gray-300' />
+              <div className='h-[2px] w-5/6 rounded-xs bg-gray-300' />
             </div>
           </div>
         </div>

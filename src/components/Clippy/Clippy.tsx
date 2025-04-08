@@ -116,7 +116,7 @@ export const Clippy = () => {
           {agents.map((agent) => (
             <button
               className={cn(
-                'w-full rounded-sm border border-white/30 p-1 text-center drop-shadow hover:border-white/50',
+                'w-full rounded-xs border border-white/30 p-1 text-center drop-shadow-sm hover:border-white/50',
                 agent === name && 'bg-white/30'
               )}
               key={agent}

@@ -62,7 +62,7 @@ export const App = () => {
       <TopMenu />
 
       <Link
-        className='fixed z-10 mt-[27px] scale-[.1] cursor-pointer opacity-0 md:mt-0'
+        className='fixed z-10 mt-[27px] cursor-pointer opacity-0 md:mt-0'
         ref={scope}
         to='/'
       >
