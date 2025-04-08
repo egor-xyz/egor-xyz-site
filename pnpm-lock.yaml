@@ -52,8 +52,8 @@ importers:
         version: 5.0.3(@types/react@19.1.0)(react@19.1.0)(use-sync-external-store@1.5.0(react@19.1.0))
     devDependencies:
       '@egor.xyz/eslint-config':
-        specifier: ^3.4.0
-        version: 3.4.0(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3)
+        specifier: ^3.5.0
+        version: 3.5.0(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3)
       '@semantic-release/changelog':
         specifier: ^6.0.3
         version: 6.0.3(semantic-release@24.2.3(typescript@5.8.3))
@@ -208,8 +208,8 @@ packages:
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
     engines: {node: '>=0.1.90'}
 
-  '@egor.xyz/eslint-config@3.4.0':
-    resolution: {integrity: sha512-k5KH/Daa2uOWpawB27iR10O4ncGBL/Qgbap4p32g/dGq+Pw3Ez63Simc+bFrEo4m6Jo0huYSWaR1Ce8oENi+iA==}
+  '@egor.xyz/eslint-config@3.5.0':
+    resolution: {integrity: sha512-cT+wUicYBvlQJ1lfZnPJ2sPt1kcrm6YedTY4CijTwVz9Hu0OsmYDTUlouNpgrlw1sBuvSM1INag1pYPoD6oI6g==}
     peerDependencies:
       eslint: ^9.24.0
 
@@ -3659,7 +3659,7 @@ snapshots:
   '@colors/colors@1.5.0':
     optional: true
 
-  '@egor.xyz/eslint-config@3.4.0(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3)':
+  '@egor.xyz/eslint-config@3.5.0(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3)':
     dependencies:
       '@eslint/js': 9.24.0
       eslint: 9.24.0(jiti@2.4.2)
