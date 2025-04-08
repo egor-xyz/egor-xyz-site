@@ -29,7 +29,7 @@ export const Clippy = () => {
   const [showActions, setShowActions] = useState(false);
   const [name, setName] = useState<Agents>('Links');
 
-  const clippyAgent = useRef<Agent>();
+  const clippyAgent = useRef<Agent>(null);
 
   const animate = useCallback(() => {
     clippyAgent.current?.animate();
@@ -40,7 +40,7 @@ export const Clippy = () => {
       document.body.removeEventListener('click', animate);
       clippyAgent.current?.stop();
       clippyAgent.current?.hide(false, () => {});
-      clippyAgent.current = undefined;
+      clippyAgent.current = null;
 
       setName(name);
 
@@ -105,13 +105,13 @@ export const Clippy = () => {
       <div className='clippy' />
 
       {!showActions && (
-        <div className='fixed bottom-2 right-2 hidden text-xs text-white opacity-50 lg:block'>コナミコマンド</div>
+        <div className='fixed right-2 bottom-2 hidden text-xs text-white opacity-50 lg:block'>コナミコマンド</div>
       )}
 
       {showActions && (
         <motion.div
           {...a(actionsFadeIn)}
-          className='absolute bottom-3 right-3 flex min-w-[110px] flex-col items-start justify-center gap-1 overflow-hidden rounded-lg border border-white/30 bg-white/20 p-1 text-black shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md'
+          className='absolute right-3 bottom-3 flex min-w-[110px] flex-col items-start justify-center gap-1 overflow-hidden rounded-lg border border-white/30 bg-white/20 p-1 text-black shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md'
         >
           {agents.map((agent) => (
             <button

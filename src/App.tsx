@@ -4,7 +4,6 @@ import { Link, useLocation } from 'react-router-dom';
 
 import Logo from './assets/logo.svg?react';
 import { Backgrounds } from './components/Backgrounds';
-import { Clippy } from './components/Clippy';
 import { TopMenu } from './components/TopMenu';
 import { Router } from './Router';
 import { useStore } from './useStore';
@@ -67,8 +66,6 @@ export const App = () => {
       >
         <Logo className='h-auto w-[200px] md:w-[250px]' />
       </Link>
-
-      <Clippy />
     </div>
   );
 };

@@ -29,7 +29,7 @@ const perspective: A = {
 };
 
 type Props = {
-  children: JSX.Element | JSX.Element[];
+  children: React.ReactNode;
 };
 
 export const EnterAnimation: FC<Props> = ({ children }) => (
@@ -39,4 +39,4 @@ export const EnterAnimation: FC<Props> = ({ children }) => (
   >
     {children}
   </motion.div>
-  );
+);
