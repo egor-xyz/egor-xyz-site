@@ -32,7 +32,8 @@ type GLTFResult = GLTF & {
   };
 };
 
-function MacbookModel(props: JSX.IntrinsicElements['group']) {
+function MacbookModel(props: any) {
+  // @ts-ignore
   const { nodes, materials } = useGLTF('/macbook/macbook.gltf') as GLTFResult;
 
   return (
@@ -138,7 +139,7 @@ export const Macbook = () => {
 
   return (
     <motion.div
-      className='fixed right-0 top-0 h-full w-full'
+      className='fixed top-0 right-0 h-full w-full'
       {...a(variants)}
     >
       <Canvas
