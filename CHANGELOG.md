@@ -1,3 +1,10 @@
+# [1.25.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.24.0...v1.25.0) (2025-04-08)
+
+
+### Features
+
+* mac screen ([5970e2e](https://github.com/egor-xyz/egor-xyz-site/commit/5970e2ecb92858ec3d64f781721c61390f0401fa))
+
 # [1.24.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.23.0...v1.24.0) (2025-04-08)
 
 
