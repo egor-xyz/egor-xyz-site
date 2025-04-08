@@ -32,9 +32,8 @@ type GLTFResult = GLTF & {
   };
 };
 
-function MacbookModel(props: any) {
-  // @ts-ignore
-  const { nodes, materials } = useGLTF('/macbook/macbook.gltf') as GLTFResult;
+function MacbookModel(props: React.ComponentProps<'group'>) {
+  const { nodes, materials } = useGLTF('/macbook/macbook.gltf') as unknown as GLTFResult;
 
   return (
     <group
