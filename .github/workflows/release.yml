@@ -44,7 +44,7 @@ jobs:
       - name: Run Semantic Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: pnpm exec semantic-release
+        run: pnpx semantic-release
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

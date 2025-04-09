@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import svgr from 'vite-plugin-svgr';
 import { checker } from 'vite-plugin-checker';
-import dynamicImport from 'vite-plugin-dynamic-import';
+import tailwindcss from '@tailwindcss/vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -11,13 +11,7 @@ export default defineConfig({
     target: 'esnext'
   },
   plugins: [
-    dynamicImport({
-      filter(id) {
-        if (id.includes('/node_modules/clippyts')) {
-          return true;
-        }
-      }
-    }),
+    tailwindcss(),
     svgr(),
     react(),
     checker({
