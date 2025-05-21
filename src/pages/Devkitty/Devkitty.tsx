@@ -32,6 +32,7 @@ export const Devkitty = () => (
       >
         <motion.img
           {...a(fadeInVariants)}
+          alt='Devkitty cover screenshot'
           className='rounded-xl shadow-xl'
           src={cover}
         />

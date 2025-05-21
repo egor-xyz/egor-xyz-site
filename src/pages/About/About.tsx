@@ -113,6 +113,7 @@ export const About = () => {
       <Card title='About'>
         <motion.img
           {...a(fadeInVariants)}
+          alt="Egor's portrait"
           className='h-[200px] rounded-2xl bg-center object-cover shadow-md'
           src={avatar}
         />

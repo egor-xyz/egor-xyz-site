@@ -31,6 +31,7 @@ export const Digest = () => (
       <Card title='Frontend Weekly News Digest'>
         <motion.img
           {...a(fadeInVariants)}
+          alt='Digest cover image'
           className='rounded-xl shadow-xl'
           src={cover}
         />
