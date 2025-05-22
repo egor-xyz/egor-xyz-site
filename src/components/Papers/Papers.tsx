@@ -33,7 +33,10 @@ export const Papers = () => {
   };
 
   return (
-    <div className='pointer-events-none fixed top-0 right-0 bottom-0 left-0'>
+    <div
+      aria-hidden='true'
+      className='pointer-events-none fixed top-0 right-0 bottom-0 left-0'
+    >
       {papers.map((paper) => (
         <div
           className='animate-fall absolute top-0 h-40 w-32 rounded-sm bg-white shadow-md'

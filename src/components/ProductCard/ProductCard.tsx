@@ -36,18 +36,18 @@ export const ProductCard: FC<Props> = ({ description, href, Icon, text }) => {
     <motion.a
       className={`md:text-l relative flex w-full max-w-[90svw] items-center justify-items-start text-base ${theme === 'dark' ? 'text-stone-200' : 'text-black'} opacity-0`}
       href={href}
-      rel='noreferrer'
+      rel='noopener noreferrer'
       target='_blank'
       {...a(fadeInVariants)}
     >
       <div className='p-2'>
-        <Icon className='h-[80px] w-[80px]' />
+        <Icon
+          aria-hidden='true'
+          className='h-[80px] w-[80px]'
+        />
       </div>
 
-      <div
-        className='flex-col px-2'
-        rel='noreferrer'
-      >
+      <div className='flex-col px-2'>
         <div className='font-bold drop-shadow-sm'>{text}</div>
         <div className='max-w-[370px] pt-1 text-sm md:pt-2 md:text-base'>{description}</div>
       </div>

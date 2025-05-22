@@ -27,11 +27,12 @@ export const Devkitty = () => (
       <a
         className='w-full'
         href='https://devkitty.app/'
-        rel='noreferrer'
+        rel='noopener noreferrer'
         target='_blank'
       >
         <motion.img
           {...a(fadeInVariants)}
+          alt='Devkitty cover screenshot'
           className='rounded-xl shadow-xl'
           src={cover}
         />

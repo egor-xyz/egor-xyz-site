@@ -36,6 +36,7 @@ export const Backgrounds: FC = () => {
         style={{ touchAction: 'manipulation' }}
       >
         <input
+          aria-label='Toggle theme'
           checked={theme === 'dark'}
           className='peer hidden'
           id='toggle'
