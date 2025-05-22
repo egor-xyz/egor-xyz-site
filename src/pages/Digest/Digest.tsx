@@ -31,6 +31,7 @@ export const Digest = () => (
       <Card title='Frontend Weekly News Digest'>
         <motion.img
           {...a(fadeInVariants)}
+          alt='Digest cover image'
           className='rounded-xl shadow-xl'
           src={cover}
         />
@@ -42,20 +43,28 @@ export const Digest = () => (
           <a
             className='flex items-center gap-1'
             href='https://www.linkedin.com/newsletters/7153365464419614725/'
-            rel='noreferrer'
+            rel='noopener noreferrer'
             target='_blank'
           >
-            <FaLinkedin className='text-blue-600' />
+            <FaLinkedin
+              aria-hidden='true'
+              className='text-blue-600'
+            />
+
             <span className='drop-shadow-sm'>LinkedIn</span>
           </a>
 
           <a
             className='flex items-center gap-1'
             href='https://t.me/frontend_weekly_news_digest'
-            rel='noreferrer'
+            rel='noopener noreferrer'
             target='_blank'
           >
-            <FaTelegramPlane className='text-blue-600' />
+            <FaTelegramPlane
+              aria-hidden='true'
+              className='text-blue-600'
+            />
+
             <span className='drop-shadow-sm'>Telegram</span>
           </a>
         </motion.div>
