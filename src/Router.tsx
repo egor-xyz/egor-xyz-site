@@ -2,6 +2,7 @@ import { AnimatePresence } from 'motion/react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
 import { About } from './pages/About';
+import { Articles } from './pages/Articles';
 import { Devkitty } from './pages/Devkitty';
 import { Digest } from './pages/Digest';
 import { Extensions } from './pages/Extensions';
@@ -34,6 +35,11 @@ export const Router = () => {
         <Route
           element={<Extensions />}
           path='/extensions'
+        />
+
+        <Route
+          element={<Articles />}
+          path='/articles'
         />
 
         <Route

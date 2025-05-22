@@ -2,6 +2,7 @@ import devkitty from 'src/assets/devkitty-cover-small.jpg';
 import digest from 'src/assets/digest-cover-small.jpg';
 import avatar from 'src/assets/egor.jpg';
 import extensions from 'src/assets/extensions-cover-small.jpg';
+import star from 'src/assets/star.png';
 
 export const menuItems = [
   {
@@ -21,6 +22,12 @@ export const menuItems = [
     href: '/extensions',
     imgSrc: extensions,
     subheading: 'My extension packs and npm packages'
+  },
+  {
+    heading: 'Articles',
+    href: '/articles',
+    imgSrc: star,
+    subheading: 'Read my latest posts'
   },
   {
     heading: 'About',
