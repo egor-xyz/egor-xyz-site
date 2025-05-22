@@ -112,6 +112,7 @@ const variants: A = {
 export const Macbook = () => {
   return (
     <motion.div
+      aria-hidden='true'
       className='fixed top-0 right-0 h-full w-full'
       {...a(variants)}
     >

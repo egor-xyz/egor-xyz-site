@@ -104,6 +104,7 @@ export const About = () => {
   return (
     <EnterAnimation>
       <div
+        aria-hidden='true'
         className='absolute right-[-10px] bottom-[130%] opacity-10'
         ref={scope}
       >
@@ -113,6 +114,7 @@ export const About = () => {
       <Card title='About'>
         <motion.img
           {...a(fadeInVariants)}
+          alt="Egor's portrait"
           className='h-[200px] rounded-2xl bg-center object-cover shadow-md'
           src={avatar}
         />
@@ -134,10 +136,10 @@ export const About = () => {
               className={cn('flex items-center justify-center gap-2 drop-shadow-sm', className)}
               href={href}
               key={index}
-              rel='noreferrer'
+              rel='noopener noreferrer'
               target='_blank'
             >
-              <Icon />
+              <Icon aria-hidden='true' />
               {text}
             </a>
           ))}

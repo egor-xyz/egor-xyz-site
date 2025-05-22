@@ -28,14 +28,14 @@ const fadeInVariants: A = {
 };
 
 export const MenuItem: FC<Props> = ({ heading, href, index, subheading }) => {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLButtonElement>(null);
   const { loaded } = useStore();
   const navigate = useNavigate();
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!ref.current) return;
 
     const rect = ref.current.getBoundingClientRect();
@@ -61,19 +61,20 @@ export const MenuItem: FC<Props> = ({ heading, href, index, subheading }) => {
   const delay = !loaded ? 1.5 + index * 0.3 : index * 0.3;
 
   return (
-    <motion.div
+    <motion.button
       animate='enter'
       className='flex max-w-[340px] flex-col items-start justify-center gap-1'
       custom={delay}
       initial='initial'
-      onMouseMove={handleMouseMove}
-      onPointerDown={() => {
+      onClick={() => {
         onRedirect(href);
       }}
+      onMouseMove={handleMouseMove}
       ref={ref}
       style={{
         cursor: 'pointer'
       }}
+      type='button'
       variants={fadeInVariants}
       whileHover='whileHover'
     >
@@ -105,6 +106,6 @@ export const MenuItem: FC<Props> = ({ heading, href, index, subheading }) => {
       </motion.span>
 
       <div className='text-slate-200 drop-shadow-sm'>{subheading}</div>
-    </motion.div>
+    </motion.button>
   );
 };
