@@ -34,12 +34,12 @@ export const App = () => {
     useStore.setState({ loaded: true });
 
     if (!full) {
-      await animate(scope.current, variants.header, { duration: 0 });
+      await animate(scope.current, variants.header, { delay: 0.8, duration: 0 });
       return;
     }
 
     await animate(scope.current, variants.enter, { duration: 1 });
-    await animate(scope.current, variants.header, { duration: 0.7 });
+    await animate(scope.current, variants.header, { duration: 0.7, ease: 'linear' });
   };
 
   useEffect(() => {
@@ -56,11 +56,11 @@ export const App = () => {
       <TopMenu />
 
       <Link
-        className='fixed z-10 mt-[27px] cursor-pointer opacity-0 md:mt-0'
+        className='fixed mt-[27px] cursor-pointer bg-transparent p-5 opacity-0 md:mt-0 dark:rounded-4xl dark:bg-white/20'
         ref={scope}
         to='/'
       >
-        <Logo className='h-auto w-[200px] md:w-[250px]' />
+        <Logo className='h-auto w-[200px] md:w-[250px] dark:opacity-80' />
       </Link>
     </div>
   );
