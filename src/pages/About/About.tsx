@@ -1,8 +1,8 @@
 import { motion, useAnimate, usePresence, type Variants } from 'motion/react';
 import { useEffect } from 'react';
-import { FaGithub, FaLinkedin, FaMedium } from 'react-icons/fa';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import Cloud from 'src/assets/cloud.svg?react';
-import avatar from 'src/assets/egor.jpg';
+import avatar from 'src/assets/egor.png';
 import { Card } from 'src/components/Card';
 import { useThemeStore } from 'src/store/themeStore';
 import { type A, a } from 'src/utils/a';
@@ -57,21 +57,15 @@ export const About = () => {
   const links = [
     {
       className: theme === 'dark' ? 'text-white' : 'text-black',
-      href: 'https://www.linkedin.com/in/egorxyz/',
-      Icon: FaLinkedin,
-      text: 'LinkedIn'
-    },
-    {
-      className: theme === 'dark' ? 'text-white' : 'text-black',
       href: 'https://github.com/egor-xyz',
       Icon: FaGithub,
       text: 'GitHub'
     },
     {
       className: theme === 'dark' ? 'text-white' : 'text-black',
-      href: 'https://egor-xyz.medium.com/',
-      Icon: FaMedium,
-      text: 'Medium'
+      href: 'https://www.linkedin.com/in/egorxyz/',
+      Icon: FaLinkedin,
+      text: 'LinkedIn'
     }
   ];
 
@@ -121,15 +115,14 @@ export const About = () => {
 
         <motion.p
           {...a(fadeInVariants)}
-          // add text shadow
-          className='text-center text-xl drop-shadow-sm'
+          className='mt-4 text-center text-xl drop-shadow-sm'
         >
           Hi!, My name is Egor
         </motion.p>
 
         <motion.div
           {...a(fadeInVariants)}
-          className='flex flex-row flex-wrap items-center justify-center gap-2 text-sm md:gap-5 md:text-xl'
+          className='mt-2 flex flex-row flex-wrap items-center justify-center gap-2 text-sm md:gap-8 md:text-xl'
         >
           {links.map(({ className, href, Icon, text }, index) => (
             <a

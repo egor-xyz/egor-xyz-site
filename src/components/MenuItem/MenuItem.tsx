@@ -7,7 +7,6 @@ import { type A } from 'src/utils/a';
 type Props = {
   heading: string;
   href: string;
-  imgSrc: string;
   index: number;
   subheading: string;
 };
