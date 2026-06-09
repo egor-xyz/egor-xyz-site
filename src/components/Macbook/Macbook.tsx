@@ -43,7 +43,7 @@ const FOCUS_START = OPEN_START + OPEN_DUR + FOCUS_DELAY;
 
 // --- Camera framing ---------------------------------------------------------
 // Open: dolly close to the screen (~80%). Closed: a 3/4 top view of the lid.
-const NEAR_DIST = 1.95; // open framing — screen ~80%, keyboard just peeks in
+const NEAR_DIST = 2.12; // open framing — screen ~80%, keyboard just peeks in
 const NEAR_TARGET_DROP = 0.16; // look a touch below screen centre → keyboard peeks in
 const CLOSED_CAM = new Vector3(1.3, 3.0, 3.0); // 3/4 look-down on the closed lid (Apple logo)
 const CLOSED_LOOK = new Vector3(0, 0.1, 0);
@@ -123,6 +123,7 @@ function MacbookModel({ drag, mode, navigate, onClickModel, onReady, skipIntro, 
   const lidT = useRef(skipIntro ? 0 : 1); // 0 = open, 1 = closed
   const focusCur = useRef(skipIntro ? 1 : 0); // 0 = wide/closed framing, 1 = near/open
   const exit = useRef<{ at: number; href: string; navigated?: boolean } | null>(null);
+  const settledClosedRef = useRef(false);
   const [opened, setOpened] = useState(skipIntro);
 
   const restScale = clamp(size.width / SCALE_REF_WIDTH, REST_SCALE_MIN, REST_SCALE_MAX);
@@ -216,6 +217,15 @@ function MacbookModel({ drag, mode, navigate, onClickModel, onReady, skipIntro, 
       // zoomed) — never while the camera is still easing — so it can't shift the zoom.
       const wantMenu = mode === 'open' && lidT.current === 0 && focusCur.current === 1;
       if (wantMenu !== opened) setOpened(wantMenu);
+
+      // Tell the store once the lid has fully closed + the camera settled, so the
+      // TopMenu only reveals after the close animation finishes (and hides the
+      // moment the laptop starts opening again).
+      const settledClosed = mode === 'closed' && lidT.current === 1 && focusCur.current === 0;
+      if (settledClosed !== settledClosedRef.current) {
+        settledClosedRef.current = settledClosed;
+        useMacbookStore.getState().setSettledClosed(settledClosed);
+      }
 
       if (mode === 'open') {
         rotTargetY = state.pointer.x * 0.16 + sway;
@@ -359,6 +369,14 @@ export const Macbook = () => {
   const setMode = useMacbookStore((state) => state.setMode);
   const [interactive, setInteractive] = useState(false);
 
+  // Landing on Home always shows the laptop open. The lid state lives in a store
+  // (so the palette can drive it), which means it would otherwise persist a
+  // "closed" state across navigation — reset it whenever the hero mounts.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: run once on mount
+  useEffect(() => {
+    setMode('open');
+  }, []);
+
   // Pointer bookkeeping: tell a click apart from a drag, rotate + zoom while closed.
   const down = useRef<{ x: number; y: number } | null>(null);
   const moved = useRef(false);
@@ -411,6 +429,7 @@ export const Macbook = () => {
     >
       <Canvas
         camera={{ position: [1.3, 3, 3], zoom: 2 }}
+        dpr={[1, 2]}
         onPointerMissed={() => interactive && !moved.current && setMode('closed')}
       >
         <ambientLight intensity={0.95} />

@@ -63,22 +63,24 @@ export const CommandPalette = () => {
     close();
   };
 
-  const onKeyDown = (event: React.KeyboardEvent) => {
+  // cmdk (v1) declares its own onKeyDown on the root AFTER spreading props, so a
+  // consumer onKeyDown passed to <Command> is silently overridden. We therefore
+  // handle keys here on the overlay (which we fully control):
+  //  - Escape closes the palette.
+  //  - Tab / Shift+Tab map onto cmdk's arrow navigation (wraps via `loop`) by
+  //    re-dispatching to the input. preventDefault keeps focus inside the palette,
+  //    so Tab can't leak out to the page behind it.
+  const onOverlayKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === 'Escape') {
       event.preventDefault();
       close();
       return;
     }
-    // Map Tab / Shift+Tab onto cmdk's own arrow navigation (which wraps via `loop`).
-    // cmdk runs this onKeyDown first and bails when defaultPrevented, so it won't
-    // also try to handle Tab; the re-dispatched arrow then drives its selection.
     if (event.key === 'Tab') {
       event.preventDefault();
-      const arrow = new KeyboardEvent('keydown', {
-        bubbles: true,
-        key: event.shiftKey ? 'ArrowUp' : 'ArrowDown'
-      });
-      event.currentTarget.dispatchEvent(arrow);
+      inputRef.current?.dispatchEvent(
+        new KeyboardEvent('keydown', { bubbles: true, key: event.shiftKey ? 'ArrowUp' : 'ArrowDown' })
+      );
     }
   };
 
@@ -91,6 +93,7 @@ export const CommandPalette = () => {
           exit={{ opacity: 0 }}
           initial={{ opacity: 0 }}
           onClick={close}
+          onKeyDown={onOverlayKeyDown}
           transition={{ duration: reduced ? 0 : 0.15 }}
         >
           <motion.div
@@ -105,9 +108,8 @@ export const CommandPalette = () => {
             transition={{ duration: reduced ? 0 : 0.18 }}
           >
             <Command
-              className='overflow-hidden rounded-2xl bg-white/70 text-neutral-900 shadow-2xl ring-1 ring-black/10 backdrop-blur-xl backdrop-saturate-150 dark:bg-[#1c1c1e]/70 dark:text-white dark:ring-white/15'
+              className='overflow-hidden rounded-[26px] bg-white/70 text-neutral-900 shadow-2xl ring-1 ring-black/10 backdrop-blur-xl backdrop-saturate-150 [corner-shape:squircle] dark:bg-[#1c1c1e]/70 dark:text-white dark:ring-white/15'
               loop
-              onKeyDown={onKeyDown}
             >
               <Command.Input
                 className='w-full border-black/5 border-b bg-transparent px-5 py-4 text-base outline-none placeholder:text-neutral-400 dark:border-white/10 dark:placeholder:text-white/40'
@@ -126,27 +128,25 @@ export const CommandPalette = () => {
                   className={groupClass}
                   heading='Actions'
                 >
-                  <Command.Item
-                    className={actionItemClass}
-                    onSelect={() => run(() => setTheme(theme === 'dark' ? 'light' : 'dark'))}
-                    value='theme toggle dark light mode appearance'
-                  >
-                    {theme === 'dark' ? <LuSun className='size-4 shrink-0' /> : <LuMoon className='size-4 shrink-0' />}
-                    <span className='font-medium text-sm'>
-                      {theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-                    </span>
-                  </Command.Item>
-
                   {pathname === '/' && (
                     <Command.Item
                       className={actionItemClass}
                       onSelect={() => run(toggleLaptop)}
-                      value='laptop lid open close macbook'
+                      value='open close laptop lid macbook'
                     >
                       <LuLaptop className='size-4 shrink-0' />
                       <span className='font-medium text-sm'>{mode === 'open' ? 'Close laptop' : 'Open laptop'}</span>
                     </Command.Item>
                   )}
+
+                  <Command.Item
+                    className={actionItemClass}
+                    onSelect={() => run(() => setTheme(theme === 'dark' ? 'light' : 'dark'))}
+                    value='toggle theme dark light mode appearance'
+                  >
+                    {theme === 'dark' ? <LuSun className='size-4 shrink-0' /> : <LuMoon className='size-4 shrink-0' />}
+                    <span className='font-medium text-sm'>Toggle theme</span>
+                  </Command.Item>
                 </Command.Group>
 
                 <Command.Group
