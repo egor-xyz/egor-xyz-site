@@ -3,6 +3,7 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { motion, useReducedMotion } from 'motion/react';
 import { Suspense, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useMacbookStore } from 'src/store/macbookStore';
 import { type A, a } from 'src/utils/a';
 import { type Group, type Mesh, type MeshStandardMaterial, Vector3 } from 'three';
 import type { GLTF } from 'three-stdlib';
@@ -354,7 +355,8 @@ export const Macbook = () => {
   const navigate = useNavigate();
   const skipIntro = !!reduced;
 
-  const [mode, setMode] = useState<'open' | 'closed'>('open');
+  const mode = useMacbookStore((state) => state.mode);
+  const setMode = useMacbookStore((state) => state.setMode);
   const [interactive, setInteractive] = useState(false);
 
   // Pointer bookkeeping: tell a click apart from a drag, rotate + zoom while closed.
