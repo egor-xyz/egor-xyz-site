@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 // Safari defaults to passive: true for the touchstart event, so we need  to explicitly specify false
 // See https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
 const options = { passive: false };
