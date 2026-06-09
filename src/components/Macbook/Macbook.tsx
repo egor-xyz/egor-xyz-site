@@ -367,6 +367,7 @@ export const Macbook = () => {
 
   const mode = useMacbookStore((state) => state.mode);
   const setMode = useMacbookStore((state) => state.setMode);
+  const requestOpen = useMacbookStore((state) => state.requestOpen);
   const [interactive, setInteractive] = useState(false);
 
   // Landing on Home always shows the laptop open. The lid state lives in a store
@@ -429,7 +430,7 @@ export const Macbook = () => {
     >
       <Canvas
         camera={{ position: [1.3, 3, 3], zoom: 2 }}
-        dpr={[1, 2]}
+        dpr={[1, 1.5]}
         onPointerMissed={() => interactive && !moved.current && setMode('closed')}
       >
         <ambientLight intensity={0.95} />
@@ -458,7 +459,7 @@ export const Macbook = () => {
             drag={drag}
             mode={mode}
             navigate={navigate}
-            onClickModel={() => interactive && !moved.current && setMode('open')}
+            onClickModel={() => interactive && !moved.current && requestOpen()}
             onReady={() => setInteractive(true)}
             skipIntro={skipIntro}
             zoom={zoom}
