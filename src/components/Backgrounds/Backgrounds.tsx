@@ -44,7 +44,7 @@ export const Backgrounds: FC = () => {
           type='checkbox'
         />
 
-        <div className="relative h-[30px] w-[60px] cursor-pointer rounded-full bg-white from-orange-500 to-yellow-400 opacity-30 shadow-xs duration-300 peer-checked:bg-zinc-500 after:absolute after:top-[5px] after:left-[5px] after:h-[20px] after:w-[20px] after:rounded-full after:bg-linear-to-r after:shadow-md after:duration-300 after:content-[''] peer-checked:after:left-[55px] peer-checked:after:translate-x-[-100%] peer-checked:after:from-zinc-900 peer-checked:after:to-zinc-900 active:after:w-[50px]" />
+        <div className="relative h-[30px] w-[60px] cursor-pointer rounded-full bg-white from-orange-500 to-yellow-400 opacity-30 shadow-xs duration-300 after:absolute after:top-[5px] after:left-[5px] after:h-[20px] after:w-[20px] after:rounded-full after:bg-linear-to-r after:shadow-md after:duration-300 after:content-[''] active:after:w-[50px] peer-checked:bg-zinc-500 peer-checked:after:left-[55px] peer-checked:after:translate-x-[-100%] peer-checked:after:from-zinc-900 peer-checked:after:to-zinc-900" />
       </label>
     </>
   );

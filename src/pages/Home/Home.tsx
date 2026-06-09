@@ -6,7 +6,7 @@ export const Home = () => (
   <>
     <Macbook />
 
-    <section className='mt-20 ml-[20px] flex max-w-5xl min-w-full flex-col gap-10 pl-2 sm:mt-0 md:mt-[80px] md:gap-14 md:pl-10'>
+    <section className='mt-20 ml-[20px] flex min-w-full max-w-5xl flex-col gap-10 pl-2 sm:mt-0 md:mt-[80px] md:gap-14 md:pl-10'>
       {menuItems.map(({ heading, href, subheading }, index) => (
         <MenuItem
           heading={heading}

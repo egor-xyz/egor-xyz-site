@@ -1,24 +1,24 @@
 /* eslint-disable */
 
-import { motion } from 'motion/react';
 import { Environment, OrbitControls, useGLTF } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
+import { motion } from 'motion/react';
 import { Suspense } from 'react';
-import { Mesh, MeshStandardMaterial } from 'three';
-import { GLTF } from 'three-stdlib';
-import { a, A } from 'src/utils/a';
+import { type A, a } from 'src/utils/a';
+import type { Mesh, MeshStandardMaterial } from 'three';
+import type { GLTF } from 'three-stdlib';
 
 type GLTFResult = GLTF & {
   animations: any[];
   materials: {
     Acrylic_Clear: MeshStandardMaterial;
-    ['Aluminum_-_Anodized_Glossy_Grey']: MeshStandardMaterial;
-    ['Aluminum_-_Anodized_Glossy_Grey_keyboard.jpg']: MeshStandardMaterial;
-    ['Bronze_-_Polished']: MeshStandardMaterial;
-    ['Glass_-_Heavy_Color']: MeshStandardMaterial;
-    ['Plastic_-_Translucent_Matte_Gray']: MeshStandardMaterial;
-    ['Rubber_-_Soft']: MeshStandardMaterial;
-    ['Steel_-_Satin']: MeshStandardMaterial;
+    'Aluminum_-_Anodized_Glossy_Grey': MeshStandardMaterial;
+    'Aluminum_-_Anodized_Glossy_Grey_keyboard.jpg': MeshStandardMaterial;
+    'Bronze_-_Polished': MeshStandardMaterial;
+    'Glass_-_Heavy_Color': MeshStandardMaterial;
+    'Plastic_-_Translucent_Matte_Gray': MeshStandardMaterial;
+    'Rubber_-_Soft': MeshStandardMaterial;
+    'Steel_-_Satin': MeshStandardMaterial;
   };
   nodes: {
     Object_10: Mesh;

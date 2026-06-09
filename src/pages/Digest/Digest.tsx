@@ -4,7 +4,7 @@ import cover from 'src/assets/digest-cover.jpg';
 import { Card } from 'src/components/Card';
 import { EnterAnimation } from 'src/components/EnterAnimation';
 import { Papers } from 'src/components/Papers/Papers';
-import { a, type A } from 'src/utils/a';
+import { type A, a } from 'src/utils/a';
 
 const fadeInVariants: A = {
   enter: {
@@ -31,7 +31,7 @@ export const Digest = () => (
       <Card title='Frontend Weekly News Digest'>
         <motion.img
           {...a(fadeInVariants)}
-          alt='Digest cover image'
+          alt='Digest cover'
           className='rounded-xl shadow-xl'
           src={cover}
         />
