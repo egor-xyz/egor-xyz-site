@@ -46,4 +46,4 @@ export const Devkitty = () => (
       </a>
     </Card>
   </EnterAnimation>
-  );
+);

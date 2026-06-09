@@ -82,7 +82,6 @@ class MiniGl {
           enumerable: false,
           value: class {
             constructor(vertexShaders, fragments, uniforms = {}) {
-              const material = this;
               function getShaderByType(type, source) {
                 const shader = context.createShader(type);
                 return (
@@ -101,43 +100,41 @@ class MiniGl {
                   .map(([uniform, value]) => value.getDeclaration(uniform, type))
                   .join('\n');
               }
-              (material.uniforms = uniforms), (material.uniformInstances = []);
+              (this.uniforms = uniforms), (this.uniformInstances = []);
 
               const prefix = '\n              precision highp float;\n            ';
-              (material.vertexSource = `\n              ${prefix}\n              attribute vec4 position;\n              attribute vec2 uv;\n              attribute vec2 uvNorm;\n              ${getUniformVariableDeclarations(_miniGl.commonUniforms, 'vertex')}\n              ${getUniformVariableDeclarations(uniforms, 'vertex')}\n              ${vertexShaders}\n            `),
-                (material.Source = `\n              ${prefix}\n              ${getUniformVariableDeclarations(_miniGl.commonUniforms, 'fragment')}\n              ${getUniformVariableDeclarations(uniforms, 'fragment')}\n              ${fragments}\n            `),
-                (material.vertexShader = getShaderByType(context.VERTEX_SHADER, material.vertexSource)),
-                (material.fragmentShader = getShaderByType(context.FRAGMENT_SHADER, material.Source)),
-                (material.program = context.createProgram()),
-                context.attachShader(material.program, material.vertexShader),
-                context.attachShader(material.program, material.fragmentShader),
-                context.linkProgram(material.program),
-                context.getProgramParameter(material.program, context.LINK_STATUS) ||
-                  console.error(context.getProgramInfoLog(material.program)),
-                context.useProgram(material.program),
-                material.attachUniforms(void 0, _miniGl.commonUniforms),
-                material.attachUniforms(void 0, material.uniforms);
+              (this.vertexSource = `\n              ${prefix}\n              attribute vec4 position;\n              attribute vec2 uv;\n              attribute vec2 uvNorm;\n              ${getUniformVariableDeclarations(_miniGl.commonUniforms, 'vertex')}\n              ${getUniformVariableDeclarations(uniforms, 'vertex')}\n              ${vertexShaders}\n            `),
+                (this.Source = `\n              ${prefix}\n              ${getUniformVariableDeclarations(_miniGl.commonUniforms, 'fragment')}\n              ${getUniformVariableDeclarations(uniforms, 'fragment')}\n              ${fragments}\n            `),
+                (this.vertexShader = getShaderByType(context.VERTEX_SHADER, this.vertexSource)),
+                (this.fragmentShader = getShaderByType(context.FRAGMENT_SHADER, this.Source)),
+                (this.program = context.createProgram()),
+                context.attachShader(this.program, this.vertexShader),
+                context.attachShader(this.program, this.fragmentShader),
+                context.linkProgram(this.program),
+                context.getProgramParameter(this.program, context.LINK_STATUS) ||
+                  console.error(context.getProgramInfoLog(this.program)),
+                context.useProgram(this.program),
+                this.attachUniforms(void 0, _miniGl.commonUniforms),
+                this.attachUniforms(void 0, this.uniforms);
             }
             //t = uniform
             attachUniforms(name, uniforms) {
-              //n  = material
-              const material = this;
               void 0 === name
                 ? Object.entries(uniforms).forEach(([name, uniform]) => {
-                    material.attachUniforms(name, uniform);
+                    this.attachUniforms(name, uniform);
                   })
-                : 'array' == uniforms.type
-                  ? uniforms.value.forEach((uniform, i) => material.attachUniforms(`${name}[${i}]`, uniform))
-                  : 'struct' == uniforms.type
+                : 'array' === uniforms.type
+                  ? uniforms.value.forEach((uniform, i) => this.attachUniforms(`${name}[${i}]`, uniform))
+                  : 'struct' === uniforms.type
                     ? Object.entries(uniforms.value).forEach(([uniform, i]) =>
-                        material.attachUniforms(`${name}.${uniform}`, i)
+                        this.attachUniforms(`${name}.${uniform}`, i)
                       )
                     : (_miniGl.debug('Material.attachUniforms', {
                         name,
                         uniform: uniforms
                       }),
-                      material.uniformInstances.push({
-                        location: context.getUniformLocation(material.program, name),
+                      this.uniformInstances.push({
+                        location: context.getUniformLocation(this.program, name),
                         uniform: uniforms
                       }));
             }
@@ -175,7 +172,7 @@ class MiniGl {
                 );
             }
             remove() {
-              _miniGl.meshes = _miniGl.meshes.filter((e) => e != this);
+              _miniGl.meshes = _miniGl.meshes.filter((e) => e !== this);
             }
           }
         },
@@ -207,66 +204,63 @@ class MiniGl {
                 this.setSize(width, height, orientation);
             }
             setTopology(e = 1, t = 1) {
-              const n = this;
-              (n.xSegCount = e),
-                (n.ySegCount = t),
-                (n.vertexCount = (n.xSegCount + 1) * (n.ySegCount + 1)),
-                (n.quadCount = n.xSegCount * n.ySegCount * 2),
-                (n.attributes.uv.values = new Float32Array(2 * n.vertexCount)),
-                (n.attributes.uvNorm.values = new Float32Array(2 * n.vertexCount)),
-                (n.attributes.index.values = new Uint16Array(3 * n.quadCount));
-              for (let e = 0; e <= n.ySegCount; e++)
-                for (let t = 0; t <= n.xSegCount; t++) {
-                  const i = e * (n.xSegCount + 1) + t;
+              (this.xSegCount = e),
+                (this.ySegCount = t),
+                (this.vertexCount = (this.xSegCount + 1) * (this.ySegCount + 1)),
+                (this.quadCount = this.xSegCount * this.ySegCount * 2),
+                (this.attributes.uv.values = new Float32Array(2 * this.vertexCount)),
+                (this.attributes.uvNorm.values = new Float32Array(2 * this.vertexCount)),
+                (this.attributes.index.values = new Uint16Array(3 * this.quadCount));
+              for (let e = 0; e <= this.ySegCount; e++)
+                for (let t = 0; t <= this.xSegCount; t++) {
+                  const i = e * (this.xSegCount + 1) + t;
                   if (
-                    ((n.attributes.uv.values[2 * i] = t / n.xSegCount),
-                    (n.attributes.uv.values[2 * i + 1] = 1 - e / n.ySegCount),
-                    (n.attributes.uvNorm.values[2 * i] = (t / n.xSegCount) * 2 - 1),
-                    (n.attributes.uvNorm.values[2 * i + 1] = 1 - (e / n.ySegCount) * 2),
-                    t < n.xSegCount && e < n.ySegCount)
+                    ((this.attributes.uv.values[2 * i] = t / this.xSegCount),
+                    (this.attributes.uv.values[2 * i + 1] = 1 - e / this.ySegCount),
+                    (this.attributes.uvNorm.values[2 * i] = (t / this.xSegCount) * 2 - 1),
+                    (this.attributes.uvNorm.values[2 * i + 1] = 1 - (e / this.ySegCount) * 2),
+                    t < this.xSegCount && e < this.ySegCount)
                   ) {
-                    const s = e * n.xSegCount + t;
-                    (n.attributes.index.values[6 * s] = i),
-                      (n.attributes.index.values[6 * s + 1] = i + 1 + n.xSegCount),
-                      (n.attributes.index.values[6 * s + 2] = i + 1),
-                      (n.attributes.index.values[6 * s + 3] = i + 1),
-                      (n.attributes.index.values[6 * s + 4] = i + 1 + n.xSegCount),
-                      (n.attributes.index.values[6 * s + 5] = i + 2 + n.xSegCount);
+                    const s = e * this.xSegCount + t;
+                    (this.attributes.index.values[6 * s] = i),
+                      (this.attributes.index.values[6 * s + 1] = i + 1 + this.xSegCount),
+                      (this.attributes.index.values[6 * s + 2] = i + 1),
+                      (this.attributes.index.values[6 * s + 3] = i + 1),
+                      (this.attributes.index.values[6 * s + 4] = i + 1 + this.xSegCount),
+                      (this.attributes.index.values[6 * s + 5] = i + 2 + this.xSegCount);
                   }
                 }
-              n.attributes.uv.update(),
-                n.attributes.uvNorm.update(),
-                n.attributes.index.update(),
+              this.attributes.uv.update(),
+                this.attributes.uvNorm.update(),
+                this.attributes.index.update(),
                 _miniGl.debug('Geometry.setTopology', {
-                  index: n.attributes.index,
-                  uv: n.attributes.uv,
-                  uvNorm: n.attributes.uvNorm
+                  index: this.attributes.index,
+                  uv: this.attributes.uv,
+                  uvNorm: this.attributes.uvNorm
                 });
             }
             setSize(width = 1, height = 1, orientation = 'xz') {
-              const geometry = this;
-              (geometry.width = width),
-                (geometry.height = height),
-                (geometry.orientation = orientation),
-                (geometry.attributes.position.values &&
-                  geometry.attributes.position.values.length === 3 * geometry.vertexCount) ||
-                  (geometry.attributes.position.values = new Float32Array(3 * geometry.vertexCount));
+              (this.width = width),
+                (this.height = height),
+                (this.orientation = orientation),
+                (this.attributes.position.values && this.attributes.position.values.length === 3 * this.vertexCount) ||
+                  (this.attributes.position.values = new Float32Array(3 * this.vertexCount));
               const o = width / -2,
                 r = height / -2,
-                segment_width = width / geometry.xSegCount,
-                segment_height = height / geometry.ySegCount;
-              for (let yIndex = 0; yIndex <= geometry.ySegCount; yIndex++) {
+                segment_width = width / this.xSegCount,
+                segment_height = height / this.ySegCount;
+              for (let yIndex = 0; yIndex <= this.ySegCount; yIndex++) {
                 const t = r + yIndex * segment_height;
-                for (let xIndex = 0; xIndex <= geometry.xSegCount; xIndex++) {
+                for (let xIndex = 0; xIndex <= this.xSegCount; xIndex++) {
                   const r = o + xIndex * segment_width,
-                    l = yIndex * (geometry.xSegCount + 1) + xIndex;
-                  (geometry.attributes.position.values[3 * l + 'xyz'.indexOf(orientation[0])] = r),
-                    (geometry.attributes.position.values[3 * l + 'xyz'.indexOf(orientation[1])] = -t);
+                    l = yIndex * (this.xSegCount + 1) + xIndex;
+                  (this.attributes.position.values[3 * l + 'xyz'.indexOf(orientation[0])] = r),
+                    (this.attributes.position.values[3 * l + 'xyz'.indexOf(orientation[1])] = -t);
                 }
               }
-              geometry.attributes.position.update(),
+              this.attributes.position.update(),
                 _miniGl.debug('Geometry.setSize', {
-                  position: geometry.attributes.position
+                  position: this.attributes.position
                 });
             }
           }
@@ -299,21 +293,20 @@ class MiniGl {
             //t - type
             //n - length
             getDeclaration(name, type, length) {
-              const uniform = this;
-              if (uniform.excludeFrom !== type) {
-                if ('array' === uniform.type)
-                  return `${uniform.value[0].getDeclaration(name, type, uniform.value.length)}\nconst int ${name}_length = ${uniform.value.length};`;
-                if ('struct' === uniform.type) {
+              if (this.excludeFrom !== type) {
+                if ('array' === this.type)
+                  return `${this.value[0].getDeclaration(name, type, this.value.length)}\nconst int ${name}_length = ${this.value.length};`;
+                if ('struct' === this.type) {
                   let name_no_prefix = name.replace('u_', '');
                   return (
                     (name_no_prefix = name_no_prefix.charAt(0).toUpperCase() + name_no_prefix.slice(1)),
                     `uniform struct ${name_no_prefix} 
-                                {\n${Object.entries(uniform.value)
+                                {\n${Object.entries(this.value)
                                   .map(([name, uniform]) => uniform.getDeclaration(name, type).replace(/^uniform/, ''))
                                   .join('')}\n} ${name}${length > 0 ? `[${length}]` : ''};`
                   );
                 }
-                return `uniform ${uniform.type} ${name}${length > 0 ? `[${length}]` : ''};`;
+                return `uniform ${this.type} ${name}${length > 0 ? `[${length}]` : ''};`;
               }
             }
           }
@@ -647,7 +640,7 @@ class Gradient {
       (this.mesh = new this.minigl.Mesh(this.geometry, this.material));
   }
   shouldSkipFrame(e) {
-    return Boolean(window.document.hidden) || !this.conf.playing || parseInt(e, 10) % 2 == 0 || void 0;
+    return Boolean(window.document.hidden) || !this.conf.playing || parseInt(e, 10) % 2 === 0 || void 0;
   }
   updateFrequency(e) {
     (this.freqX += e), (this.freqY += e);

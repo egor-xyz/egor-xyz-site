@@ -31,8 +31,9 @@ This is a modern React portfolio website featuring 3D animations, smooth page tr
 ```bash
 pnpm dev           # Start development server (auto-opens browser)
 pnpm build         # TypeScript compilation + Vite build
-pnpm lint          # ESLint with flat config
-pnpm lint:fix      # Auto-fix linting issues
+pnpm lint          # Biome lint + format check
+pnpm lint:fix      # Biome auto-fix (lint + format)
+pnpm format        # Biome format write
 pnpm deploy        # Deploy to GitHub Pages via gh-pages
 ```
 

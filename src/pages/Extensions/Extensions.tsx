@@ -35,4 +35,4 @@ export const Extensions = () => (
       />
     </Card>
   </EnterAnimation>
-  );
+);

@@ -39,7 +39,7 @@ export const Papers = () => {
     >
       {papers.map((paper) => (
         <div
-          className='animate-fall absolute top-0 h-40 w-32 rounded-sm bg-white shadow-md'
+          className='absolute top-0 h-40 w-32 animate-fall rounded-sm bg-white shadow-md'
           key={paper.id}
           onAnimationEnd={() => removePaper(paper.id)}
           style={{
@@ -49,7 +49,7 @@ export const Papers = () => {
           }}
         >
           <div className='flex h-full w-full flex-col p-1'>
-            <div className='mb-[2px] border-b border-gray-800 pb-[2px] text-[14px] font-bold text-gray-600'>
+            <div className='mb-[2px] border-gray-800 border-b pb-[2px] font-bold text-[14px] text-gray-600'>
               {'<'}Frontend News{'>'}
             </div>
 

@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { type FC } from 'react';
+import type { FC } from 'react';
 import { type A, a } from 'src/utils/a';
 
 const perspective: A = {

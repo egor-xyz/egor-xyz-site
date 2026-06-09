@@ -81,9 +81,7 @@ export const Space: React.FC = () => {
         const x = positions[i];
         const y = positions[i + 1];
 
-        const distance = Math.sqrt(
-          Math.pow(x - mousePosition.current.x * 5, 2) + Math.pow(y - mousePosition.current.y * 5, 2)
-        );
+        const distance = Math.sqrt((x - mousePosition.current.x * 5) ** 2 + (y - mousePosition.current.y * 5) ** 2);
 
         const intensity = Math.max(0, 1 - distance / 2);
         colors[i] = 0.7 + intensity * 0.3;
@@ -108,7 +106,6 @@ export const Space: React.FC = () => {
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
       containerRef.current?.removeChild(renderer.domElement);
     };
   }, []);
@@ -116,7 +113,7 @@ export const Space: React.FC = () => {
   return (
     <div
       aria-hidden='true'
-      className='fixed left-0 top-0 -z-10 h-full w-full'
+      className='fixed top-0 left-0 -z-10 h-full w-full'
       ref={containerRef}
     />
   );

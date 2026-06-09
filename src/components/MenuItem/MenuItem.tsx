@@ -2,7 +2,7 @@ import { motion, useMotionValue } from 'motion/react';
 import { type FC, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStore } from 'src/useStore';
-import { type A } from 'src/utils/a';
+import type { A } from 'src/utils/a';
 
 type Props = {
   heading: string;
@@ -78,7 +78,7 @@ export const MenuItem: FC<Props> = ({ heading, href, index, subheading }) => {
       whileHover='whileHover'
     >
       <motion.span
-        className='text-4xl font-bold'
+        className='font-bold text-4xl'
         transition={{
           delayChildren: 0.25,
           staggerChildren: 0.075,

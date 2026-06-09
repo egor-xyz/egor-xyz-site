@@ -46,8 +46,8 @@ export const App = () => {
     if (!loaded) {
       animateLogo(location.pathname === '/');
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [scope]);
+    // biome-ignore lint/correctness/useExhaustiveDependencies: animateLogo is stable for this effect
+  }, [location.pathname, loaded, animateLogo]);
 
   return (
     <div className='flex h-[100svh] items-center justify-center overflow-hidden text-white'>
