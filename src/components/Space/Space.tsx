@@ -5,45 +5,46 @@ import * as THREE from 'three';
 
 export const Space: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const mousePosition = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    const container = containerRef.current;
+    if (!container) return;
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false });
 
+    renderer.setPixelRatio(1);
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0x000000, 1);
-    containerRef.current.appendChild(renderer.domElement);
+    container.appendChild(renderer.domElement);
 
-    // Load texture
-    const textureLoader = new THREE.TextureLoader();
-    const starTexture = textureLoader.load('/star.png');
+    const starTexture = new THREE.TextureLoader().load('/star.png');
 
     // Create particles
     const particlesGeometry = new THREE.BufferGeometry();
     const particlesCount = 2000;
     const positions = new Float32Array(particlesCount * 3);
     const colors = new Float32Array(particlesCount * 3);
-    const rotations = new Float32Array(particlesCount);
 
     for (let i = 0; i < particlesCount; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 10;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
+      const x = (Math.random() - 0.5) * 10;
+      const y = (Math.random() - 0.5) * 10;
+      positions[i * 3] = x;
+      positions[i * 3 + 1] = y;
       positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
 
-      colors[i * 3] = Math.random() * 0.3 + 0.7;
-      colors[i * 3 + 1] = Math.random() * 0.3 + 0.7;
-      colors[i * 3 + 2] = Math.random() * 0.3 + 0.7;
-
-      rotations[i] = Math.random() * 2 * Math.PI;
+      // Static blue glow toward the centre. (The original recomputed this every
+      // frame against a mouse position that was never wired up, so it never
+      // changed — compute it once instead.)
+      const intensity = Math.max(0, 1 - Math.sqrt(x ** 2 + y ** 2) / 2);
+      colors[i * 3] = 0.7 + intensity * 0.3;
+      colors[i * 3 + 1] = 0.7 + intensity * 0.3;
+      colors[i * 3 + 2] = 1;
     }
 
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-    particlesGeometry.setAttribute('rotation', new THREE.BufferAttribute(rotations, 1));
 
     const particlesMaterial = new THREE.PointsMaterial({
       blending: THREE.AdditiveBlending,
@@ -60,42 +61,17 @@ export const Space: React.FC = () => {
 
     camera.position.z = 5;
 
-    // Animation
+    // Animation — just a slow drift of the whole star field.
+    let frame = 0;
     const animate = () => {
-      requestAnimationFrame(animate);
-
+      frame = requestAnimationFrame(animate);
       particles.rotation.x += 0.001;
       particles.rotation.y += 0.001;
-
-      const positions = particlesGeometry.attributes.position.array as Float32Array;
-      const colors = particlesGeometry.attributes.color.array as Float32Array;
-      const rotations = particlesGeometry.attributes.rotation.array as Float32Array;
-
-      for (let i = 0; i < particlesCount; i++) {
-        rotations[i] += 0.01;
-      }
-
-      particlesGeometry.attributes.rotation.needsUpdate = true;
-
-      for (let i = 0; i < particlesCount * 3; i += 3) {
-        const x = positions[i];
-        const y = positions[i + 1];
-
-        const distance = Math.sqrt((x - mousePosition.current.x * 5) ** 2 + (y - mousePosition.current.y * 5) ** 2);
-
-        const intensity = Math.max(0, 1 - distance / 2);
-        colors[i] = 0.7 + intensity * 0.3;
-        colors[i + 1] = 0.7 + intensity * 0.3;
-        colors[i + 2] = 1;
-      }
-
-      particlesGeometry.attributes.color.needsUpdate = true;
       renderer.render(scene, camera);
     };
 
     animate();
 
-    // Handle resize
     const handleResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
@@ -105,8 +81,13 @@ export const Space: React.FC = () => {
     window.addEventListener('resize', handleResize);
 
     return () => {
+      cancelAnimationFrame(frame);
       window.removeEventListener('resize', handleResize);
-      containerRef.current?.removeChild(renderer.domElement);
+      container.removeChild(renderer.domElement);
+      particlesGeometry.dispose();
+      particlesMaterial.dispose();
+      starTexture.dispose();
+      renderer.dispose();
     };
   }, []);
 

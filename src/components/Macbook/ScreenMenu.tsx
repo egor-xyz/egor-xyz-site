@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
-import type { FC } from 'react';
+import { type FC, useEffect } from 'react';
+import { useCommandStore } from 'src/store/commandStore';
 import { menuItems } from 'src/utils/menuItems';
 
 type Props = {
@@ -36,12 +37,57 @@ const item = {
 
 const lights = ['#ff5f57', '#febc2e', '#28c840'];
 
+const isTyping = () => {
+  const el = document.activeElement as HTMLElement | null;
+  return el?.tagName === 'INPUT' || el?.tagName === 'TEXTAREA' || !!el?.isContentEditable;
+};
+
+const menuButtons = () => Array.from(document.querySelectorAll<HTMLButtonElement>('[data-menu-item]'));
+
+// Move focus to the next/previous menu item, wrapping at the ends. Works even
+// when nothing in the menu is focused yet (lands on the first/last item).
+const moveFocus = (forward: boolean) => {
+  const buttons = menuButtons();
+  if (buttons.length === 0) return;
+  const current = buttons.indexOf(document.activeElement as HTMLButtonElement);
+  const from = current === -1 ? (forward ? -1 : 0) : current;
+  const next = (from + (forward ? 1 : -1) + buttons.length) % buttons.length;
+  buttons[next]?.focus();
+};
+
 /**
  * The menu that lives on the Macbook screen. Rendered inside a drei <Html
  * transform> so it tilts & scales with the lid. Styled as a macOS window:
  * a traffic-light title bar above the navigation items.
+ *
+ * Keyboard (while the lid is open): ↑/↓ move between items and loop — globally,
+ * so they work the moment you land on Home without having to focus the menu
+ * first. Tab/Shift+Tab also cycle the items, and Enter activates the focused one.
  */
 export const ScreenMenu: FC<Props> = ({ onNavigate, opened }) => {
+  // ↑/↓ are handled on the window (not just the menu) so they select items even
+  // when focus is still on <body> after navigating back to Home.
+  useEffect(() => {
+    if (!opened) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+      if (useCommandStore.getState().open || isTyping()) return;
+      event.preventDefault();
+      moveFocus(event.key === 'ArrowDown');
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [opened]);
+
+  // Tab/Shift+Tab loop within the menu once focus is inside it.
+  const onMenuKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+    if (event.key !== 'Tab') return;
+    event.preventDefault();
+    moveFocus(!event.shiftKey);
+  };
+
   return (
     <motion.div
       animate={opened ? 'show' : 'hidden'}
@@ -67,17 +113,20 @@ export const ScreenMenu: FC<Props> = ({ onNavigate, opened }) => {
       <motion.nav
         aria-label='Main'
         className='flex flex-col gap-5 px-8 py-7'
+        onKeyDown={onMenuKeyDown}
         variants={list}
       >
         {menuItems.map(({ heading, href, subheading }) => (
           <motion.button
-            className='group flex flex-col items-start gap-0.5 text-left outline-none'
+            className='group -mx-3 -my-1 flex cursor-pointer flex-col items-start gap-0.5 rounded-lg px-3 py-1 text-left outline-none ring-white/30 focus:bg-white/15 focus:ring-1'
+            data-menu-item
             key={heading}
             onClick={() => onNavigate(href)}
+            tabIndex={opened ? 0 : -1}
             type='button'
             variants={item}
           >
-            <span className='font-bold text-3xl text-white tracking-tight transition-transform duration-300 group-hover:translate-x-2'>
+            <span className='font-bold text-3xl text-white tracking-tight transition-transform duration-300 group-hover:translate-x-2 group-focus:translate-x-2'>
               {heading}
             </span>
             <span className='text-sm text-white/55'>{subheading}</span>
