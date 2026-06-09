@@ -1,7 +1,7 @@
 import clippy, { type Agent } from 'clippyts';
 import { motion } from 'motion/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { a, type A } from 'src/utils/a';
+import { type A, a } from 'src/utils/a';
 import { cn } from 'src/utils/cn';
 
 const konami = 'ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightba';
@@ -98,14 +98,14 @@ export const Clippy = () => {
 
     return () => window.removeEventListener('keydown', handleKeyDown);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [handleKeyDown]);
 
   return (
     <>
       <div className='clippy' />
 
       {!showActions && (
-        <div className='fixed right-2 bottom-2 hidden text-xs text-white opacity-50 lg:block'>コナミコマンド</div>
+        <div className='fixed right-2 bottom-2 hidden text-white text-xs opacity-50 lg:block'>コナミコマンド</div>
       )}
 
       {showActions && (
@@ -121,6 +121,7 @@ export const Clippy = () => {
               )}
               key={agent}
               onClick={() => loadClippy(agent, false)}
+              type='button'
             >
               {agent}
             </button>

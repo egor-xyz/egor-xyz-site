@@ -15,6 +15,6 @@ const touchStart = (e: TouchEvent) => {
 export const preventSwipe = () => {
   window.addEventListener('touchstart', touchStart, options);
 
-  // @ts-ignore
+  // @ts-expect-error
   return () => window.removeEventListener('touchstart', touchStart, options);
 };

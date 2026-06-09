@@ -1,5 +1,5 @@
 import { motion, type Variants } from 'motion/react';
-import { type FC, type SVGProps } from 'react';
+import type { FC, SVGProps } from 'react';
 import { useThemeStore } from 'src/store/themeStore';
 import { a } from 'src/utils/a';
 
@@ -34,7 +34,7 @@ export const ProductCard: FC<Props> = ({ description, href, Icon, text }) => {
   const { theme } = useThemeStore();
   return (
     <motion.a
-      className={`md:text-l relative flex w-full max-w-[90svw] items-center justify-items-start text-base ${theme === 'dark' ? 'text-stone-200' : 'text-black'} opacity-0`}
+      className={`relative flex w-full max-w-[90svw] items-center justify-items-start text-base md:text-l ${theme === 'dark' ? 'text-stone-200' : 'text-black'} opacity-0`}
       href={href}
       rel='noopener noreferrer'
       target='_blank'
