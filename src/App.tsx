@@ -16,7 +16,7 @@ export const App = () => (
       className='fixed top-4 left-4 z-10 cursor-pointer bg-transparent p-3 dark:rounded-3xl dark:bg-white/20'
       to='/'
     >
-      <Logo className='h-auto w-[120px] md:w-[130px] dark:opacity-80' />
+      <Logo className='h-auto w-[88px] md:w-[96px] dark:opacity-80' />
     </Link>
   </div>
 );

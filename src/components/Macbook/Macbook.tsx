@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import { Environment, Html, useGLTF } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { motion, useReducedMotion } from 'motion/react';
@@ -11,7 +9,6 @@ import type { GLTF } from 'three-stdlib';
 import { ScreenMenu } from './ScreenMenu';
 
 type GLTFResult = GLTF & {
-  animations: any[];
   materials: {
     Acrylic_Clear: MeshStandardMaterial;
     'Aluminum_-_Anodized_Glossy_Grey': MeshStandardMaterial;
@@ -80,6 +77,14 @@ const EXIT_SCALE = 2.4;
 
 const DRAG_THRESHOLD = 6; // px of movement before a press counts as a drag
 
+// Responsive laptop size, driven by the STABLE canvas pixel width — NOT r3f's
+// viewport.width, which is in world units and shrinks as the camera dollies in.
+// (A re-render re-reading viewport.width at the menu reveal collapsed the scale,
+// making the laptop visibly shrink. size.width only changes on resize.)
+const SCALE_REF_WIDTH = 1300; // canvas px at which the laptop reaches its max scale
+const REST_SCALE_MIN = 0.55;
+const REST_SCALE_MAX = 0.78;
+
 const clamp = (v: number, min = 0, max = 1) => Math.min(max, Math.max(min, v));
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 const easeOutCubic = (t: number) => 1 - (1 - t) ** 3;
@@ -119,10 +124,7 @@ function MacbookModel({ drag, mode, navigate, onClickModel, onReady, skipIntro, 
   const exit = useRef<{ at: number; href: string; navigated?: boolean } | null>(null);
   const [opened, setOpened] = useState(skipIntro);
 
-  // Responsive size from the STABLE canvas pixel width — NOT viewport.width, which
-  // is in world units and shrinks as the camera dollies in (that coupling made the
-  // laptop suddenly shrink the moment a re-render re-read it at the menu reveal).
-  const restScale = clamp(size.width / 1300, 0.55, 0.78);
+  const restScale = clamp(size.width / SCALE_REF_WIDTH, REST_SCALE_MIN, REST_SCALE_MAX);
 
   const handleSelect = (href: string) => {
     if (exit.current) return;
