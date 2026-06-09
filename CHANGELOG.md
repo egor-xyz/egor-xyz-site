@@ -1,3 +1,21 @@
+# [1.31.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.30.0...v1.31.0) (2026-06-09)
+
+
+### Features
+
+* add cmdk dependency and command/macbook stores ([f6a5616](https://github.com/egor-xyz/egor-xyz-site/commit/f6a5616914036817789cf1b757dfc8058dd725e6))
+* add command palette component and trigger button ([04e3104](https://github.com/egor-xyz/egor-xyz-site/commit/04e310478756f01d0cb996972542b8fcd28578ad))
+* add global cmd+k hotkey hook ([53be3e7](https://github.com/egor-xyz/egor-xyz-site/commit/53be3e746a9c1f458359898c07623e94878b3620))
+* mount command palette and trigger in App ([54e5d08](https://github.com/egor-xyz/egor-xyz-site/commit/54e5d08d4730816e57ebbdfcf76ca64611add33c))
+* redesign palette — glassy panel, Actions group with icons on top, rename Pages to Navigate; fix dialog a11y and focus restore ([9c645a0](https://github.com/egor-xyz/egor-xyz-site/commit/9c645a089095c4365acaf20a0ef6a0a9256bcd4a))
+* site-wide keyboard nav + palette/menu refinements ([fe2e4b0](https://github.com/egor-xyz/egor-xyz-site/commit/fe2e4b0e35e0ba54c7d144cf1b223135b3038d95))
+
+
+### Performance Improvements
+
+* fix starfield rAF leak and per-frame waste ([6edbe92](https://github.com/egor-xyz/egor-xyz-site/commit/6edbe92ec74da8c33c40ad6bd73ef82bb34a2cd5))
+* lower canvas DPR; sequence TopMenu hide before lid opens ([2425c1a](https://github.com/egor-xyz/egor-xyz-site/commit/2425c1aba0975f460640f72d0af8a39382a957c2))
+
 # [1.30.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.29.0...v1.30.0) (2026-06-09)
 
 
