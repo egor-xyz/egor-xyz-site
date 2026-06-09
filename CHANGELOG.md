@@ -1,3 +1,10 @@
+# [1.30.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.29.0...v1.30.0) (2026-06-09)
+
+
+### Features
+
+* interactive 3D MacBook hero on Home ([#104](https://github.com/egor-xyz/egor-xyz-site/issues/104)) ([3441665](https://github.com/egor-xyz/egor-xyz-site/commit/3441665aea5423f46d0ad274c9d7b10ce180ca55))
+
 # [1.29.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.28.0...v1.29.0) (2025-04-08)
 
 
