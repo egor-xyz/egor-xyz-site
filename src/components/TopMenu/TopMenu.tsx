@@ -1,5 +1,6 @@
 import { motion, type Variants } from 'motion/react';
 import { Link, useLocation } from 'react-router-dom';
+import { useMacbookStore } from 'src/store/macbookStore';
 import { a } from 'src/utils/a';
 import { menuItems } from 'src/utils/menuItems';
 import { useMedia } from 'src/utils/useMedia';
@@ -60,12 +61,19 @@ const lineVariants: Variants = {
 export const TopMenu = () => {
   const { pathname } = useLocation();
   const isWide = useMedia('(min-width: 642px)');
+  const settledClosed = useMacbookStore((state) => state.settledClosed);
+
+  // On Home the nav hides behind the 3D hero — but once the user has closed the
+  // laptop (and the close animation has finished) we surface it, like on every
+  // other page. It never shows on first load because the flag only flips after
+  // a user-triggered close completes.
+  const showMenu = pathname !== '/' || settledClosed;
 
   return (
     <motion.nav
       className='fixed bottom-5 h-fit text-white sm:top-2'
       {...a(fadeIn)}
-      animate={pathname === '/' ? 'exit' : 'enter'}
+      animate={showMenu ? 'enter' : 'exit'}
       custom={isWide}
     >
       <ul className='flex gap-4'>
@@ -75,6 +83,12 @@ export const TopMenu = () => {
           variants={itemAnimations}
         >
           <Link to='/'>Home</Link>
+
+          <motion.div
+            animate={pathname === '/' ? 'active' : 'initial'}
+            className='relative h-[1px] w-0 bg-white'
+            variants={lineVariants}
+          />
         </motion.li>
 
         {menuItems.map(({ heading, href }, index) => (
