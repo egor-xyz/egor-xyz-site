@@ -1,3 +1,10 @@
+## [1.31.1](https://github.com/egor-xyz/egor-xyz-site/compare/v1.31.0...v1.31.1) (2026-07-29)
+
+
+### Performance Improvements
+
+* make the hero intro land smoothly on first load ([41a5d0c](https://github.com/egor-xyz/egor-xyz-site/commit/41a5d0c564b2556a6f52930897bd01dae2d01042))
+
 # [1.31.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.30.0...v1.31.0) (2026-06-09)
 
 
