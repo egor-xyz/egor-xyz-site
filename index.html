@@ -28,6 +28,57 @@
       content="width=device-width, initial-scale=1.0"
     />
 
+    <!--
+      Paint something immediately: the app bundle needs ~1.5 s before React can
+      render, and without this the screen stays white/blank until then.
+    -->
+    <style>
+      /* Only on <html>: a background on <body> would paint over the starfield,
+         which sits at z-index -10. */
+      html {
+        background: #000;
+      }
+      #boot {
+        position: fixed;
+        inset: 0;
+        background:
+          radial-gradient(circle at 50% 45%, #0b1a33 0%, #000 60%),
+          #000;
+      }
+    </style>
+
+    <!--
+      The 3D hero's assets are only discovered once the bundle has parsed and
+      react-three starts loading them (~1.6 s in). Preloading them here means
+      they arrive in parallel with the JS instead of after it.
+    -->
+    <link
+      rel="preload"
+      as="fetch"
+      crossorigin
+      href="/macbook/macbook.gltf"
+    />
+    <link
+      rel="preload"
+      as="fetch"
+      crossorigin
+      href="/macbook/macbook.bin"
+    />
+    <!-- crossorigin matters: three's ImageLoader requests these anonymously, and
+         a preload without it lands in a different cache slot (double download). -->
+    <link
+      rel="preload"
+      as="fetch"
+      crossorigin
+      href="/macbook/textures/Glass_-_Heavy_Color_baseColor.jpeg"
+    />
+    <link
+      rel="preload"
+      as="fetch"
+      crossorigin
+      href="/macbook/textures/Aluminum_-_Anodized_Glossy_Grey_keyboard.jpg_baseColor.jpeg"
+    />
+
     <!-- Open Graph / Facebook -->
     <meta
       property="og:type"
@@ -110,7 +161,12 @@
     <!-- /icons -->
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div
+        id="boot"
+        aria-hidden="true"
+      ></div>
+    </div>
     <script
       type="module"
       src="/src/main.tsx"
