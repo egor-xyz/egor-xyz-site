@@ -1,12 +1,12 @@
-import { Environment, Html, useGLTF } from '@react-three/drei';
+import { Html, useGLTF } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { motion, useReducedMotion } from 'motion/react';
 import { Suspense, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMacbookStore } from 'src/store/macbookStore';
 import { type A, a } from 'src/utils/a';
-import { type Group, type Mesh, type MeshStandardMaterial, Vector3 } from 'three';
-import type { GLTF } from 'three-stdlib';
+import { type Group, type Mesh, type MeshStandardMaterial, PMREMGenerator, Vector3 } from 'three';
+import { type GLTF, RoomEnvironment } from 'three-stdlib';
 import { ScreenMenu } from './ScreenMenu';
 
 type GLTFResult = GLTF & {
@@ -78,6 +78,18 @@ const EXIT_SCALE = 2.4;
 
 const DRAG_THRESHOLD = 6; // px of movement before a press counts as a drag
 
+// The model is parked at its fly-in start pose and rendered until the frame rate
+// proves the expensive first frames (shader compile, texture upload, PMREM) are
+// paid for: SETTLED_FRAMES consecutive frames under SETTLED_FRAME_MS. WARMUP_CAP
+// keeps a slow device from waiting forever.
+const SETTLED_FRAMES = 2;
+const SETTLED_FRAME_MS = 32;
+const WARMUP_CAP_MS = 1200;
+const WARMUP_HOLD_MS = 120; // small beat after warm-up so the fly-in reads as deliberate
+// Never let a stalled frame advance the timeline by more than this — one hitch
+// must not teleport an animation forward.
+const MAX_DELTA = 1 / 30;
+
 // Responsive laptop size, driven by the STABLE canvas pixel width — NOT r3f's
 // viewport.width, which is in world units and shrinks as the camera dollies in.
 // (A re-render re-reading viewport.width at the menu reveal collapsed the scale,
@@ -99,6 +111,41 @@ const easeInCubic = (t: number) => t ** 3;
 
 type DragRot = { pitch: number; yaw: number };
 
+// Reflections. drei's <Environment preset> streams a 1.5 MB HDR from a
+// third-party CDN (raw.githack.com) — on a cold load that cost ~1.6 s of
+// network plus an RGBE decode, and the laptop could not draw until it landed.
+// RoomEnvironment is generated on the GPU in a few ms, zero bytes over the wire.
+const ENV_INTENSITY = 0.32;
+
+function StudioEnvironment() {
+  const gl = useThree((s) => s.gl);
+  const scene = useThree((s) => s.scene);
+
+  useEffect(() => {
+    const pmrem = new PMREMGenerator(gl);
+    const room = RoomEnvironment();
+    const env = pmrem.fromScene(room, 0.04);
+
+    scene.environment = env.texture;
+    scene.environmentIntensity = ENV_INTENSITY;
+
+    pmrem.dispose();
+    room.traverse((node) => {
+      const mesh = node as Mesh;
+      mesh.geometry?.dispose();
+      if (Array.isArray(mesh.material)) mesh.material.forEach((m) => m.dispose());
+      else mesh.material?.dispose();
+    });
+
+    return () => {
+      scene.environment = null;
+      env.dispose();
+    };
+  }, [gl, scene]);
+
+  return null;
+}
+
 type ModelProps = {
   drag: React.RefObject<DragRot>;
   mode: 'open' | 'closed';
@@ -119,6 +166,11 @@ function MacbookModel({ drag, mode, navigate, onClickModel, onReady, skipIntro, 
   const screenRef = useRef<Group>(null);
 
   const elapsed = useRef(0);
+  // The first frames after the model mounts are expensive: shader compile,
+  // texture upload, PMREM. Hold the intro clock at 0 until they are paid for,
+  // otherwise the giant first delta fast-forwards the fly-in and the laptop
+  // appears mid-flight (the "it jumps" look).
+  const warm = useRef({ compiled: false, done: skipIntro, held: 0, smooth: 0, waited: 0 });
   const playingIntro = useRef(!skipIntro);
   const lidT = useRef(skipIntro ? 0 : 1); // 0 = open, 1 = closed
   const focusCur = useRef(skipIntro ? 1 : 0); // 0 = wide/closed framing, 1 = near/open
@@ -141,10 +193,41 @@ function MacbookModel({ drag, mode, navigate, onClickModel, onReady, skipIntro, 
     const screen = screenRef.current;
     if (!outer || !reveal || !lid || !screen) return;
 
-    elapsed.current += delta;
+    const dt = Math.min(delta, MAX_DELTA);
+
+    // Warm-up: the model has loaded (useGLTF suspends until it has), but its
+    // first frames still cost shader compile + texture upload — historically one
+    // ~800 ms stall that the intro then fast-forwarded through. Hold the laptop
+    // at its fly-in start pose (far away, closed, logo to camera) until frames
+    // come back smooth, then start the timeline.
+    if (!warm.current.done) {
+      const w = warm.current;
+      if (!w.compiled) {
+        w.compiled = true;
+        state.gl.compile(state.scene, state.camera);
+      }
+      w.waited += delta * 1000; // real elapsed time, not the clamped delta
+
+      if (delta * 1000 < SETTLED_FRAME_MS) w.smooth += 1;
+      else w.smooth = 0;
+
+      if (w.smooth >= SETTLED_FRAMES) w.held += delta * 1000;
+      if (w.held >= WARMUP_HOLD_MS || w.waited >= WARMUP_CAP_MS) w.done = true;
+
+      outer.position.set(0, 1.6, -22);
+      outer.scale.setScalar(0.1 * restScale);
+      outer.rotation.set(0, 0, 0);
+      reveal.rotation.set(INTRO_TILT_X, INTRO_SPIN_Y, 0);
+      lid.rotation.x = LID_CLOSED;
+      state.camera.position.copy(CLOSED_CAM);
+      state.camera.lookAt(CLOSED_LOOK);
+      return;
+    }
+
+    elapsed.current += dt;
     const t = elapsed.current;
-    const kFast = 1 - 0.82 ** (delta * 60); // camera follow + parallax/drag rotation
-    const kToggle = 1 - 0.93 ** (delta * 60); // slower — the felt open/close lid + zoom
+    const kFast = 1 - 0.82 ** (dt * 60); // camera follow + parallax/drag rotation
+    const kToggle = 1 - 0.93 ** (dt * 60); // slower — the felt open/close lid + zoom
 
     // --- Exit: lid closes, laptop flies at the user, then navigate ---------
     if (exit.current) {
@@ -465,10 +548,7 @@ export const Macbook = () => {
             zoom={zoom}
           />
         </Suspense>
-        <Environment
-          environmentIntensity={0.32}
-          preset='city'
-        />
+        <StudioEnvironment />
       </Canvas>
     </motion.div>
   );
