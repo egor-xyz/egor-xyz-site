@@ -5,8 +5,20 @@ import { Suspense, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMacbookStore } from 'src/store/macbookStore';
 import { type A, a } from 'src/utils/a';
-import { type Group, type Mesh, type MeshStandardMaterial, PMREMGenerator, Vector3 } from 'three';
-import { type GLTF, RoomEnvironment } from 'three-stdlib';
+import {
+  BackSide,
+  BoxGeometry,
+  type Group,
+  type Light,
+  Mesh,
+  MeshBasicMaterial,
+  type MeshStandardMaterial,
+  PlaneGeometry,
+  PMREMGenerator,
+  Scene,
+  Vector3
+} from 'three';
+import type { GLTF } from 'three-stdlib';
 import { ScreenMenu } from './ScreenMenu';
 
 type GLTFResult = GLTF & {
@@ -114,8 +126,51 @@ type DragRot = { pitch: number; yaw: number };
 // Reflections. drei's <Environment preset> streams a 1.5 MB HDR from a
 // third-party CDN (raw.githack.com) — on a cold load that cost ~1.6 s of
 // network plus an RGBE decode, and the laptop could not draw until it landed.
-// RoomEnvironment is generated on the GPU in a few ms, zero bytes over the wire.
-const ENV_INTENSITY = 0.32;
+// This builds the environment locally instead: a dark room with a few big, soft
+// light panels. Big and soft matters — three's RoomEnvironment has small bright
+// emitters that the glossy screen glass turns into a blown-out white blob.
+// The two framings want opposite things: closed, the laptop is a dark slab on
+// black space and needs light; open, the camera is inches from a glossy screen
+// and the same rig blows out. So the rig is driven by `focus` (0 = closed/wide,
+// 1 = open/near) rather than being a single compromise.
+const ENV_INTENSITY_CLOSED = 1.3;
+const ENV_INTENSITY_OPEN = 0.4;
+const AMBIENT_CLOSED = 0.8;
+const AMBIENT_OPEN = 0.45;
+const CAM_FILL_CLOSED = 0.7;
+const CAM_FILL_OPEN = 0.1;
+const ENV_BLUR = 0.08; // PMREM sigma — softens panel edges (above ~0.1 three clips the kernel)
+const ROOM_TINT = 0x7c8598; // ambient bounce — this is what stops the dark lid reading as a black hole
+const PANELS: {
+  color: number;
+  pos: [number, number, number];
+  rot: [number, number, number];
+  size: [number, number];
+}[] = [
+  // Broad overhead key — the gradient that runs down the lid.
+  { color: 0xc9d2e0, pos: [0, 9, 2], rot: [-Math.PI / 2, 0, 0], size: [26, 26] },
+  // Front fill — lifts the lid and deck toward the camera.
+  { color: 0xc2cad8, pos: [0, 2, 12], rot: [0, 0, 0], size: [22, 14] },
+  // Side wraps — edge highlights along the aluminium.
+  { color: 0xa2abbb, pos: [-11, 3, 2], rot: [0, Math.PI / 2, 0], size: [18, 12] },
+  { color: 0x8f97a6, pos: [11, 3, 2], rot: [0, -Math.PI / 2, 0], size: [18, 12] }
+];
+
+function buildStudioScene() {
+  const scene = new Scene();
+
+  const shell = new Mesh(new BoxGeometry(40, 30, 40), new MeshBasicMaterial({ color: ROOM_TINT, side: BackSide }));
+  scene.add(shell);
+
+  for (const panel of PANELS) {
+    const mesh = new Mesh(new PlaneGeometry(...panel.size), new MeshBasicMaterial({ color: panel.color }));
+    mesh.position.set(...panel.pos);
+    mesh.rotation.set(...panel.rot);
+    scene.add(mesh);
+  }
+
+  return scene;
+}
 
 function StudioEnvironment() {
   const gl = useThree((s) => s.gl);
@@ -123,11 +178,11 @@ function StudioEnvironment() {
 
   useEffect(() => {
     const pmrem = new PMREMGenerator(gl);
-    const room = RoomEnvironment();
-    const env = pmrem.fromScene(room, 0.04);
+    const room = buildStudioScene();
+    const env = pmrem.fromScene(room, ENV_BLUR);
 
     scene.environment = env.texture;
-    scene.environmentIntensity = ENV_INTENSITY;
+    scene.environmentIntensity = ENV_INTENSITY_CLOSED; // the frame loop takes over from here
 
     pmrem.dispose();
     room.traverse((node) => {
@@ -171,6 +226,7 @@ function MacbookModel({ drag, mode, navigate, onClickModel, onReady, skipIntro, 
   // otherwise the giant first delta fast-forwards the fly-in and the laptop
   // appears mid-flight (the "it jumps" look).
   const warm = useRef({ compiled: false, done: skipIntro, held: 0, smooth: 0, waited: 0 });
+  const lights = useRef<{ ambient?: Light; camFill?: Light }>({});
   const playingIntro = useRef(!skipIntro);
   const lidT = useRef(skipIntro ? 0 : 1); // 0 = open, 1 = closed
   const focusCur = useRef(skipIntro ? 1 : 0); // 0 = wide/closed framing, 1 = near/open
@@ -318,6 +374,16 @@ function MacbookModel({ drag, mode, navigate, onClickModel, onReady, skipIntro, 
         rotTargetX = drag.current.pitch;
       }
     }
+
+    // Light rig follows the framing: full strength on the closed slab, dialled
+    // back as the camera dollies into the screen.
+    state.scene.environmentIntensity = lerp(ENV_INTENSITY_CLOSED, ENV_INTENSITY_OPEN, focus);
+    const ambient =
+      lights.current.ambient ?? (lights.current.ambient = state.scene.getObjectByName('ambient') as Light);
+    const camFill =
+      lights.current.camFill ?? (lights.current.camFill = state.scene.getObjectByName('camFill') as Light);
+    if (ambient) ambient.intensity = lerp(AMBIENT_CLOSED, AMBIENT_OPEN, focus);
+    if (camFill) camFill.intensity = lerp(CAM_FILL_CLOSED, CAM_FILL_OPEN, focus);
 
     lid.rotation.x = lerp(LID_OPEN, LID_CLOSED, lidParam);
     outer.rotation.y += (rotTargetY - outer.rotation.y) * kFast;
@@ -516,7 +582,12 @@ export const Macbook = () => {
         dpr={[1, 1.5]}
         onPointerMissed={() => interactive && !moved.current && setMode('closed')}
       >
-        <ambientLight intensity={0.95} />
+        {/* Named so the frame loop can dim them as the camera moves in — see
+            ENV_INTENSITY_CLOSED / _OPEN. */}
+        <ambientLight
+          intensity={AMBIENT_CLOSED}
+          name='ambient'
+        />
         {/* Key — overhead + soft, so the glossy deck/keys don't blow out */}
         <directionalLight
           intensity={0.45}
@@ -527,14 +598,22 @@ export const Macbook = () => {
           intensity={0.3}
           position={[-6, 3, 4]}
         />
+        {/* Camera-side fill — the closed lid faces the viewer, so without this it
+            only ever catches edge highlights and reads as a silhouette. */}
+        <directionalLight
+          intensity={CAM_FILL_CLOSED}
+          name='camFill'
+          position={[1.5, 3.5, 4]}
+        />
         {/* Bottom fill — so the underside isn't pure black when rotated */}
         <directionalLight
           intensity={0.25}
           position={[0, -5, 3]}
         />
-        {/* Rim — separates the laptop from the dark space behind it */}
+        {/* Rim — separates the laptop from the dark space behind it. Carries the
+            closed view, where the lid is otherwise a black shape on black. */}
         <directionalLight
-          intensity={0.45}
+          intensity={0.9}
           position={[0, 4, -6]}
         />
         <Suspense fallback={null}>
