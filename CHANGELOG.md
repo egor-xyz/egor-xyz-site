@@ -1,3 +1,10 @@
+## [1.31.2](https://github.com/egor-xyz/egor-xyz-site/compare/v1.31.1...v1.31.2) (2026-07-29)
+
+
+### Bug Fixes
+
+* **hero:** light the laptop per framing instead of one compromise rig ([a0cf88d](https://github.com/egor-xyz/egor-xyz-site/commit/a0cf88dcd2c0758ab5da3ced3f3dc04a6b0271c6))
+
 ## [1.31.1](https://github.com/egor-xyz/egor-xyz-site/compare/v1.31.0...v1.31.1) (2026-07-29)
 
 
