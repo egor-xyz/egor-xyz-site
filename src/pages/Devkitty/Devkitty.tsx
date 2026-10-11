@@ -1,5 +1,4 @@
 import { motion } from 'motion/react';
-import cover from 'src/assets/devkitty-cover.jpg';
 import { Card } from 'src/components/Card';
 import { type A, a } from 'src/utils/a';
 
@@ -23,27 +22,38 @@ const fadeInVariants: A = {
 };
 export const Devkitty = () => (
   <EnterAnimation>
-    <Card title='Devkitty'>
-      <a
-        className='w-full'
-        href='https://devkitty.app/'
-        rel='noopener noreferrer'
-        target='_blank'
+    <Card
+      title='Devkitty'
+      wide
+    >
+      <motion.div
+        className='glass-scroll max-h-[calc(100svh-12rem)] min-h-0 w-full overflow-y-auto pb-2 text-left'
+        {...a(fadeInVariants)}
       >
-        <motion.img
-          {...a(fadeInVariants)}
-          alt='Devkitty cover screenshot'
-          className='rounded-xl shadow-xl'
-          src={cover}
-        />
+        <div className='rounded-2xl border border-white/20 bg-white/5 p-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-lg'>
+          <img
+            alt='Devkitty app showing repositories and GitHub activity'
+            className='w-full rounded-xl shadow-xl'
+            src='https://devkitty.app/images/demo-main.png'
+          />
+        </div>
 
-        <motion.div
-          className='mt-5 text-center drop-shadow-sm'
-          {...a(fadeInVariants)}
-        >
-          Swiss army knife for developers
-        </motion.div>
-      </a>
+        <h2 className='mt-5 font-bold text-2xl'>All your repos. One calm window.</h2>
+        <p className='mt-2 text-base text-black/75 dark:text-white/80'>
+          Devkitty puts your daily GitHub work in one macOS app.
+        </p>
+
+        <div className='mt-6 flex justify-center pb-2'>
+          <a
+            className='devkitty-cta inline-flex min-h-14 items-center rounded-xl px-8 font-semibold text-[15px] text-white transition-[filter,box-shadow] duration-200 hover:brightness-110 focus-visible:outline-2 focus-visible:outline-white'
+            href='https://devkitty.app/'
+            rel='noopener noreferrer'
+            target='_blank'
+          >
+            Visit Devkitty website
+          </a>
+        </div>
+      </motion.div>
     </Card>
   </EnterAnimation>
 );

@@ -1,7 +1,7 @@
 import { Html, useGLTF } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { motion, useReducedMotion } from 'motion/react';
-import { Suspense, useEffect, useRef, useState } from 'react';
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMacbookStore } from 'src/store/macbookStore';
 import { type A, a } from 'src/utils/a';
@@ -207,13 +207,26 @@ type ModelProps = {
   navigate: (href: string) => void;
   onClickModel: () => void;
   onReady: () => void;
+  portal: React.RefObject<HTMLDivElement>;
   skipIntro: boolean;
   zoom: React.RefObject<number>;
 };
 
-function MacbookModel({ drag, mode, navigate, onClickModel, onReady, skipIntro, zoom }: ModelProps) {
+function MacbookModel({ drag, mode, navigate, onClickModel, onReady, portal, skipIntro, zoom }: ModelProps) {
   const { nodes, materials } = useGLTF('/macbook/macbook.gltf') as unknown as GLTFResult;
   const { size } = useThree();
+
+  // The display texture is a screenshot. Keep it readable under every light rig.
+  const displayMaterial = useMemo(
+    () =>
+      new MeshBasicMaterial({
+        map: materials['Glass_-_Heavy_Color'].map,
+        side: materials['Glass_-_Heavy_Color'].side,
+        toneMapped: false
+      }),
+    [materials]
+  );
+  useEffect(() => () => displayMaterial.dispose(), [displayMaterial]);
 
   const outerRef = useRef<Group>(null);
   const revealRef = useRef<Group>(null);
@@ -462,7 +475,7 @@ function MacbookModel({ drag, mode, navigate, onClickModel, onReady, skipIntro, 
                     castShadow
                     receiveShadow
                     geometry={nodes.Object_10.geometry}
-                    material={materials['Glass_-_Heavy_Color']}
+                    material={displayMaterial}
                   />
                   <mesh
                     castShadow
@@ -487,6 +500,7 @@ function MacbookModel({ drag, mode, navigate, onClickModel, onReady, skipIntro, 
                   <Html
                     distanceFactor={1.35}
                     pointerEvents={opened ? 'auto' : 'none'}
+                    portal={portal}
                     transform
                   >
                     <ScreenMenu
@@ -518,6 +532,12 @@ export const Macbook = () => {
   const setMode = useMacbookStore((state) => state.setMode);
   const requestOpen = useMacbookStore((state) => state.requestOpen);
   const [interactive, setInteractive] = useState(false);
+  const [containerReady, setContainerReady] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null!);
+  const attachContainer = useCallback((node: HTMLDivElement | null) => {
+    if (node) containerRef.current = node;
+    setContainerReady(!!node);
+  }, []);
 
   // Landing on Home always shows the laptop open. The lid state lives in a store
   // (so the palette can drive it), which means it would otherwise persist a
@@ -574,61 +594,65 @@ export const Macbook = () => {
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
       onWheel={onWheel}
+      ref={attachContainer}
       style={{ touchAction: 'none' }}
       {...a(variants)}
     >
-      <Canvas
-        camera={{ position: [1.3, 3, 3], zoom: 2 }}
-        dpr={[1, 1.5]}
-        onPointerMissed={() => interactive && !moved.current && setMode('closed')}
-      >
-        {/* Named so the frame loop can dim them as the camera moves in — see
+      {containerReady && (
+        <Canvas
+          camera={{ position: [1.3, 3, 3], zoom: 2 }}
+          dpr={[1, 1.5]}
+          onPointerMissed={() => interactive && !moved.current && setMode('closed')}
+        >
+          {/* Named so the frame loop can dim them as the camera moves in — see
             ENV_INTENSITY_CLOSED / _OPEN. */}
-        <ambientLight
-          intensity={AMBIENT_CLOSED}
-          name='ambient'
-        />
-        {/* Key — overhead + soft, so the glossy deck/keys don't blow out */}
-        <directionalLight
-          intensity={0.45}
-          position={[2, 9, 3]}
-        />
-        {/* Fill — left side */}
-        <directionalLight
-          intensity={0.3}
-          position={[-6, 3, 4]}
-        />
-        {/* Camera-side fill — the closed lid faces the viewer, so without this it
-            only ever catches edge highlights and reads as a silhouette. */}
-        <directionalLight
-          intensity={CAM_FILL_CLOSED}
-          name='camFill'
-          position={[1.5, 3.5, 4]}
-        />
-        {/* Bottom fill — so the underside isn't pure black when rotated */}
-        <directionalLight
-          intensity={0.25}
-          position={[0, -5, 3]}
-        />
-        {/* Rim — separates the laptop from the dark space behind it. Carries the
-            closed view, where the lid is otherwise a black shape on black. */}
-        <directionalLight
-          intensity={0.9}
-          position={[0, 4, -6]}
-        />
-        <Suspense fallback={null}>
-          <MacbookModel
-            drag={drag}
-            mode={mode}
-            navigate={navigate}
-            onClickModel={() => interactive && !moved.current && requestOpen()}
-            onReady={() => setInteractive(true)}
-            skipIntro={skipIntro}
-            zoom={zoom}
+          <ambientLight
+            intensity={AMBIENT_CLOSED}
+            name='ambient'
           />
-        </Suspense>
-        <StudioEnvironment />
-      </Canvas>
+          {/* Key — overhead + soft, so the glossy deck/keys don't blow out */}
+          <directionalLight
+            intensity={0.45}
+            position={[2, 9, 3]}
+          />
+          {/* Fill — left side */}
+          <directionalLight
+            intensity={0.3}
+            position={[-6, 3, 4]}
+          />
+          {/* Camera-side fill — the closed lid faces the viewer, so without this it
+            only ever catches edge highlights and reads as a silhouette. */}
+          <directionalLight
+            intensity={CAM_FILL_CLOSED}
+            name='camFill'
+            position={[1.5, 3.5, 4]}
+          />
+          {/* Bottom fill — so the underside isn't pure black when rotated */}
+          <directionalLight
+            intensity={0.25}
+            position={[0, -5, 3]}
+          />
+          {/* Rim — separates the laptop from the dark space behind it. Carries the
+            closed view, where the lid is otherwise a black shape on black. */}
+          <directionalLight
+            intensity={0.9}
+            position={[0, 4, -6]}
+          />
+          <Suspense fallback={null}>
+            <MacbookModel
+              drag={drag}
+              mode={mode}
+              navigate={navigate}
+              onClickModel={() => interactive && !moved.current && requestOpen()}
+              onReady={() => setInteractive(true)}
+              portal={containerRef}
+              skipIntro={skipIntro}
+              zoom={zoom}
+            />
+          </Suspense>
+          <StudioEnvironment />
+        </Canvas>
+      )}
     </motion.div>
   );
 };

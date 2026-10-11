@@ -6,6 +6,7 @@ import { type A, a } from 'src/utils/a';
 type Props = {
   children?: React.ReactNode;
   title?: string;
+  wide?: boolean;
 };
 
 const titleAnimation: A = {
@@ -27,11 +28,11 @@ const titleAnimation: A = {
   }
 };
 
-export const Card: FC<Props> = ({ children, title }) => {
+export const Card: FC<Props> = ({ children, title, wide = false }) => {
   const { theme } = useThemeStore();
   return (
     <div
-      className={`relative flex w-[600px] max-w-[90vw] flex-col items-center justify-center gap-1 overflow-hidden rounded-lg border border-white/30 bg-white/20 px-4 py-2 text-base ${theme === 'dark' ? 'text-stone-200' : 'text-black'} shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-xs md:px-4 md:py-2 md:text-2xl`}
+      className={`relative mt-20 flex max-h-[calc(100svh-13rem)] ${wide ? 'w-[800px]' : 'w-[600px]'} max-w-[90vw] flex-col items-center justify-center gap-1 overflow-hidden rounded-lg border border-white/30 bg-white/20 px-4 py-2 text-base ${theme === 'dark' ? 'text-stone-200' : 'text-black'} shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-xs md:px-4 md:py-2 md:text-2xl min-[642px]:mt-0 min-[642px]:max-h-none`}
     >
       {title && (
         <>

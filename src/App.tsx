@@ -20,10 +20,10 @@ export const App = () => {
 
       {/* Logo lives permanently in the top-left corner — no intro animation. */}
       <Link
-        className='fixed top-4 left-4 z-10 cursor-pointer bg-transparent p-3 dark:rounded-3xl dark:bg-white/20'
+        className='fixed top-4 left-4 z-10 cursor-pointer bg-transparent p-2 min-[642px]:p-3 dark:rounded-3xl dark:bg-white/20'
         to='/'
       >
-        <Logo className='h-auto w-[88px] md:w-[96px] dark:opacity-80' />
+        <Logo className='h-auto w-[70px] min-[642px]:w-[96px] dark:opacity-80' />
       </Link>
     </div>
   );

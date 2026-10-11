@@ -1,5 +1,8 @@
 import { motion } from 'motion/react';
 import { type FC, useEffect } from 'react';
+import { FiUser } from 'react-icons/fi';
+import devkittyIcon from 'src/assets/devkitty-icon.png';
+import { RobotIcon } from 'src/components/RobotIcon';
 import { useCommandStore } from 'src/store/commandStore';
 import { menuItems } from 'src/utils/menuItems';
 
@@ -36,6 +39,9 @@ const item = {
 };
 
 const lights = ['#ff5f57', '#febc2e', '#28c840'];
+const menuIcons: Record<string, string> = {
+  '/devkitty': devkittyIcon
+};
 
 const isTyping = () => {
   const el = document.activeElement as HTMLElement | null;
@@ -112,26 +118,49 @@ export const ScreenMenu: FC<Props> = ({ onNavigate, opened }) => {
       {/* Menu items */}
       <motion.nav
         aria-label='Main'
-        className='flex flex-col gap-5 px-8 py-7'
+        className='glass-scroll flex max-h-[420px] flex-col gap-4 overflow-y-auto px-8 py-6'
         onKeyDown={onMenuKeyDown}
         variants={list}
       >
-        {menuItems.map(({ heading, href, subheading }) => (
-          <motion.button
-            className='group -mx-3 -my-1 flex cursor-pointer flex-col items-start gap-0.5 rounded-lg px-3 py-1 text-left outline-none ring-white/30 focus:bg-white/15 focus:ring-1'
-            data-menu-item
-            key={heading}
-            onClick={() => onNavigate(href)}
-            tabIndex={opened ? 0 : -1}
-            type='button'
-            variants={item}
-          >
-            <span className='font-bold text-3xl text-white tracking-tight transition-transform duration-300 group-hover:translate-x-2 group-focus:translate-x-2'>
-              {heading}
-            </span>
-            <span className='text-sm text-white/55'>{subheading}</span>
-          </motion.button>
-        ))}
+        {menuItems.map(({ heading, href, subheading }) => {
+          const iconSrc = menuIcons[href];
+          return (
+            <motion.button
+              className='group -mx-3 -my-1 flex cursor-pointer items-center gap-4 rounded-lg px-3 py-1 text-left outline-none ring-white/30 focus:bg-white/15 focus:ring-1'
+              data-menu-item
+              key={heading}
+              onClick={() => onNavigate(href)}
+              tabIndex={opened ? 0 : -1}
+              type='button'
+              variants={item}
+            >
+              <span className='menu-icon-tile flex h-13 w-13 shrink-0 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-white/85 backdrop-blur-md'>
+                {href === '/extensions' ? (
+                  <span className='motion-safe:group-focus:animate-pulse motion-safe:group-hover:animate-pulse'>
+                    <RobotIcon size={44} />
+                  </span>
+                ) : iconSrc ? (
+                  <img
+                    alt=''
+                    className='h-10 w-10 object-contain'
+                    src={iconSrc}
+                  />
+                ) : (
+                  <FiUser
+                    aria-hidden
+                    className='h-7 w-7 motion-safe:group-focus:animate-pulse motion-safe:group-hover:animate-pulse'
+                  />
+                )}
+              </span>
+              <span className='flex flex-col gap-0.5'>
+                <span className='font-bold text-3xl text-white tracking-tight'>{heading}</span>
+                <span className='text-sm text-white/55 transition-colors group-hover:text-white/75 group-focus:text-white/75'>
+                  {subheading}
+                </span>
+              </span>
+            </motion.button>
+          );
+        })}
       </motion.nav>
     </motion.div>
   );

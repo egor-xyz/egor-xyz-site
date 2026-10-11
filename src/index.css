@@ -47,3 +47,62 @@ body {
   --gradient-color-3: #ff333d;
   --gradient-color-4: #ffcb57;
 }
+
+.menu-icon-tile {
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 20%);
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.devkitty-cta {
+  background: linear-gradient(180deg, #a855c9 0%, #7a3fb0 100%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 28%),
+    inset 0 0 0 1px rgb(255 255 255 / 10%),
+    0 10px 30px -8px rgb(168 85 201 / 60%);
+}
+
+.devkitty-cta:hover {
+  background: linear-gradient(180deg, #b667d6 0%, #874bc0 100%);
+}
+
+.group:hover .menu-icon-tile,
+.group:focus-visible .menu-icon-tile {
+  border-color: rgb(255 255 255 / 45%);
+  background-color: rgb(255 255 255 / 18%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 30%),
+    0 0 18px rgb(255 255 255 / 18%);
+}
+
+.glass-scroll {
+  scrollbar-color: rgb(255 255 255 / 35%) transparent;
+  scrollbar-width: thin;
+}
+
+.glass-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.glass-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.glass-scroll::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgb(255 255 255 / 35%);
+}
+
+.glass-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgb(255 255 255 / 55%);
+}
+
+body:not(.dark) .glass-scroll {
+  scrollbar-color: rgb(0 0 0 / 30%) transparent;
+}
+
+body:not(.dark) .glass-scroll::-webkit-scrollbar-thumb {
+  background: rgb(0 0 0 / 30%);
+}

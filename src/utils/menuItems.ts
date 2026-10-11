@@ -1,10 +1,5 @@
 export const menuItems = [
   {
-    heading: 'Digest',
-    href: '/digest',
-    subheading: 'Your weekly dose of frontend news'
-  },
-  {
     heading: 'Devkitty',
     href: '/devkitty',
     subheading: 'Swiss army knife for developers'
@@ -12,7 +7,7 @@ export const menuItems = [
   {
     heading: 'Extensions',
     href: '/extensions',
-    subheading: 'My extension packs and npm packages'
+    subheading: 'Robot, MediaFlow, and more'
   },
   {
     heading: 'About',
