@@ -1,3 +1,10 @@
+# [1.32.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.31.2...v1.32.0) (2026-10-11)
+
+
+### Features
+
+* refresh site navigation and project pages ([91aafa3](https://github.com/egor-xyz/egor-xyz-site/commit/91aafa3e9e7d531411f4362ace52eebfd73ff5ae))
+
 ## [1.31.2](https://github.com/egor-xyz/egor-xyz-site/compare/v1.31.1...v1.31.2) (2026-07-29)
 
 
