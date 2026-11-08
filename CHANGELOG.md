@@ -1,3 +1,10 @@
+## [1.32.1](https://github.com/egor-xyz/egor-xyz-site/compare/v1.32.0...v1.32.1) (2026-11-08)
+
+
+### Bug Fixes
+
+* **devkitty:** new screenshot and slogan ([#105](https://github.com/egor-xyz/egor-xyz-site/issues/105)) ([1ba9d97](https://github.com/egor-xyz/egor-xyz-site/commit/1ba9d9707ee77437e60867395506af0e92207bab))
+
 # [1.32.0](https://github.com/egor-xyz/egor-xyz-site/compare/v1.31.2...v1.32.0) (2026-10-11)
 
 
