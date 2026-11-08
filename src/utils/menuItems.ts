@@ -2,7 +2,7 @@ export const menuItems = [
   {
     heading: 'Devkitty',
     href: '/devkitty',
-    subheading: 'Swiss army knife for developers'
+    subheading: 'A cosy terminal for your whole day'
   },
   {
     heading: 'Extensions',
