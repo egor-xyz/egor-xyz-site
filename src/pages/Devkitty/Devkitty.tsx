@@ -32,15 +32,18 @@ export const Devkitty = () => (
       >
         <div className='rounded-2xl border border-white/20 bg-white/5 p-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-lg'>
           <img
-            alt='Devkitty app showing repositories and GitHub activity'
+            alt='Devkitty terminal with an AI coding agent, session tabs and a sidebar'
             className='w-full rounded-xl shadow-xl'
-            src='https://devkitty.app/images/demo-main.png'
+            height={1864}
+            loading='lazy'
+            src='/devkitty/devkitty-terminal.webp'
+            width={2880}
           />
         </div>
 
-        <h2 className='mt-5 font-bold text-2xl'>All your repos. One calm window.</h2>
+        <h2 className='mt-5 font-bold text-2xl'>A cosy terminal for your whole day.</h2>
         <p className='mt-2 text-base text-black/75 dark:text-white/80'>
-          Devkitty puts your daily GitHub work in one macOS app.
+          Devkitty is a macOS terminal with your repos, pull requests and AI agents in one calm window.
         </p>
 
         <div className='mt-6 flex justify-center pb-2'>
