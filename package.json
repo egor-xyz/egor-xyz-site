@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@react-three/drei": "^10.7.9",
-    "@react-three/fiber": "^9.8.1",
+    "@react-three/fiber": "^9.8.2",
     "clippyts": "^1.0.4",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
